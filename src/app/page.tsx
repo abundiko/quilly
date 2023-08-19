@@ -5,6 +5,7 @@ import HeroSection from "@/components/index/HeroSection";
 import { Helmet } from "react-helmet";
 import { test } from "@/utils/server-actions";
 import IntroSection from "@/components/index/IntroSection";
+import OnboardingSection from "@/components/index/OnboardingSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <main className="">
         <HeroSection />
         <IntroSection />
+        <OnboardingSection />
       </main>
     </AnimatedPage>
   );

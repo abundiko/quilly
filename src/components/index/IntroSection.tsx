@@ -30,7 +30,7 @@ const IntroSection = () => {
             setBgImage(item.img)
           }}
           onViewportLeave={(e)=>{
-            if(i === 1)
+            if(i === 1 && e?.boundingClientRect.bottom && e?.boundingClientRect.bottom > 50)
               setBgImage(introData[0].img);
           }}
            className="relative h-full w-full">

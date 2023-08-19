@@ -16,6 +16,9 @@
   .app-theme {
     @apply dim:bg-dim dim:text-light dark:text-light dark:bg-dark bg-light text-dark;
   }
+  .app-theme-opposite {
+    @apply dim:bg-light dim:text-dark dark:text-dark dark:bg-light bg-dark text-light;
+  }
   .app-shadows {
     @apply dim:shadow-[#0000005d] dark:shadow-[#dddddd22] shadow-[#00000055];
   }
@@ -54,6 +57,9 @@
   }
   .app-bg-opacity {
     @apply bg-opacity-60 dim:bg-opacity-60 dark:bg-opacity-60;
+  }
+  .app-primary-text {
+    @apply text-primary-dark dark:text-primary-light dim:text-primary-light;
   }
 }
 
