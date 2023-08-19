@@ -17,7 +17,7 @@
     @apply dim:bg-dim dim:text-light dark:text-light dark:bg-dark bg-light text-dark;
   }
   .app-shadows {
-    @apply dim:shadow-[#000000aa] dark:shadow-[#dddddd22] shadow-[#00000055];
+    @apply dim:shadow-[#0000005d] dark:shadow-[#dddddd22] shadow-[#00000055];
   }
   .app-borders {
     @apply dim:border-[#ffffff11] dark:border-[#ffffff11] border-[#00000011];
@@ -49,10 +49,23 @@
   .app-navlink:hover {
     @apply text-primary-dark dark:text-primary-light dim:text-primary-light;
   }
+  .app-container {
+    @apply container px-4 sm:px-8 flex flex-wrap mx-auto;
+  }
+  .app-bg-opacity {
+    @apply bg-opacity-60 dim:bg-opacity-60 dark:bg-opacity-60;
+  }
 }
 
 * {
   transition: all .3s ease;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-family: 'Poppins', sans-serif;
+}
+
+.no-animate,
+.rt-DropdownMenuContent,
+[data-radix-popper-content-wrapper],
+.no-animate * {
+  transition: all 0s ease;
 }

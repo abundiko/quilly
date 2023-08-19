@@ -2,6 +2,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import AppDropdown, { AppDropdownProps } from "./AppDropdown";
 
 const Header = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -46,15 +47,43 @@ const Header = () => {
         <Link href="/login" className="app-btn rounded-3xl">
           Login
         </Link>
-        <button onClick={() => themeContext.setTheme("")}>light</button>
+        {/* <button onClick={() => themeContext.setTheme("")}>light</button>
         <button onClick={() => themeContext.setTheme("dim")}>dim</button>
-        <button onClick={() => themeContext.setTheme("dark")}>dark</button>
+        <button onClick={() => themeContext.setTheme("dark")}>dark</button> */}
+        <AppDropdown
+          title={
+            <button className="app-btn py-1 inline-block ms-3 rounded-3xl">
+              Theme
+            </button>
+          }
+          items={themes}
+          onUpdate={e => themeContext.setTheme(e)}
+        />
       </div>
     </header>
   );
 };
 
 export default Header;
+
+const themes = [
+  {
+    title: "system Default",
+    value: "system"
+  },
+  {
+    title: "Dark Theme",
+    value: "dark"
+  },
+  {
+    title: "Dim Theme",
+    value: "dim"
+  },
+  {
+    title: "Light Theme",
+    value: ""
+  }
+];
 
 const navLinks = [
   {

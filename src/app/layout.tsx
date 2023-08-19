@@ -4,6 +4,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import {AnimatePresence} from "framer-motion"
 import ThemeContextProvider, { ThemeContext } from '@/context/ThemeContext'
+import { Theme } from '@radix-ui/themes'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,14 +20,16 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-      <ThemeContextProvider>
 
+      <ThemeContextProvider>
+      <Theme>
         <main className=' app-theme'>
           <Header />
           <AnimatePresence>
           {children}
           </AnimatePresence>
         </main>
+      </Theme>
       </ThemeContextProvider>
     </html>
   )
