@@ -1,4 +1,4 @@
-import React from "react";
+import OnboardingSectionCard from "../OnboardongSectionCard";
 
 const OnboardingSection = () => {
   return (
@@ -12,27 +12,24 @@ const OnboardingSection = () => {
           <span className="app-primary-text font-[600]">Quilly </span> to start
           Creating
         </p>
-        <div className="w-full ">
-          <div className="flex h-fit items-center relative">
-            <div className="w-12 flex-shrink-0 flex-grow flex relative items-center h-full">
-              <div className="w-[2px] h-full absolute left-1/2 -translate-x-1/2 app-theme-opposite app-bg-opacity" />
-              <div className="w-12 text-lg font-bold rounded-full relative app-theme aspect-square shadow app-shadows app-borders border flex justify-center items-center">
-                1
-              </div>
-            </div>
-            <div className="w-full flex-shrink flex items-center py-3">
-              <div className="w-20 h-[2px] app-theme-opposite app-bg-opacity" />
-              <div className="app-theme-opposite p-3 rounded-md app-bg-opacity">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-                beatae a ex maxime labore fugiat, veniam minus voluptas corrupti
-                esse.
-              </div>
-            </div>
-          </div>
-        </div>
+        {onboardingData.map((item, i) =>
+          <OnboardingSectionCard key={i} id={i + 1} body={item} />
+        )}
       </div>
     </section>
   );
 };
 
 export default OnboardingSection;
+
+const onboardingData = [
+  <span key={1}>
+    Create a Free account.{" "}
+    <a href="/signup" className="app-navlink text-inherit">
+      Click Here
+    </a>
+    to get started
+  </span>,
+  "Start writing posts and reading content from the most talented creators",
+  "It's that easy. You are now part of the skilled bloggers community 🎉"
+];
