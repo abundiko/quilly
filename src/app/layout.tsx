@@ -1,8 +1,9 @@
+"use client"
+import Header from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import {AnimatePresence} from "framer-motion"
+import ThemeContextProvider, { ThemeContext } from '@/context/ThemeContext'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,9 +15,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  
   return (
     <html lang="en">
-      <body className={`${inter.className} tracking-[1px]`}>{children}</body>
+      <ThemeContextProvider>
+
+        <main className=' app-theme'>
+          <Header />
+          <AnimatePresence>
+          {children}
+          </AnimatePresence>
+        </main>
+      </ThemeContextProvider>
     </html>
   )
 }

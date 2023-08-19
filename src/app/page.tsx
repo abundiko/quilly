@@ -1,12 +1,19 @@
 "use client";
 
+import AnimatedPage from "@/components/AnimatedPage";
+import HeroSection from "@/components/index/HeroSection";
+import { Helmet } from "react-helmet";
 import { test } from "@/utils/server-actions";
 
 export default function Home() {
   return (
-    <main className="">
-      Home Page
-      <button onClick={test}>hello</button>
-    </main>
+    <AnimatedPage>
+      <Helmet>
+        <title>Quilly | Home Page</title>
+      </Helmet>
+      <main className="">
+        <HeroSection />
+      </main>
+    </AnimatedPage>
   );
 }

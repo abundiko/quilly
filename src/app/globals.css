@@ -2,21 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary-light: #ad00c4;
+  --primary-dark: #4e0058;
+  --dark: #000000;
+  --dim: #160018;
+  --light: #fefdfe;
+}
+
 @layer components {
+  .app-theme {
+    @apply dim:bg-dim dim:text-light dark:text-light dark:bg-dark bg-light text-dark;
+  }
+  .app-shadows {
+    @apply dim:shadow-[#000000aa] dark:shadow-[#dddddd22] shadow-[#00000055];
+  }
+  .app-borders {
+    @apply dim:border-[#ffffff11] dark:border-[#ffffff11] border-[#00000011];
+  }
   .app-btn {
-    @apply rounded-md shadow px-4 py-2 border-2 font-[500] border-transparent bg-blue-800 cursor-pointer text-white;
+    @apply bg-gradient-to-br from-transparent to-[#00000033] rounded-md shadow dark:shadow-[#dddddd22] px-4 py-2 border-2 font-[500] border-transparent bg-primary-dark dark:bg-primary-light dim:bg-primary-light cursor-pointer text-light dim:text-dark dark:text-dark;
   }
   .app-btn:hover {
-    @apply bg-transparent border-white scale-[1.02];
+    @apply bg-transparent border-dark dim:border-light dark:border-light text-inherit scale-[1.02];
+  }
+  .app-btn:active {
+    @apply scale-75;
   }
   .app-btn-bordered {
-    @apply rounded-md shadow px-4 py-2 border-2 font-[500] border-white bg-transparent cursor-pointer text-white;
+    @apply rounded-md shadow px-4 py-2 border-2 font-[500] border-dark text-dark bg-transparent cursor-pointer dim:text-light dark:text-light dim:border-light dark:border-light shadow-[#00000055] dim:shadow-[#000000aa] dark:shadow-[#dddddd22];
   }
   .app-btn-bordered:hover {
-    @apply bg-white text-blue-800 scale-[1.02];
+    @apply border-primary-dark text-primary-dark dim:border-primary-light dim:text-primary-light dark:text-primary-light dark:border-primary-light;
+  }
+  .app-btn-bordered:active {
+    @apply scale-75;
+  }
+  .app-text-field {
+    @apply border rounded-md border-[#00000011] dim:border-[#ffffff11] dark:border-[#ffffff11] px-4 py-2 bg-transparent text-inherit w-full mb-5 outline-primary-dark dark:outline-primary-light dim:outline-primary-light;
+  }
+  .app-navlink {
+    @apply font-[500] text-lg hover:underline inline-block me-3 underline-offset-4;
+  }
+  .app-navlink:hover {
+    @apply text-primary-dark dark:text-primary-light dim:text-primary-light;
   }
 }
 
 * {
   transition: all .3s ease;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
