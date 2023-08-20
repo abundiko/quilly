@@ -14,8 +14,6 @@ export type ThemeContextProps = {
   setTheme: any;
 };
 
-export const themeData = ["", "dark", "dim", "system"];
-
 export const ThemeContext = React.createContext<ThemeContextProps>({
   themeMode: "dark",
   setTheme: () => null
@@ -28,6 +26,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [savedTheme, setSavedTheme] = useLocalStorage<ThemeType>("THEME", "");
   useEffect(() => {
     setTheme(savedTheme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(
     () => {
