@@ -31,19 +31,21 @@ const TestimonialsSection = () => {
               out as the premier destination for consuming and crafting
               exceptional written content.
             </p>
-            <div className="w-full flex items-center justify-center">
+            <div className="w-full flex items-center justify-center mt-3">
               <TestimonialsCircleImage
                 key={0}
                 src={filteredArray[0].img}
                 alt={filteredArray[0].title}
                 action={() => setCurrentIndex(filteredArray[0].index)}
+                className="hidden md:block"
               />
               <TestimonialsCircleImage
                 key={1}
                 src={filteredArray[1].img}
                 alt={filteredArray[1].title}
                 action={() => setCurrentIndex(filteredArray[1].index)}
-                className="scale-110"
+                big
+                className=" hidden md:block"
               />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -52,7 +54,7 @@ const TestimonialsSection = () => {
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  className="w-11/12 md:w-8/12 lg:w-[24em] app-theme-opposite p-5 md:p-8 border app-borders shadow-lg app-shadows rounded-3xl flex flex-col items-center justify-center"
+                  className="w-11/12 md:w-8/12 lg:w-[24em] app-theme-opposite p-6 md:p-8 border app-borders shadow-lg app-shadows rounded-3xl flex flex-col items-center justify-center"
                 >
                   <Image
                     src={`/img/${testimonialsData[currentIndex].img}`}
@@ -82,13 +84,15 @@ const TestimonialsSection = () => {
                 src={filteredArray[2].img}
                 alt={filteredArray[2].title}
                 action={() => setCurrentIndex(filteredArray[2].index)}
-                className="scale-110"
+                big
+                className=" hidden md:block"
               />
               <TestimonialsCircleImage
                 key={3}
                 src={filteredArray[3].img}
                 alt={filteredArray[3].title}
                 action={() => setCurrentIndex(filteredArray[3].index)}
+                className="hidden md:block"
               />
             </div>
             <div className="md:hidden w-full flex justify-center py-2 mt-3">
@@ -114,19 +118,21 @@ const TestimonialsCircleImage = ({
   src,
   alt,
   action,
-  className
+  className,
+  big
 }: {
   src: string;
   alt: string;
   className?: string;
   action: () => void;
+  big?: boolean;
 }) => {
   return (
     <Image
       onClick={action}
       src={`/img/${src}`}
-      height={60}
-      width={60}
+      height={big ? 100 : 60}
+      width={big ? 100 : 60}
       alt={alt}
       className={`shadow-md aspect-square app-shadows object-cover rounded-full mx-3 cursor-pointer p-1 hover:p-0 app-theme-opposite ${className}`}
     />
