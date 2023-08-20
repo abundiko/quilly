@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
-import {AnimatePresence} from "framer-motion"
 import ThemeContextProvider, { ThemeContext } from '@/context/ThemeContext'
 import { Theme } from '@radix-ui/themes'
 
@@ -24,9 +23,7 @@ export default function RootLayout({
       <Theme>
         <main className=' app-theme'>
           <Header />
-          <AnimatePresence>
           {children}
-          </AnimatePresence>
         </main>
       </Theme>
       </ThemeContextProvider>
