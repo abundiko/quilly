@@ -1,4 +1,4 @@
-import { ThemeContext } from "@/context/ThemeContext";
+import { ThemeContext, themes } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -66,26 +66,7 @@ const Header = () => {
 
 export default Header;
 
-const themes = [
-  {
-    title: "system Default",
-    value: "system"
-  },
-  {
-    title: "Dark Theme",
-    value: "dark"
-  },
-  {
-    title: "Dim Theme",
-    value: "dim"
-  },
-  {
-    title: "Light Theme",
-    value: ""
-  }
-];
-
-const navLinks = [
+export const navLinks = [
   {
     Home: "/"
   },

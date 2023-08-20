@@ -1,12 +1,20 @@
 "use client";
-import React, { useContext, useState } from "react";
+import useLocalStorage from "@/hooks/use-locatStorage";
+import React, { useContext, useEffect, useState } from "react";
+export const themes = [
+  { title: "system Default", value: "system" },
+  { title: "Dark Theme", value: "dark" },
+  { title: "Dim Theme", value: "dim" },
+  { title: "Light Theme", value: "" }
+];
 
+export type ThemeType = "" | "dark" | "dim" | "system";
 export type ThemeContextProps = {
-  themeMode: "" | "dark" | "dim";
+  themeMode: ThemeType;
   setTheme: any;
 };
 
-export const themeData = ["", "dark", "dim"];
+export const themeData = ["", "dark", "dim", "system"];
 
 export const ThemeContext = React.createContext<ThemeContextProps>({
   themeMode: "dark",
@@ -14,7 +22,29 @@ export const ThemeContext = React.createContext<ThemeContextProps>({
 });
 
 const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [themeMode, setTheme] = useState<"" | "dark" | "dim">("dim");
+  "use client";
+  const [themeMode, setTheme] = useState<ThemeType>("system");
+  const [realTheme, setRealTheme] = useState("");
+  const [savedTheme, setSavedTheme] = useLocalStorage<ThemeType>("THEME", "");
+  useEffect(() => {
+    setTheme(savedTheme);
+  }, []);
+  useEffect(
+    () => {
+      setSavedTheme(themeMode);
+      if (themeMode == "dim" || themeMode == "dark") {
+        setRealTheme(themeMode);
+      } else if (themeMode == "") {
+        setRealTheme("");
+      } else {
+        const isDarkMode =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setRealTheme(isDarkMode ? "dark" : "");
+      }
+    },
+    [setSavedTheme, themeMode]
+  );
 
   return (
     <ThemeContext.Provider
@@ -23,7 +53,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
         setTheme
       }}
     >
-      <body className={`${themeMode} overflow-x-hidden`}>
+      <body className={`${realTheme} overflow-x-hidden`}>
         {children}
       </body>
     </ThemeContext.Provider>

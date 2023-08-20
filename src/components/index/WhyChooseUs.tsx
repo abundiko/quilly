@@ -36,13 +36,18 @@ const WhyChooseUsCard = ({
 }: WhyChooseUsProps & {
   index: number;
 }) => {
-  const themeClass =
-    "bg-primary-dark dark:bg-light dim:bg-light text-light dark:text-dark dim:text-dark";
+  const evenThemeClass =
+    "bg-primary-dark dark:bg-light dim:bg-light text-light dark:text-dark dim:text-dark   md:bg-primary-dark md:dark:bg-light md:dim:bg-light md:text-light md:dark:text-dark md:dim:text-dark";
+  const threeThemeClass =
+    "md:bg-primary-dark md:dark:bg-light md:dim:bg-light md:text-light md:dark:text-dark md:dim:text-dark   sm:dim:bg-dim sm:dim:text-light sm:dark:text-light sm:dark:bg-dark sm:bg-light sm:text-dark";
+  const fourThemeClass =
+    "sm:bg-primary-dark sm:dark:bg-light sm:dim:bg-light sm:text-light sm:dark:text-dark sm:dim:text-dark   md:dim:bg-dim md:dim:text-light md:dark:text-light md:dark:bg-dark md:bg-light md:text-dark";
   return (
     <div
       className={`p-4 lg:p-6 w-11/12 sm:w-6/12 md:w-4/12 border app-borders ${index %
         2 ==
-        0 && themeClass}`}
+        0 && evenThemeClass} ${index == 2 && threeThemeClass} ${index == 3 &&
+        fourThemeClass}`}
     >
       {icon}
       <h4 className="text-xl font-bold">

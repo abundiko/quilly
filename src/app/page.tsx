@@ -8,6 +8,7 @@ import IntroSection from "@/components/index/IntroSection";
 import OnboardingSection from "@/components/index/OnboardingSection";
 import TestimonialsSection from "@/components/index/TestimonialsSection";
 import WhyChooseUs from "@/components/index/WhyChooseUs";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <OnboardingSection />
         <TestimonialsSection />
         <WhyChooseUs />
+        <Footer />
       </main>
     </AnimatedPage>
   );

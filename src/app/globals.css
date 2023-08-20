@@ -7,6 +7,7 @@
 :root {
   --primary-light: #ad00c4;
   --primary-dark: #4e0058;
+  --dark-text: #121212;
   --dark: #000000;
   --dim: #160018;
   --light: #fefdfe;
@@ -14,10 +15,10 @@
 
 @layer components {
   .app-theme {
-    @apply dim:bg-dim dim:text-light dark:text-light dark:bg-dark bg-light text-dark;
+    @apply dim:bg-dim dim:text-light dark:text-light dark:bg-dark bg-light text-text-dark;
   }
   .app-theme-opposite {
-    @apply dim:bg-light dim:text-dark dark:text-dark dark:bg-light bg-dark text-light;
+    @apply dim:bg-light dim:text-text-dark dark:text-text-dark dark:bg-light bg-dark text-light;
   }
   .app-shadows {
     @apply dim:shadow-[#0000005d] dark:shadow-[#dddddd22] shadow-[#00000055];
@@ -26,7 +27,7 @@
     @apply dim:border-[#ffffff11] dark:border-[#ffffff11] border-[#00000011];
   }
   .app-btn {
-    @apply bg-gradient-to-br from-transparent to-[#00000033] rounded-md shadow dark:shadow-[#dddddd22] px-4 py-2 border-2 font-[500] border-transparent bg-primary-dark dark:bg-primary-light dim:bg-primary-light cursor-pointer text-light dim:text-dark dark:text-dark;
+    @apply bg-gradient-to-br from-transparent to-[#00000033] rounded-md shadow dark:shadow-[#dddddd22] px-4 py-2 border-2 font-[500] border-transparent bg-primary-dark dark:bg-primary-light dim:bg-primary-light cursor-pointer text-light dim:text-text-dark dark:text-text-dark;
   }
   .app-btn:hover {
     @apply bg-transparent border-dark dim:border-light dark:border-light text-inherit scale-[1.02];
@@ -35,7 +36,7 @@
     @apply scale-75;
   }
   .app-btn-bordered {
-    @apply rounded-md shadow px-4 py-2 border-2 font-[500] border-dark text-dark bg-transparent cursor-pointer dim:text-light dark:text-light dim:border-light dark:border-light shadow-[#00000055] dim:shadow-[#000000aa] dark:shadow-[#dddddd22];
+    @apply rounded-md shadow px-4 py-2 border-2 font-[500] border-dark text-text-dark bg-transparent cursor-pointer dim:text-light dark:text-light dim:border-light dark:border-light shadow-[#00000055] dim:shadow-[#000000aa] dark:shadow-[#dddddd22];
   }
   .app-btn-bordered:hover {
     @apply border-primary-dark text-primary-dark dim:border-primary-light dim:text-primary-light dark:text-primary-light dark:border-primary-light;
