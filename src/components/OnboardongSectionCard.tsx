@@ -31,7 +31,7 @@ const OnboardingSectionCard = ({ id, body }: OnboardingSectionCardProps) => {
               hasEntered && { gridTemplateColumns: "repeat(1, minmax(0, 1fr)" }
             }
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="grid overflow-hidden"
+            className="grid overflow-hidden flex-shrink-0"
           >
             <div className="w-6 sm:w-12 md:w-20 h-[2px] app-theme-opposite app-bg-opacity grid-cols-1" />
           </motion.div>
@@ -39,7 +39,7 @@ const OnboardingSectionCard = ({ id, body }: OnboardingSectionCardProps) => {
             initial={{ opacity: 0, translateX: -20 }}
             animate={hasEntered && { opacity: 1, translateX: 0 }}
             transition={{ duration: 0.4, delay: 1.2 }}
-            className="app-theme-opposite p-3 rounded-md app-bg-opacity"
+            className="app-theme-opposite p-3 rounded-md app-bg-opacity text-md xd:text-lg lg:text-xl"
           >
             {body}
           </motion.div>
