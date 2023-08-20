@@ -2,12 +2,12 @@ import OnboardingSectionCard from "../OnboardongSectionCard";
 
 const OnboardingSection = () => {
   return (
-    <section className=" relative app-theme py-10">
+    <section className=" relative app-theme py-16">
       <div className="app-container">
-        <h1 className="font-bold text-3xl md:text-6xl">
+        <h1 className="font-bold text-3xl md:text-5xl w-full">
           On-Boarding is Pretty Easy
         </h1>
-        <p className="opacity-80 text-lg my-4">
+        <p className="opacity-80 text-lg my-4 w-full">
           Here are the few easy steps to take on{" "}
           <span className="app-primary-text font-[600]">Quilly </span> to start
           Creating
