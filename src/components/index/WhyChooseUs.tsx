@@ -33,10 +33,7 @@ const WhyChooseUsCard = ({
   title,
   subtitle,
   index
-}: {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
+}: WhyChooseUsProps & {
   index: number;
 }) => {
   const themeClass =
