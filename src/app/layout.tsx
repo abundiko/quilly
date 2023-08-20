@@ -19,14 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <ThemeContextProvider>
-      <Theme>
+      {/* <ThemeContextProvider>
+      <Theme> */}
         <main className=' app-theme'>
-          <Header />
+          {/* <Header /> */}
           {children}
         </main>
-      </Theme>
-      </ThemeContextProvider>
+      {/* </Theme>
+      </ThemeContextProvider> */}
     </html>
   )
 }
