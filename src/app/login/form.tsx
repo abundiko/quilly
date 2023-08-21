@@ -1,4 +1,4 @@
-import { submitLogin } from "@/utils/server-actions";
+import { submitLogin } from "@/server/actions/login";
 import Link from "next/link";
 import { useState } from "react";
 import { loginSchema } from "@/schemas/userSchema";
@@ -55,6 +55,7 @@ const LoginForm = () => {
       setErrors({});
       const res = await submitLogin(validValues);
       setMessage(res);
+      setIsLoading(false);
     } catch (error) {
       if (error instanceof z.ZodError) {
         setErrors(error.flatten().fieldErrors);
