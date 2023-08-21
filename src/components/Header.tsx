@@ -1,3 +1,4 @@
+"use client";
 import { ThemeContext, themes } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,7 +48,7 @@ const Header = () => {
         <Link href="/login" className="app-btn rounded-3xl">
           Login
         </Link>
-        {/* <AppDropdown
+        <AppDropdown
           title={
             <button className="app-btn py-1 inline-block ms-3 rounded-3xl">
               Theme
@@ -55,7 +56,7 @@ const Header = () => {
           }
           items={themes}
           onUpdate={e => themeContext.setTheme(e)}
-        /> */}
+        />
       </div>
     </header>
   );
