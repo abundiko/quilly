@@ -63,6 +63,18 @@
   .app-primary-text {
     @apply text-primary-dark dark:text-primary-light dim:text-primary-light;
   }
+  .app-text-error {
+    @apply text-red-600 dim:text-red-300 dark:text-red-300;
+  }
+  .app-bg-error {
+    @apply bg-red-300 text-text-dark;
+  }
+  .app-text-success {
+    @apply text-red-600 dim:text-green-300 dark:text-green-300;
+  }
+  .app-bg-success {
+    @apply bg-green-300 text-text-dark;
+  }
 }
 
 * {
@@ -76,4 +88,16 @@
 [data-radix-popper-content-wrapper],
 .no-animate * {
   transition: all 0s ease;
+}
+
+.app-loader > .dot {
+  animation: loader .8s infinite;
+  animation-delay: calc(var(--delay) * .2s);
+}
+
+@keyframes loader {
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
 }

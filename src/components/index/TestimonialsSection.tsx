@@ -1,9 +1,22 @@
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform
+} from "framer-motion";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaQuoteRight, FaQuoteLeft } from "react-icons/fa";
 
 const TestimonialsSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  const transformedValue = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const transformedValue2 = useTransform(scrollYProgress, [0, 1], [-50, 400]);
+
   const [currentIndex, setCurrentIndex] = useState<number>(2);
   const [filteredArray, setFilteredArray] = useState<
     { img: string; title: string; index: number }[]
@@ -21,8 +34,20 @@ const TestimonialsSection = () => {
     exit: { translateY: -50, opacity: 0 }
   };
   return (
-    <section className="app-theme relative">
-      <section className="py-16 bg-[#00000011] dim:bg-[#00000033] dark:bg-[#ffffff11]">
+    <section ref={sectionRef} className="app-theme relative">
+      <div className="absolute h-full w-full top-0 left-0 overflow-hidden">
+        <motion.div
+          style={{ translateY: transformedValue2 }}
+          className="absolute -right-60 bottom-[30vh] opacity-10 h-96 w-96 aspect-square bg-primary-light bg-opacity-40 dim:bg-opacity-40 dark:bg-opacity-40 rounded-full"
+        />
+        <motion.div
+          style={{ top: transformedValue }}
+          className="absolute left-20 opacity-10"
+        >
+          <FaQuoteLeft className="text-7xl" />
+        </motion.div>
+      </div>
+      <section className="py-16 relative bg-[#00000011] dim:bg-[#00000033] dark:bg-[#ffffff11]">
         <div className="app-container">
           <div className="w-full text-center">
             <h1 className="font-bold text-3xl md:text-5xl">What Users Say</h1>

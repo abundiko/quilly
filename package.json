@@ -24,7 +24,9 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.10.1",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "tslib": "^2.6.2",
+    "typescript": "5.1.6",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.6"
