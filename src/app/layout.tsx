@@ -22,7 +22,7 @@ export default function RootLayout({
       <ThemeContextProvider>
       <Theme>
         <main className=' app-theme'>
-          {/* <Header /> */}
+          <Header />
           {children}
         </main>
       </Theme>

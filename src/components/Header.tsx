@@ -47,10 +47,7 @@ const Header = () => {
         <Link href="/login" className="app-btn rounded-3xl">
           Login
         </Link>
-        {/* <button onClick={() => themeContext.setTheme("")}>light</button>
-        <button onClick={() => themeContext.setTheme("dim")}>dim</button>
-        <button onClick={() => themeContext.setTheme("dark")}>dark</button> */}
-        <AppDropdown
+        {/* <AppDropdown
           title={
             <button className="app-btn py-1 inline-block ms-3 rounded-3xl">
               Theme
@@ -58,7 +55,7 @@ const Header = () => {
           }
           items={themes}
           onUpdate={e => themeContext.setTheme(e)}
-        />
+        /> */}
       </div>
     </header>
   );
