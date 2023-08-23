@@ -70,7 +70,7 @@
     @apply bg-red-300 text-text-dark;
   }
   .app-text-success {
-    @apply text-red-600 dim:text-green-300 dark:text-green-300;
+    @apply text-green-600 dim:text-green-300 dark:text-green-300;
   }
   .app-bg-success {
     @apply bg-green-300 text-text-dark;
