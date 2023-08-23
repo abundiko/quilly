@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import { LayoutProps } from '../(auth)/signup/layout';
 import isLoggedIn from '@/server/auth/isLoggedIn';
 import { useRouter } from 'next/navigation';
+import Header from '@/components/Header';
 
 function UserLayout({children}:LayoutProps) {
   const [loading, setLoading] = useState(true);
@@ -23,9 +24,12 @@ function UserLayout({children}:LayoutProps) {
   
   return (
     loading ? <></>
-    : <main>
+    : <>
+    <Header />
+    
       {children}
-    </main>
+  
+    </>
   )
 }
 

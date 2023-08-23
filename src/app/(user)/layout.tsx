@@ -23,9 +23,9 @@ function UserLayout({children}:LayoutProps) {
   
   return (
     loading ? <></>
-    : <main>
+    : <>
       {children}
-    </main>
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import Header from '@/components/Header'
+
 import './globals.css'
 import type { Metadata } from 'next'
 import ThemeContextProvider, { ThemeContext } from '@/context/ThemeContext'
@@ -22,7 +22,7 @@ export default function RootLayout({
       <ThemeContextProvider>
       <Theme>
         <main className=' app-theme'>
-          <Header />
+          
           {children}
         </main>
       </Theme>
