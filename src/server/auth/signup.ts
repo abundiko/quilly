@@ -1,17 +1,14 @@
 "use server";
 
-import { sign } from "jsonwebtoken";
-import { serialize } from "cookie";
 import bcrypt from "bcrypt";
 
-import { cookies } from "next/headers";
 import { FormMessage } from "@/types/formTypes";
 import { SignupData } from "@/app/(auth)/signup/page";
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
 import emailExists from "./emailExists";
 import usernameIsTaken from "./usernameIsTaken";
-import { MAX_COOKIE_AGE } from "@/utils/constants";
+import setUserCookie from "../setUserCookie";
 
 export async function submitSignup(formData: SignupData): Promise<FormMessage> {
   "use server";
@@ -55,17 +52,9 @@ export async function submitSignupInterests(
       const newUser: UserDocument = await userDoc.save();
 
       if (newUser) {
-        const secret = process.env.JWT_SECRET || "";
-        console.log(newUser._id!.toString(), newUser.toString());
+        // console.log(newUser._id!.toString(), newUser.toString());
 
-        const token = sign({ _uid: newUser._id!.toString() }, secret, {
-          expiresIn: MAX_COOKIE_AGE
-        });
-        await cookies().set("_uid", token, {
-          httpOnly: true,
-          sameSite: "strict",
-          maxAge: MAX_COOKIE_AGE
-        });
+        setUserCookie(newUser._id!.toString());
         return ["success", "account created"];
       } else return ["error", "unable to create account"];
     } catch (e) {

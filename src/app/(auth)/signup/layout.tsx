@@ -18,7 +18,7 @@ export const SignupContext = createContext<SignupContextProps>({
   setData: () => null
 });
 
-const SignupLayout = ({ children }: Props) => {
+const SignupLayout = ({ children }: LayoutProps) => {
   const [data, setData] = useState<SignupData | null>(null);
   return (
     <AnimatedPage>

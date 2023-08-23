@@ -3,24 +3,6 @@ import UserModel, { UserDocument } from "./schemas/userSchema";
 import { SignupData } from "@/app/(auth)/signup/page";
 import { connectDB } from "./init";
 
-export async function login(userData: LoginData): Promise<boolean> {
-  await connectDB();
-  let tries = 0;
-  while (tries < 3) {
-    try {
-      const userExists: UserDocument | null = await UserModel.findOne({
-        email: userData.email,
-        password: userData.password
-      });
-      console.log(userExists);
-      return true ? true : false;
-    } catch (e) {
-      tries += 1;
-    }
-  }
-  return false;
-}
-
 export async function signup(formData: SignupData): Promise<boolean | null> {
   let tries = 0;
   while (tries < 3) {

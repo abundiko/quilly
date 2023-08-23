@@ -12,11 +12,11 @@ function UserLayout({children}:LayoutProps) {
   useEffect(()=>{
     (async ()=>{
       try{
-        if(await isLoggedIn()){
+        if(!(await isLoggedIn())){
           setLoading(false);
-        }else throw new Error("you are not logged in")
+        }else throw new Error("you are logged in")
       }catch(e){
-        router.replace("/login");
+        router.replace("/home");
       }
     })();
   },[router])

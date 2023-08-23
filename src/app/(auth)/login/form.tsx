@@ -1,4 +1,4 @@
-import { submitLogin } from "@/server/actions/login";
+import submitLogin from "@/server/auth/login";
 import Link from "next/link";
 import { useState } from "react";
 import { loginSchema } from "@/schemas/userSchema";
@@ -6,6 +6,7 @@ import { z } from "zod";
 import AppInputField, { AppFormMessage } from "@/components/AppInputField";
 import AppLoader from "@/components/AppLoader";
 import { FormMessage } from "@/types/formTypes";
+import { useRouter } from "next/navigation";
 
 interface LoginFormErrors {
   email?: string[];
@@ -32,6 +33,7 @@ export type LoginData = {
 };
 
 const LoginForm = () => {
+  const router = useRouter();
   const [formValues, setFormValues] = useState<LoginData>({
     email: "",
     password: ""
@@ -54,7 +56,9 @@ const LoginForm = () => {
       const validValues = loginSchema.parse(formValues);
       setErrors({});
       const res = await submitLogin(validValues);
-      setMessage(res);
+      if (res) {
+        if (res[0] == "success") router.replace("/home");
+      } else setMessage(res);
       setIsLoading(false);
     } catch (error) {
       if (error instanceof z.ZodError) {
