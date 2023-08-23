@@ -15,14 +15,14 @@ export type AppDropdownProps = {
 const AppDropdown = ({ items, title, onUpdate }: AppDropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu.Root  open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenu.Trigger>
         {title}
       </DropdownMenu.Trigger>
       <AnimatePresence>
         {
           isOpen && 
-                <DropdownMenu.Content className="app-theme overflow-hidden app-borders border shadow-md z-40 app-shadows rounded-md app-bg-opacity backdrop-blur-sm">
+                <DropdownMenu.Content  className="app-theme overflow-hidden app-borders border shadow-md z-40 app-shadows rounded-md app-bg-opacity backdrop-blur-sm">
       <motion.div
       className="relative"
         initial={{ top: -50, opacity: 0 }}

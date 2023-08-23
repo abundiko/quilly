@@ -94,7 +94,7 @@ const LoginForm = () => {
       )}
       <button
         disabled={isLoading}
-        className="app-btn w-full mb-5 disabled:pointer-events-none disabled:opacity-50"
+        className="app-btn w-full mb-5"
         name="login-submit"
         type="submit"
       >

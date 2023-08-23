@@ -30,6 +30,10 @@
   .app-btn {
     @apply bg-gradient-to-br from-transparent to-[#00000033] rounded-md shadow dark:shadow-[#dddddd22] px-4 py-2 border-2 font-[500] border-transparent bg-primary-dark dark:bg-primary-light dim:bg-primary-light cursor-pointer text-light dim:text-text-dark dark:text-text-dark;
   }
+  .app-btn:disabled,
+  .app-btn-bordered:disabled {
+    @apply pointer-events-none opacity-50;
+  }
   .app-btn:hover {
     @apply bg-transparent border-dark dim:border-light dark:border-light text-inherit scale-[1.02];
   }
@@ -74,6 +78,15 @@
   }
   .app-bg-success {
     @apply bg-green-300 text-text-dark;
+  }
+  .dashboard-link {
+    @apply hover:bg-[#00000022] dim:hover:bg-[#eeeeee22] dark:hover:bg-[#eeeeee22] rounded-lg px-3 py-2 flex gap-3 items-center font-[600];
+  }
+  .page-title {
+    @apply text-2xl font-bold py-2 border-b app-borders px-3 sticky top-0 w-full;
+  }
+  .app-icon-button {
+    @apply w-12 h-12 rounded-full flex items-center justify-center hover:bg-[#00000022] dim:hover:bg-[#eeeeee22] dark:hover:bg-[#eeeeee22];
   }
 }
 

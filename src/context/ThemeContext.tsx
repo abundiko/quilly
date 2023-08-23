@@ -46,15 +46,50 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <ThemeContext.Provider
-      value={{
-        themeMode,
-        setTheme
-      }}
-    >
+    <ThemeContext.Provider value={{ themeMode, setTheme }}>
       <body className={`${realTheme} overflow-x-hidden`}>
         {children}
       </body>
+      <style>
+        {realTheme == "dark"
+          ? `
+        
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+  opacity: 0.6;
+  background-color: var(--light);
+  border-radius: 20px;
+}
+        `
+          : realTheme == "dim"
+            ? `
+        
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--dim);
+}
+::-webkit-scrollbar-thumb {
+  opacity: 0.6;
+  background-color: var(--light);
+  border-radius: 20px;
+}
+        `
+            : `
+        
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--light);
+}
+::-webkit-scrollbar-thumb {
+  opacity: 0.6;
+  background-color: var(--dark);
+  border-radius: 20px;
+}
+        `}
+      </style>
     </ThemeContext.Provider>
   );
 };
