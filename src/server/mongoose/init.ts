@@ -8,10 +8,7 @@ const connectionString = `mongodb+srv://${process.env.MONGO_USER}:${process.env
 
 export async function connectDB(): Promise<boolean> {
   try {
-    await Mongoose.connect(connectionString, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await Mongoose.connect(connectionString, {});
     return true;
   } catch (error) {
     console.error("Error connecting to MongoDB:", (error as any).message);
