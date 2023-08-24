@@ -6,8 +6,9 @@ type AppInputFieldProps = {
   type: string;
   placeholder: string;
   error?: string[];
+  textarea?: boolean;
   name: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: any;
 };
 
 const AppInputField = ({
@@ -15,6 +16,7 @@ const AppInputField = ({
   placeholder,
   error,
   name,
+  textarea = false,
   onChange
 }: AppInputFieldProps) => {
   const [isHidden, setHidden] = useState(true);
@@ -27,14 +29,22 @@ const AppInputField = ({
             {error[0]}
           </p>
         </div>}
-      <input
-        type={isPassword ? (isHidden ? type : "text") : type}
-        placeholder={placeholder}
-        name={name}
-        id={name}
-        onChange={onChange}
-        className={`app-text-field ${error && "bg-[#ee333333]"}`}
-      />
+      {textarea
+        ? <textarea
+            placeholder={placeholder}
+            name={name}
+            id={name}
+            onChange={onChange}
+            className={`app-text-field ${error && "bg-[#ee333333]"}`}
+          />
+        : <input
+            type={isPassword ? (isHidden ? type : "text") : type}
+            placeholder={placeholder}
+            name={name}
+            id={name}
+            onChange={onChange}
+            className={`app-text-field ${error && "bg-[#ee333333]"}`}
+          />}
       {isPassword &&
         <i className="absolute bottom-8 right-3">
           {!isHidden

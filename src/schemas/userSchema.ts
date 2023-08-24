@@ -24,3 +24,16 @@ export const signupSchema = z.object({
     .max(20, "user name too long")
     .regex(/^[A-Za-z0-9_]+$/, "invalid username, use A-Z, 0-9 or _")
 });
+
+export const editProfileSchema = z.object({
+  bio: z.string(),
+  full_name: z
+    .string()
+    .min(3, "full name too short")
+    .max(25, "full name too long"),
+  username: z
+    .string()
+    .min(3, "user name too short")
+    .max(20, "user name too long")
+    .regex(/^[A-Za-z0-9_]+$/, "invalid username, use A-Z, 0-9 or _")
+});
