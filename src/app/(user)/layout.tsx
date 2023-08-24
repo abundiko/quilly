@@ -44,7 +44,7 @@ function UserLayout({children}:LayoutProps) {
       <section className="w-full  sm:w-9/12 md:w-10/12 relative">
         <button
           onClick={() => setShowSidebar(!showSidebar)}
-         className="absolute z-20 app-icon-button right-2 top-1">
+         className="absolute z-20 app-icon-button right-2 top-1 sm:hidden">
           <FaBars />
         </button>
       {children}
