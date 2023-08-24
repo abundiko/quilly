@@ -9,6 +9,9 @@ export type UserDocument =  {
   createdAt?: Date;
   interests: string[],
   favourites: string[],
+  bio:string;
+  monthly_readers:number;
+  img:string;
 };
 
 let UserModel = mongoose.Model<UserDocument>;
@@ -45,6 +48,18 @@ if (mongoose.models.User) {
     favourites: {
       type: [String],
       default: [],
+    },
+    img:{
+      type:String,
+      default:""
+    },
+    bio:{
+      type:String,
+      default:"",
+    },
+    monthly_readers:{
+      type:Number,
+      default:0
     }
   }, { collection: "users" });
   UserModel = mongoose.connection.useDb('quilly').model("User", userSchema, "users");

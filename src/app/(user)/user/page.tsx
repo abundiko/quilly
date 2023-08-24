@@ -4,6 +4,7 @@ import { AnimatedPageOpacity } from "@/components/AnimatedPage";
 import PostCard from "@/components/PostCard";
 import UserContext from "@/context/UserContext";
 import { dummyPosts } from "@/data/dummyPosts";
+import { formatDateString } from "@/utils/formateDate";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
@@ -32,9 +33,9 @@ const Page = () => {
             </div>
             <div className="w-9/12">
               <h1 className="font-bold text-2xl md:text-3xl mt-6 mb-2">
-                {userContext.data?.username}
+                {userContext.data?.full_name}
               </h1>
-              <h2 className="font-[600] text-md opacity-80">@johnTheDoe</h2>
+              <h2 className="font-[600] text-md opacity-80">@{userContext.data?.username}</h2>
             </div>
             <Link
               href="/user/edit"
@@ -49,18 +50,15 @@ const Page = () => {
         <div className="p-4">
           <div className="mb-3 flex gap-3">
             <p className="text-sm font-[600] flex items-center opacity-80 gap-2">
-              <FaBook /> <span> 200 Monthly readers</span>
+              <FaBook /> <span> {userContext.data?.monthly_readers} Monthly readers</span>
             </p>
             <p className="text-sm font-[600] flex items-center opacity-80 gap-2">
-              <FaCalendar /> <span> Joined July 2023</span>
+              <FaCalendar /> <span> Joined {formatDateString(userContext.data?.createdAt!)}</span>
             </p>
           </div>
           <div className="p-2 rounded-md border app-borders mb-4 light-bg">
             <p className="opacity-80 text-md">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
-              ipsum! Eos consectetur nostrum doloribus vero ratione saepe,
-              voluptates at deserunt. Recusandae quasi alias error quo quidem
-              praesentium voluptas ipsa omnis?
+              {userContext.data?.bio}
             </p>
           </div>
           <div className="md:w-8/12">

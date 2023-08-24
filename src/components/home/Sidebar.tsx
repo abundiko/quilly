@@ -8,7 +8,7 @@ import {
   FaSignOutAlt,
   FaUserAlt
 } from "react-icons/fa";
-import { IoSettingsSharp } from "react-icons/io5";
+import { IoPencil } from "react-icons/io5";
 import AppDropdown from "../AppDropdown";
 import { ModalContext } from "@/context/ModalContext";
 import LogoutModal from "../modals/LogoutModal";
@@ -37,8 +37,8 @@ const Sidebar = () => {
           <span>Profile</span>
         </Link>
         <Link href="/settings" className="dashboard-link mb-2">
-          <IoSettingsSharp />
-          <span>Settings</span>
+          <IoPencil />
+          <span>Create</span>
         </Link>
       </div>
       <div>

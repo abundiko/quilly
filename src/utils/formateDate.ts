@@ -22,3 +22,17 @@ export default function formatDate(date: Date): string {
     return `${diffYears}y ago`;
   }
 }
+
+/**
+ * Formats a date string to "Month Year" format.
+ *
+ * @param {string} dateString - The date string to be formatted.
+ * @returns {string} - The formatted date string in "Month Year" format.
+ */
+export function formatDateString(date: Date): string {
+  // const date = new Date(dateString);
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+
+  return `${month} ${year}`;
+}
