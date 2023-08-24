@@ -1,12 +1,15 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import AppInputField from "@/components/AppInputField";
+import AppInputField, { AppInputFieldProps } from "@/components/AppInputField";
+import AppLoader from "@/components/AppLoader";
+import UserContext from "@/context/UserContext";
 import { editProfileSchema } from "@/schemas/userSchema";
+import updateProfileData from "@/server/auth/editProfile";
 import { FormMessage } from "@/types/formTypes";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { z } from "zod";
+import { useContext, useEffect, useState } from "react";
+import { object, z } from "zod";
 
 const formFields = [
   {
@@ -27,8 +30,9 @@ const formFields = [
   }
 ];
 interface EditProfileErrors {
-  email?: string[];
-  password?: string[];
+  username?: string[];
+  full_name?: string[];
+  bio?: string[];
   [key: string]: string[] | undefined;
 }
 
@@ -38,7 +42,21 @@ export type EditProfileData = {
   bio: string;
 };
 const EditUserProfilePage = () => {
+  const userContext = useContext(UserContext);
+  const [formFieldsWithValue, setFormFieldsWithValue] = useState(formFields);
   const router = useRouter();
+
+  useEffect(() => {
+    let newFields: object[] = [];
+    for (const key in formFields) {
+      newFields.push({
+        ...formFields[key],
+        value: userContext.data ? userContext.data[key] : ""
+      });
+    }
+    setFormFieldsWithValue(newFields as AppInputFieldProps[]);
+  }, []);
+
   const [formValues, setFormValues] = useState<EditProfileData>({
     username: "",
     full_name: "",
@@ -58,7 +76,7 @@ const EditUserProfilePage = () => {
     try {
       const validValues = editProfileSchema.parse(formValues);
       setErrors({});
-      const res = await "submitLogin(validValues)";
+      const res = await updateProfileData(validValues);
       if (res && res[0] === "success") {
         router.replace("/home");
       } else {
@@ -76,19 +94,25 @@ const EditUserProfilePage = () => {
   return (
     <AnimatedPageOpacity>
       <main className="border-r app-borders">
-        <h1 className="page-title">Edit Profile</h1>
+        <h1 className="page-title">Update Profile</h1>
         <div className="p-4">
-          <form
-            action={handleSubmit}
-            className="border app-borders rounded-lg p-3"
-          >
-            {formFields.map(item =>
+          <form action={handleSubmit} className=" p-3 md:w-8/12 mx-auto">
+            {formFieldsWithValue.map(item =>
               <AppInputField
                 key={item.name}
                 {...item}
                 onChange={handleChange}
+                error={errors[item.name]}
               />
             )}
+            <button
+              disabled={isLoading}
+              className="app-btn w-full mb-5"
+              name="login-submit"
+              type="submit"
+            >
+              {isLoading ? <AppLoader /> : "Update"}
+            </button>
           </form>
         </div>
       </main>

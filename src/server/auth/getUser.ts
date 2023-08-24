@@ -22,10 +22,10 @@ export default async function getUser(
     try {
       const decoded = jwt.verify(token.value, secret) as any;
       const uid = decoded?._uid;
-      const userData: UserDocument | null = await UserModel.findById(uid);
-      console.log(userData);
+      const userData = await UserModel.findById(uid);
+      // console.log(userData);
       if (userData) {
-        return userData;
+        return {...userData.toObject(), _id:userData._id.toString()} as UserDocument;
       } else {
         return null;
       }

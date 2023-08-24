@@ -47,7 +47,10 @@ export async function submitSignupInterests(
       const userDoc = new UserModel({
         ...formData,
         password: hashedPassword,
-        favourites: []
+        favourites: [],
+        img: "",
+        bio: "",
+        monthly_readers: 0
       });
       const newUser: UserDocument = await userDoc.save();
 

@@ -2,13 +2,14 @@ import { FormMessage } from "@/types/formTypes";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-type AppInputFieldProps = {
+export type AppInputFieldProps = {
   type: string;
   placeholder: string;
   error?: string[];
   textarea?: boolean;
   name: string;
   onChange: any;
+  value?: string;
 };
 
 const AppInputField = ({
@@ -17,7 +18,8 @@ const AppInputField = ({
   error,
   name,
   textarea = false,
-  onChange
+  onChange,
+  value
 }: AppInputFieldProps) => {
   const [isHidden, setHidden] = useState(true);
   const isPassword = type === "password";
@@ -31,6 +33,7 @@ const AppInputField = ({
         </div>}
       {textarea
         ? <textarea
+            value={value}
             placeholder={placeholder}
             name={name}
             id={name}
@@ -38,6 +41,7 @@ const AppInputField = ({
             className={`app-text-field ${error && "bg-[#ee333333]"}`}
           />
         : <input
+            value={value}
             type={isPassword ? (isHidden ? type : "text") : type}
             placeholder={placeholder}
             name={name}

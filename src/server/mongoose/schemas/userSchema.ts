@@ -1,17 +1,18 @@
 import mongoose, { Document, ObjectId } from "mongoose";
 
 export type UserDocument =  {
-  _id?:ObjectId;
+  _id?:string;
   email: string;
   password: string;
   username: string;
   full_name: string;
-  createdAt?: Date;
+  createdAt?: string;
   interests: string[],
   favourites: string[],
   bio:string;
   monthly_readers:number;
   img:string;
+  [key: string]: string[] | string |number| undefined;
 };
 
 let UserModel = mongoose.Model<UserDocument>;

@@ -34,3 +34,22 @@ export default async function isLoggedIn(): Promise<boolean> {
     return false;
   }
 }
+
+
+export async function getUserSessionId() : Promise<string|null> {
+  const cookiesStore = cookies();
+  const token = cookiesStore.get("_uid");
+  const secret = process.env.JWT_SECRET || "";
+
+  if (!token) {
+    return null;
+  }
+
+  try {
+    const decoded: any = await jwt.verify(token.value, secret);
+    const uid = decoded?._uid;
+    return uid.toString();
+  }catch(e){
+    return null
+  }
+}

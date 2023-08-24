@@ -24,8 +24,7 @@ function UserLayout({children}:LayoutProps) {
         if(await isLoggedIn()){
           setLoading(false);
           const userDoc = await getUser();
-          console.log("some error", userDoc, typeof userDoc);
-          if(userDoc) userContext.setData(userDoc);
+          if(userDoc) userContext.setData({...userDoc});
           else console.log("some error", userDoc, typeof userDoc);
           
         }else throw new Error("you are not logged in")

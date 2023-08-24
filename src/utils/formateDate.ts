@@ -29,8 +29,8 @@ export default function formatDate(date: Date): string {
  * @param {string} dateString - The date string to be formatted.
  * @returns {string} - The formatted date string in "Month Year" format.
  */
-export function formatDateString(date: Date): string {
-  // const date = new Date(dateString);
+export function formatDateString(dateString: string): string {
+  const date = new Date(dateString);
   const month = date.toLocaleString("default", { month: "long" });
   const year = date.getFullYear();
 
