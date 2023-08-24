@@ -16,7 +16,7 @@ const PostCard = ({
   return (
     <div className="my-1  py-2 px-3 group cursor-pointer app-borders border-b">
       <div className="flex justify-between mb-1">
-        <div className="w-fit flex items-center gap-2">
+        <div className="w-fit flex items-center gap-1">
           <Link href={`/user/${user._id}`} className="flex gap-2 items-center">
             <Image
               src={user.img}
@@ -25,7 +25,7 @@ const PostCard = ({
               alt="user name"
               className="rounded-full aspect-square"
             />
-            <h6 className="opacity-90 text-md font-[500]">
+            <h6 className="opacity-90 text-sm font-[600]">
               {user._id.toString()}
             </h6>
           </Link>
@@ -34,7 +34,7 @@ const PostCard = ({
             {formatDate(createdAt)}
           </span>
         </div>
-        <button className="app-icon-button">
+        <button className="app-icon-button text-sm">
           <FaEllipsisV />
         </button>
       </div>
@@ -42,7 +42,7 @@ const PostCard = ({
         href={`/user/${user._id}/${title}`}
         className="flex gap-2 items-center"
       >
-        <div className="relative min-w-[30%] rounded-md overflow-hidden aspect-square">
+        <div className="relative min-w-[30%] w-[30%] rounded-md overflow-hidden aspect-square">
           <Image
             src={img}
             layout="fill"
@@ -50,11 +50,11 @@ const PostCard = ({
             className="rounded aspect-square group-hover:scale-110"
           />
         </div>
-        <div>
-          <h3 className="text-lg font-[600]">
+        <div className="w-[68%] max-w-[68%]">
+          <h3 className="text-lg font-bold">
             {title}
           </h3>
-          <p className="opacity-70 text-sm">
+          <p className="opacity-70 text-sm  ">
             {intro}
           </p>
           <div className="flex justify-between mt-1 opacity-80">

@@ -10,7 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      
+      screens:{
+        sm:"450px",
+      },
       colors:{
         primary:{light:'#ad00c4', dark: "#4e0058"},
         text:{dark:"#121212"},

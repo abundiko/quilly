@@ -14,7 +14,7 @@ const HomePage = () => {
     <AnimatedPageOpacity>
       <div className="flex">
 
-      <div className="w-8/12 relative">
+      <div className="w-full md:w-8/12 relative">
       <h1 className="page-title">Quilly</h1>
       {
         dummyPosts.map((item,i)=>
@@ -22,7 +22,7 @@ const HomePage = () => {
         )
       }
       </div>
-      <div className="w-4/12 app-borders border-l p-3">
+      <div className="hidden md:block w-4/12 app-borders border-l p-3">
         <div className="flex justify-between items-center ">
         <h6 className="font-[600] opacity-80 text-md">My Tags</h6>
         <button className="app-btn-bordered rounded-full px-3 text-md">
