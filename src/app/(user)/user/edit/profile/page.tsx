@@ -51,9 +51,12 @@ const EditUserProfilePage = () => {
     for (const key in formFields) {
       newFields.push({
         ...formFields[key],
-        value: userContext.data ? userContext.data[key] : ""
+        value: userContext.data ? userContext.data[formFields[key].name] : ""
       });
+      console.log(key);
     }
+    console.log(newFields);
+
     setFormFieldsWithValue(newFields as AppInputFieldProps[]);
   }, []);
 
