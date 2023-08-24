@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import { LayoutProps } from '../(auth)/signup/layout';
 import isLoggedIn from '@/server/auth/isLoggedIn';
 import { useRouter } from 'next/navigation';
@@ -8,17 +8,26 @@ import Link from 'next/link';
 import Sidebar from '@/components/home/Sidebar';
 import ModalContextProvider from '@/context/ModalContext';
 import { FaBars } from 'react-icons/fa';
+import UserContext from '@/context/UserContext';
+import getUser from '@/server/auth/getUser';
 
 function UserLayout({children}:LayoutProps) {
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
   const router = useRouter();
 
+  const userContext = useContext(UserContext)
+
   useEffect(()=>{
     (async ()=>{
       try{
         if(await isLoggedIn()){
           setLoading(false);
+          const userDoc = await getUser();
+          console.log("some error", userDoc, typeof userDoc);
+          if(userDoc) userContext.setData(userDoc);
+          else console.log("some error", userDoc, typeof userDoc);
+          
         }else throw new Error("you are not logged in")
       }catch(e){
         router.replace("/login");

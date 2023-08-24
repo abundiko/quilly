@@ -32,7 +32,7 @@ const Sidebar = () => {
           <FaSearch />
           <span>Search</span>
         </Link>
-        <Link href="/profile" className="dashboard-link mb-2">
+        <Link href="/user" className="dashboard-link mb-2">
           <FaUserAlt />
           <span>Profile</span>
         </Link>

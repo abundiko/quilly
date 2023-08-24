@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import ThemeContextProvider, { ThemeContext } from '@/context/ThemeContext'
 import { Theme } from '@radix-ui/themes'
+import { UserContextProvider } from '@/context/UserContext'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,12 +21,13 @@ export default function RootLayout({
     <html lang="en">
 
       <ThemeContextProvider>
-      <Theme>
-        <main className=' app-theme'>
-          
+      <UserContextProvider>
+        <Theme>
+        <main className=' app-theme'>  
           {children}
         </main>
       </Theme>
+      </UserContextProvider>
       </ThemeContextProvider>
     </html>
   )

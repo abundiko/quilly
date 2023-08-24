@@ -20,7 +20,6 @@ export default async function isLoggedIn(): Promise<boolean> {
       await connectDB();
       const userData = await UserModel.findById(uid);
       if (userData) return true;
-      cookies().delete("_uid");
       return false;
     }
   });
