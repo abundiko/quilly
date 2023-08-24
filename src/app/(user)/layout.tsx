@@ -28,10 +28,10 @@ function UserLayout({children}:LayoutProps) {
     loading ? <></>
     : <ModalContextProvider>
       <main className='flex mx-auto md:w-10/12 max-w-[800px] min-h-screen overflow-y-auto'>
-      <aside className=" w-0 overflow-hidden sm:w-2/12 md:w-3/12 hidden sm:block border-r app-borders ">
+      <aside className=" w-0 overflow-hidden sm:w-2/12 hidden sm:block border-r app-borders ">
         <Sidebar />
       </aside>
-      <section className="w-full md:w-9/12 sm:w-10/12">
+      <section className="w-full  sm:w-10/12">
       {children}
       </section>
     </main>

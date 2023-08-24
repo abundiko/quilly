@@ -9,6 +9,7 @@ import {
 import { submitSignupInterests } from "@/server/auth/signup";
 import { SignupContext } from "../layout";
 import { useRouter } from "next/navigation";
+import { testInterests } from "@/data/testInterests";
 
 const SignupInterestsForm = () => {
   const { push: redirect } = useRouter();
@@ -81,26 +82,3 @@ const SignupInterestsForm = () => {
 };
 
 export default SignupInterestsForm;
-
-const testInterests = [
-  "Education",
-  "Technology",
-  "Travel",
-  "Health",
-  "Music",
-  "Food",
-  "Fashion",
-  "Sports",
-  "Finance",
-  "Lifestyle",
-  "Entertainment",
-  "Business",
-  "Art and Culture",
-  "Science",
-  "Self-Improvement",
-  "Parenting",
-  "Politics",
-  "Fitness",
-  "Photography",
-  "Home and Garden"
-];

@@ -1,0 +1,22 @@
+export const testInterests = [
+  "Education",
+  "Technology",
+  "Travel",
+  "Health",
+  "Music",
+  "Food",
+  "Fashion",
+  "Sports",
+  "Finance",
+  "Lifestyle",
+  "Entertainment",
+  "Business",
+  "Art and Culture",
+  "Science",
+  "Self-Improvement",
+  "Parenting",
+  "Politics",
+  "Fitness",
+  "Photography",
+  "Home and Garden"
+];
