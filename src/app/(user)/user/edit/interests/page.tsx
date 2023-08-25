@@ -9,12 +9,14 @@ import {
 import { useRouter } from "next/navigation";
 import { testInterests } from "@/data/testInterests";
 import { FaCheckCircle } from "react-icons/fa";
+import UserContext from "@/context/UserContext";
 
 const SignupInterestsForm = () => {
+  const userContext = useContext(UserContext);
   const { push: redirect } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [allInterests, setAllInterests] = useState(testInterests);
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(userContext.data?.interests??[]);
 
   const handleSubmit = async (e: FormData) => {
     "use client";
