@@ -7,9 +7,8 @@ import UserContext from "@/context/UserContext";
 import { editProfileSchema } from "@/schemas/userSchema";
 import updateProfileData from "@/server/userActions/editProfile";
 import { FormMessage } from "@/types/formTypes";
-import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import { object, z } from "zod";
+import { z } from "zod";
 
 const formFields = [
   {
@@ -44,7 +43,6 @@ export type EditProfileData = {
 const EditUserProfilePage = () => {
   const userContext = useContext(UserContext);
   const [formFieldsWithValue, setFormFieldsWithValue] = useState(formFields);
-  const router = useRouter();
 
   useEffect(() => {
     let newFields: object[] = [];
