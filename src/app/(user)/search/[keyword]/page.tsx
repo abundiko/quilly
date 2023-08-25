@@ -33,9 +33,6 @@ const SearchKeywordScreen = () => {
           />
         )}
       </div>
-      <h4 className="font-[600] mb-3 text-md opacity-80">
-        Results for: {query}
-      </h4>
       <div className="md:w-10/12">
         {dummyPosts.map((item, i) => <PostCard {...item} key={i} />)}
       </div>
