@@ -9,26 +9,26 @@ import { useEffect, useState } from "react";
 const SearchKeywordScreen = () => {
   let { keyword: query } = useParams();
   const [tab, setTab] = useState<"all" | "posts" | "people">("all");
-  const { get: getParams } = useSearchParams();
-  const tabSearchParam = getParams("tab");
+  const { get: getParams, } = useSearchParams();
 
   useEffect(
     () => {
       const tabParam = getParams("tab") ?? "all";
       setTab(tabParam as "all" | "posts" | "people");
+      
     },
-    [getParams, tabSearchParam]
+    [getParams]
   );
 
   query = decodeURIComponent(query.toString()).split("&tab=")[0];
   return (
     <div className="p-2">
-      <div className="flex">
+      <div className="flex gap-2">
         {["All", "Posts", "People"].map(item =>
           <SidebarButton
             key={item}
             text={item}
-            url={`/search/${query}&tab=${item}`}
+            url={`/search/${encodeURIComponent(query.toString())}?tab=${item.toLowerCase()}`}
             isActive={tab === item.toLowerCase()}
           />
         )}

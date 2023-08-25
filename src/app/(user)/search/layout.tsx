@@ -31,8 +31,7 @@ const SearchPage = ({ children }: LayoutProps) => {
   function submitSearch(formData: FormData) {
     const keyword = formData.get("search");
     if (keyword && keyword.toString().trim() != "") {
-      console.log(keyword);
-      push(`/search/${keyword}`);
+      push(`/search/${encodeURIComponent(keyword.toString())}`);
     }
   }
 
