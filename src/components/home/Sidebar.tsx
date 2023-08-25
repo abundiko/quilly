@@ -78,11 +78,13 @@ export default Sidebar;
 export function SidebarButton({
   text,
   url,
-  icon
+  icon,
+  isActive
 }: {
   text: string;
   url: string;
   icon?: ReactNode;
+  isActive?: boolean;
 }) {
   const path = usePathname();
   const [active, setActive] = useState(false);
@@ -95,8 +97,9 @@ export function SidebarButton({
   return (
     <Link
       href={url}
-      className={`dashboard-link mb-2 ${active &&
-        "border-primary-dark dark:border-primary-light dim:border-primary-light border"}`}
+      className={`dashboard-link mb-2 ${active ||
+        (isActive &&
+          "border-primary-dark dark:border-primary-light dim:border-primary-light border")}`}
     >
       {icon}
       <span>

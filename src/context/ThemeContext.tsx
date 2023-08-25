@@ -45,14 +45,9 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
     [setSavedTheme, themeMode]
   );
 
-  return (
-    <ThemeContext.Provider value={{ themeMode, setTheme }}>
-      <body className={`${realTheme} overflow-x-hidden`}>
-        {children}
-      </body>
-      <style>
-        {realTheme == "dark"
-          ? `
+  const preferredStyle =
+    realTheme == "dark"
+      ? `
         
 ::-webkit-scrollbar {
   width: 8px;
@@ -64,8 +59,8 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   border-radius: 20px;
 }
         `
-          : realTheme == "dim"
-            ? `
+      : realTheme == "dim"
+        ? `
         
 ::-webkit-scrollbar {
   width: 8px;
@@ -77,7 +72,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   border-radius: 20px;
 }
         `
-            : `
+        : `
         
 ::-webkit-scrollbar {
   width: 8px;
@@ -88,7 +83,15 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   background-color: var(--dark);
   border-radius: 20px;
 }
-        `}
+        `;
+
+  return (
+    <ThemeContext.Provider value={{ themeMode, setTheme }}>
+      <body className={`${realTheme} overflow-x-hidden`}>
+        {children}
+      </body>
+      <style jsx global>
+        {preferredStyle}
       </style>
     </ThemeContext.Provider>
   );

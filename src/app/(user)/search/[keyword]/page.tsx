@@ -10,12 +10,14 @@ const SearchKeywordScreen = () => {
   let { keyword: query } = useParams();
   const [tab, setTab] = useState<"all" | "posts" | "people">("all");
   const { get: getParams } = useSearchParams();
+  const tabSearchParam = getParams("tab");
 
   useEffect(
     () => {
-      const tabParam = getParams("tab");
+      const tabParam = getParams("tab") ?? "all";
+      setTab(tabParam as "all" | "posts" | "people");
     },
-    [getParams]
+    [getParams, tabSearchParam]
   );
 
   query = decodeURIComponent(query.toString()).split("&tab=")[0];
@@ -27,6 +29,7 @@ const SearchKeywordScreen = () => {
             key={item}
             text={item}
             url={`/search/${query}&tab=${item}`}
+            isActive={tab === item.toLowerCase()}
           />
         )}
       </div>
