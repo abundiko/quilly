@@ -61,7 +61,7 @@ const Page = () => {
               {userContext.data?.bio}
             </p>
           </div>
-          <div className="md:w-8/12">
+          <div className="md:w-10/12">
             <h2 className="font-bold text-xl border-b app-borders w-full py-2 mb-2">
               Posts
             </h2>

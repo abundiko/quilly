@@ -1,6 +1,6 @@
 import { ThemeContext, themes } from "@/context/ThemeContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import {
   FaHome,
   FaMoon,
@@ -12,6 +12,30 @@ import { IoPencil } from "react-icons/io5";
 import AppDropdown from "../AppDropdown";
 import { ModalContext } from "@/context/ModalContext";
 import LogoutModal from "../modals/LogoutModal";
+import { usePathname } from "next/navigation";
+
+const sidebarLinks = [
+  {
+    text: "Home",
+    icon: <FaHome />,
+    url: "/home"
+  },
+  {
+    text: "Search",
+    icon: <FaSearch />,
+    url: "/search"
+  },
+  {
+    text: "Profile",
+    icon: <FaUserAlt />,
+    url: "/user"
+  },
+  {
+    text: "Create",
+    icon: <IoPencil />,
+    url: "/create"
+  }
+];
 
 const Sidebar = () => {
   const themeContext = useContext(ThemeContext);
@@ -24,22 +48,7 @@ const Sidebar = () => {
   return (
     <aside className="px-2 py-4 flex flex-col justify-between h-screen fixed top-0">
       <div>
-        <Link href="/home" className="dashboard-link mb-2">
-          <FaHome />
-          <span>Home</span>
-        </Link>
-        <Link href="/search" className="dashboard-link mb-2">
-          <FaSearch />
-          <span>Search</span>
-        </Link>
-        <Link href="/user" className="dashboard-link mb-2">
-          <FaUserAlt />
-          <span>Profile</span>
-        </Link>
-        <Link href="/settings" className="dashboard-link mb-2">
-          <IoPencil />
-          <span>Create</span>
-        </Link>
+        {sidebarLinks.map(item => <SidebarButton {...item} key={item.text} />)}
       </div>
       <div>
         <AppDropdown
@@ -65,3 +74,34 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+export function SidebarButton({
+  text,
+  url,
+  icon
+}: {
+  text: string;
+  url: string;
+  icon?: ReactNode;
+}) {
+  const path = usePathname();
+  const [active, setActive] = useState(false);
+  useEffect(
+    () => {
+      setActive(path === url || path === url + "/");
+    },
+    [path, url]
+  );
+  return (
+    <Link
+      href={url}
+      className={`dashboard-link mb-2 ${active &&
+        "border-primary-dark dark:border-primary-light dim:border-primary-light border"}`}
+    >
+      {icon}
+      <span>
+        {text}
+      </span>
+    </Link>
+  );
+}

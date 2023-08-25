@@ -11,17 +11,9 @@ import UserModel from "../mongoose/schemas/userSchema";
  * @return {Promise<boolean>} - A promise that resolves to a boolean indicating if the user is logged in or not.
  */
 export default async function isLoggedIn(): Promise<boolean> {
-  const cookiesStore = cookies();
-  const token = cookiesStore.get("_uid");
-  const secret = process.env.JWT_SECRET || "";
-
-  if (!token) {
-    return false;
-  }
-
   try {
-    const decoded: any = await jwt.verify(token.value, secret);
-    const uid = decoded?._uid;
+    const uid = await getUserSessionId();
+    if(!uid) return false;
 
     console.log("Original value:", uid);
 

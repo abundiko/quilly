@@ -1,9 +1,8 @@
 "use server"
 
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
+import { getUserSessionId } from "./isLoggedIn";
 
 /**
  * Retrieves a user document from the database.
@@ -16,12 +15,9 @@ export default async function getUser(
 ): Promise<UserDocument | null> {
   await connectDB();
   if (!_id) {
-    const token = cookies().get("_uid");
-    const secret = process.env.JWT_SECRET || "";
-    if (!token) return null;
     try {
-      const decoded = jwt.verify(token.value, secret) as any;
-      const uid = decoded?._uid;
+      const uid = await getUserSessionId();
+      if(!uid) return null;
       const userData = await UserModel.findById(uid);
       // console.log(userData);
       if (userData) {

@@ -3,7 +3,7 @@
 import {useState, useEffect, useContext} from 'react'
 import { LayoutProps } from '../(auth)/signup/layout';
 import isLoggedIn from '@/server/auth/isLoggedIn';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Sidebar from '@/components/home/Sidebar';
 import ModalContextProvider from '@/context/ModalContext';
@@ -12,27 +12,32 @@ import UserContext from '@/context/UserContext';
 import getUser from '@/server/auth/getUser';
 
 function UserLayout({children}:LayoutProps) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const router = useRouter();
+  const pathName = usePathname();
 
   const userContext = useContext(UserContext)
-
+  //close the sidebar when [pathName] changes
   useEffect(()=>{
-    (async ()=>{
-      try{
-        if(await isLoggedIn()){
-          setLoading(false);
-          const userDoc = await getUser();
-          if(userDoc) userContext.setData({...userDoc});
-          else console.log("some error", userDoc, typeof userDoc);
+    if(showSidebar) setShowSidebar(false);
+  },[pathName]);
+
+  // useEffect(()=>{
+  //   (async ()=>{
+  //     try{
+  //       if(await isLoggedIn()){
+  //         setLoading(false);
+  //         const userDoc = await getUser();
+  //         if(userDoc) userContext.setData({...userDoc});
+  //         else console.error("Unable to get this user");
           
-        }else throw new Error("you are not logged in")
-      }catch(e){
-        router.replace("/login");
-      }
-    })();
-  },[router])
+  //       }else throw new Error("you are not logged in")
+  //     }catch(e){
+  //       router.replace("/login");
+  //     }
+  //   })();
+  // },[])
   
   return (
     loading ? <></>
@@ -52,7 +57,7 @@ function UserLayout({children}:LayoutProps) {
       <section className="w-full  sm:w-9/12 md:w-10/12 relative">
         <button
           onClick={() => setShowSidebar(!showSidebar)}
-         className="absolute z-20 app-icon-button right-2 top-1 sm:hidden">
+         className="absolute z-20 app-icon-button left-2 top-1 sm:hidden">
           <FaBars />
         </button>
       {children}

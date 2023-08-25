@@ -30,7 +30,7 @@ const PostCard = ({
             </h6>
           </Link>
           <BiRadioCircle className="scale-50" />
-          <span className="opacity-60 text-sm">
+          <span className="opacity-60 text-xs">
             {formatDate(createdAt)}
           </span>
         </div>
