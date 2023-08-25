@@ -23,21 +23,21 @@ function UserLayout({children}:LayoutProps) {
     if(showSidebar) setShowSidebar(false);
   },[pathName]);
 
-  // useEffect(()=>{
-  //   (async ()=>{
-  //     try{
-  //       if(await isLoggedIn()){
-  //         setLoading(false);
-  //         const userDoc = await getUser();
-  //         if(userDoc) userContext.setData({...userDoc});
-  //         else console.error("Unable to get this user");
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        if(await isLoggedIn()){
+          setLoading(false);
+          const userDoc = await getUser();
+          if(userDoc) userContext.setData({...userDoc});
+          else console.error("Unable to get this user");
           
-  //       }else throw new Error("you are not logged in")
-  //     }catch(e){
-  //       router.replace("/login");
-  //     }
-  //   })();
-  // },[])
+        }else throw new Error("you are not logged in")
+      }catch(e){
+        router.replace("/login");
+      }
+    })();
+  },[])
   
   return (
     loading ? <></>
