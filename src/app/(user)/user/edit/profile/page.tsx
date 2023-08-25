@@ -1,11 +1,12 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import AppInputField, { AppInputFieldProps } from "@/components/AppInputField";
+import AppInputField, { AppFormMessage, AppInputFieldProps } from "@/components/AppInputField";
 import AppLoader from "@/components/AppLoader";
 import UserContext from "@/context/UserContext";
 import { editProfileSchema } from "@/schemas/userSchema";
 import updateProfileData from "@/server/auth/editProfile";
+import getUser from "@/server/auth/getUser";
 import { FormMessage } from "@/types/formTypes";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -53,17 +54,15 @@ const EditUserProfilePage = () => {
         ...formFields[key],
         value: userContext.data ? userContext.data[formFields[key].name] : ""
       });
-      console.log(key);
     }
-    console.log(newFields);
 
     setFormFieldsWithValue(newFields as AppInputFieldProps[]);
-  }, []);
+  }, [userContext.data]);
 
   const [formValues, setFormValues] = useState<EditProfileData>({
-    username: "",
-    full_name: "",
-    bio: ""
+    username: userContext.data?.username??"",
+    full_name: userContext.data?.full_name??"",
+    bio: userContext.data?.bio??""
   });
   const [errors, setErrors] = useState<EditProfileErrors>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -81,7 +80,9 @@ const EditUserProfilePage = () => {
       setErrors({});
       const res = await updateProfileData(validValues);
       if (res && res[0] === "success") {
-        router.replace("/home");
+        setMessage(res);
+        const newUserData = await getUser();
+        if(newUserData) userContext.setData(newUserData);
       } else {
         setMessage(res);
       }
@@ -100,6 +101,7 @@ const EditUserProfilePage = () => {
         <h1 className="page-title">Update Profile</h1>
         <div className="p-4">
           <form action={handleSubmit} className=" p-3 md:w-8/12 mx-auto">
+            <AppFormMessage message={message} />
             {formFieldsWithValue.map(item =>
               <AppInputField
                 key={item.name}

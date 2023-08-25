@@ -1,5 +1,7 @@
+"use client"
+
 import { FormMessage } from "@/types/formTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export type AppInputFieldProps = {
@@ -22,6 +24,11 @@ const AppInputField = ({
   value
 }: AppInputFieldProps) => {
   const [isHidden, setHidden] = useState(true);
+  const [defaultValue, setDefaultValue] = useState(value??"");
+  useEffect(()=>{
+    setDefaultValue(value??"");
+  },[value])
+  
   const isPassword = type === "password";
   return (
     <div className="relative">
@@ -33,20 +40,26 @@ const AppInputField = ({
         </div>}
       {textarea
         ? <textarea
-            value={value}
+            value={defaultValue}
             placeholder={placeholder}
             name={name}
             id={name}
-            onChange={onChange}
+            onChange={e => {
+              onChange(e);
+              setDefaultValue(e.target.value);
+            }}
             className={`app-text-field ${error && "bg-[#ee333333]"}`}
           />
         : <input
-            value={value}
+            value={defaultValue}
             type={isPassword ? (isHidden ? type : "text") : type}
             placeholder={placeholder}
             name={name}
             id={name}
-            onChange={onChange}
+            onChange={e => {
+              onChange(e);
+              setDefaultValue(e.target.value);
+            }}
             className={`app-text-field ${error && "bg-[#ee333333]"}`}
           />}
       {isPassword &&
