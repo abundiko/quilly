@@ -21,11 +21,15 @@ const SignupInterestsForm = () => {
 
   const handleSubmit = async (e: FormData) => {
     "use client";
+    console.log("hmm");
+    
     setIsLoading(true);
     try {
       const res = await updateInterests(selectedInterests);
       if (res && res[0] === "success") {
         userContext.setData(JSON.parse(res[1]));
+        console.log(res[1]);
+        
         setIsLoading(false);
       }
     } catch (error) {
@@ -33,7 +37,7 @@ const SignupInterestsForm = () => {
     }
   };
   return (
-    <form action={handleSubmit} className="border-r app-borders ">
+    <form action={handleSubmit} onSubmit={(e)=>setIsLoading(true)} className="border-r app-borders ">
       <h1 className="page-title flex justify-between">
         <span>Update Interests</span>
         <button
@@ -41,6 +45,7 @@ const SignupInterestsForm = () => {
           className="app-btn py-1 px-2 rounded-3xl disabled:pointer-events-none disabled:opacity-50 text-sm"
           name="signup-interests-submit"
           type="submit"
+          
         >
           {isLoading
             ? <AppLoader />

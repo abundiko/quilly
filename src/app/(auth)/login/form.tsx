@@ -71,6 +71,7 @@ const LoginForm = () => {
   };
   return (
     <form
+      onSubmit={e => setIsLoading(true)}
       action={handleSubmit}
       className="app-theme app-shadows app-borders border rounded-lg p-4 w-10/12 lg:w-8/12 shadow-2xl bg-inherit"
     >

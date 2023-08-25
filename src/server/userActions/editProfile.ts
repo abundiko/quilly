@@ -5,6 +5,8 @@ import { FormMessage } from "@/types/formTypes";
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
 import { getUserSessionId } from "../auth/isLoggedIn";
+import emailExists from "../auth/emailExists";
+import usernameIsTaken from "../auth/usernameIsTaken";
 
 export default async function updateProfileData(
   userData: EditProfileData
@@ -16,7 +18,11 @@ export default async function updateProfileData(
       const _id = await getUserSessionId();
       if (!_id) {
         return ["error", "No Login user"];
-      }
+      } else if (await usernameIsTaken(userData.username))
+        return [
+          "error",
+          `"${userData.username}" is taken. try another username`
+        ];
 
       const userDoc = await UserModel.findByIdAndUpdate(_id, { ...userData });
       if (userDoc) {

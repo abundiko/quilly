@@ -98,7 +98,7 @@ const EditUserProfilePage = () => {
       <main className="border-r app-borders">
         <h1 className="page-title">Update Profile</h1>
         <div className="p-4">
-          <form action={handleSubmit} className=" p-3 md:w-8/12 mx-auto">
+          <form  onSubmit={(e)=>setIsLoading(true)} action={handleSubmit} className=" p-3 md:w-8/12 mx-auto">
             <AppFormMessage message={message} />
             {formFieldsWithValue.map(item =>
               <AppInputField

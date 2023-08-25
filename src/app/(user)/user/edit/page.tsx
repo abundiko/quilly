@@ -30,7 +30,7 @@ export default EditUserPage;
 
 const editProfileOptions = [
   {
-    title: "Profile Settings",
+    title: "Update Profile",
     path: "profile"
   },
   {
