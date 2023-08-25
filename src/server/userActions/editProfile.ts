@@ -4,7 +4,7 @@ import { EditProfileData } from "@/app/(user)/user/edit/profile/page";
 import { FormMessage } from "@/types/formTypes";
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
-import { getUserSessionId } from "./isLoggedIn";
+import { getUserSessionId } from "../auth/isLoggedIn";
 
 export default async function updateProfileData(
   userData: EditProfileData
@@ -18,13 +18,17 @@ export default async function updateProfileData(
         return ["error", "No Login user"];
       }
 
-      const userDoc: UserDocument | null = await UserModel.findByIdAndUpdate(
-        _id,
-        { ...userData },
-        { new: true }
-      );
+      const userDoc = await UserModel.findByIdAndUpdate(_id, { ...userData });
       if (userDoc) {
-        return ["success", JSON.stringify(userDoc)];
+        return [
+          "success",
+          JSON.stringify(
+            {
+              ...userDoc.toObject(),
+              _id: userDoc._id.toString()
+            } as UserDocument
+          )
+        ];
       }
     } catch (e) {
       if (tries === 2) {

@@ -9,7 +9,7 @@ import Sidebar from '@/components/home/Sidebar';
 import ModalContextProvider from '@/context/ModalContext';
 import { FaBars } from 'react-icons/fa';
 import UserContext from '@/context/UserContext';
-import getUser from '@/server/auth/getUser';
+import getUser from '@/server/userActions/getUser';
 
 function UserLayout({children}:LayoutProps) {
   const [loading, setLoading] = useState(false);

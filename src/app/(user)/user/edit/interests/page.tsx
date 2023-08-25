@@ -10,10 +10,11 @@ import { useRouter } from "next/navigation";
 import { testInterests } from "@/data/testInterests";
 import { FaCheckCircle } from "react-icons/fa";
 import UserContext from "@/context/UserContext";
+import updateInterests from "@/server/userActions/updateInterests";
 
 const SignupInterestsForm = () => {
   const userContext = useContext(UserContext);
-  const { push: redirect } = useRouter();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [allInterests, setAllInterests] = useState(testInterests);
   const [selectedInterests, setSelectedInterests] = useState<string[]>(userContext.data?.interests??[]);
@@ -22,13 +23,11 @@ const SignupInterestsForm = () => {
     "use client";
     setIsLoading(true);
     try {
-      // const res = await submitSignupInterests({
-      //   ...signupContext.data!,
-      //   interests: selectedInterests
-      // });
-      // if (res && res[0] === "success") redirect("/home");
-      // res && console.log(res[1]);
-      setIsLoading(false);
+      const res = await updateInterests(selectedInterests);
+      if (res && res[0] === "success") {
+        userContext.setData(JSON.parse(res[1]));
+        setIsLoading(false);
+      }
     } catch (error) {
       setIsLoading(false);
     }

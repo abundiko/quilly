@@ -5,8 +5,7 @@ import AppInputField, { AppFormMessage, AppInputFieldProps } from "@/components/
 import AppLoader from "@/components/AppLoader";
 import UserContext from "@/context/UserContext";
 import { editProfileSchema } from "@/schemas/userSchema";
-import updateProfileData from "@/server/auth/editProfile";
-import getUser from "@/server/auth/getUser";
+import updateProfileData from "@/server/userActions/editProfile";
 import { FormMessage } from "@/types/formTypes";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";

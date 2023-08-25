@@ -2,7 +2,7 @@
 
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
-import { getUserSessionId } from "./isLoggedIn";
+import { getUserSessionId } from "../auth/isLoggedIn";
 
 /**
  * Retrieves a user document from the database.
