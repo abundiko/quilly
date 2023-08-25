@@ -80,9 +80,8 @@ const EditUserProfilePage = () => {
       setErrors({});
       const res = await updateProfileData(validValues);
       if (res && res[0] === "success") {
-        setMessage(res);
-        const newUserData = await getUser();
-        if(newUserData) userContext.setData(newUserData);
+        setMessage(["success","Profile Info Updated!"]);
+        userContext.setData(JSON.parse(res[1]));
       } else {
         setMessage(res);
       }
