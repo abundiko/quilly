@@ -7,7 +7,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -23,7 +23,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -39,7 +39,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -55,7 +55,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -71,7 +71,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -87,7 +87,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -103,7 +103,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -119,7 +119,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -135,7 +135,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -151,7 +151,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -167,7 +167,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -183,7 +183,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -199,7 +199,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
@@ -215,7 +215,7 @@ export const dummyPosts: PostDocument[] = [
     intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
     createdAt: new Date(),
-    user: { _id: "John Doe", img: "/img/hero.jpg" },
+    user: { _id: "abundiko", img: "/img/hero.jpg" },
     content: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",

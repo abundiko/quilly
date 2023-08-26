@@ -30,7 +30,28 @@ export default async function getUser(
       return null;
     }
   } else {
-    const userDoc: UserDocument | null = await UserModel.findById(_id);
-    return userDoc ?? null;
+    const userDoc = await UserModel.findById(_id);
+    return ({
+              ...userDoc.toObject(),
+              _id: userDoc._id.toString()
+            } as UserDocument) ?? null;
   }
+}
+
+export async function getUserByUsername(
+  username: string
+): Promise<UserDocument | null> {
+  for (let i = 0; i < 3; i++) {
+    try {
+      await connectDB();
+    const userDoc = await UserModel.findOne({username});
+    return ({
+              ...userDoc.toObject(),
+              _id: userDoc._id.toString()
+            } as UserDocument) ?? null
+    } catch (e) {
+      if(i == 2) return null;
+    }
+  }
+  return null;
 }

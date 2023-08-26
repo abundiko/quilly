@@ -17,7 +17,7 @@ const PostCard = ({
     <div className="my-1  py-2 px-3 group cursor-pointer app-borders border-b">
       <div className="flex justify-between mb-1">
         <div className="w-fit flex items-center gap-1">
-          <Link href={`/user/${user._id}`} className="flex gap-2 items-center">
+          <Link href={`/users/${user._id}`} className="flex gap-2 items-center">
             <Image
               src={user.img}
               width={30}

@@ -6,22 +6,44 @@ import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
 import UserContext from "@/context/UserContext";
 import { dummyPosts } from "@/data/dummyPosts";
+import { UserDocument } from "@/server/mongoose/schemas/userSchema";
+import { getUserByUsername } from "@/server/userActions/getUser";
 import { formatDateString } from "@/utils/formateDate";
 import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
-import { FaBook, FaCalendar, FaPen } from "react-icons/fa";
+import { useParams, useRouter } from "next/navigation";
+import React, { useContext, useEffect, useState, } from "react";
+import { FaBook, FaCalendar, FaHeart, FaPen } from "react-icons/fa";
 
 const Page = () => {
-  const userContext = useContext(UserContext);
+  const [userData, setUserData] = useState<UserDocument|null>(null);
   const modalContext = useContext(ModalContext);
-  return (
-    <AnimatedPageOpacity>
+  const {user} = useParams();
+  const router = useRouter();
+
+  useEffect(()=>{
+    if(!user) return router.back();
+    (async ()=>{
+      try {
+        const userDoc = await getUserByUsername(user.toString());
+        if(userDoc) setUserData(userDoc)
+        else router.back();
+      } catch (e) {
+      console.error(e);
+      router.back();
+    }
+  })();
+  },[router, user])
+  
+  if(!user) router.back();
+  else return (
+    !userData ? <></>
+    :<AnimatedPageOpacity>
       <section className="">
         <div className="h-52 relative w-full">
           <Image
-                src={formatImage(userContext.data?.img)}
+                src={formatImage(userData?.img)}
             layout="fill"
             alt="Profile Photo"
             className="w-full h-full absolute top-0 left-0 object-cover"
@@ -29,8 +51,8 @@ const Page = () => {
           <div className="relative bg-gradient-to-t from-light dim:from-dim dark:from-dark to-transparent h-full w-full flex items-center py-5 px-6 md:px-10 gap-2 md:gap-5">
             <div className="w-3/12 aspect-square rounded-full app-shadows shadow-lg relative overflow-hidden">
               <Image
-                onClick={()=>modalContext.setModal(<ProfilePhotoModal full_name="Me" img={userContext.data?.img} />)}
-                src={formatImage(userContext.data?.img)}
+                onClick={()=>modalContext.setModal(<ProfilePhotoModal full_name="Me" img={userData?.img} />)}
+                src={formatImage(userData?.img)}
                 layout="fill"
                 alt="Profile Photo"
                 className="w-full h-full absolute top-0 left-0 object-cover cursor-pointer"
@@ -38,16 +60,16 @@ const Page = () => {
             </div>
             <div className="w-9/12">
               <h1 className="font-bold text-2xl md:text-3xl mt-6 mb-2">
-                {userContext.data?.full_name}
+                {userData?.full_name}
               </h1>
-              <h2 className="font-[600] text-md opacity-80">@{userContext.data?.username}</h2>
+              <h2 className="font-[600] text-md opacity-80">@{userData?.username}</h2>
             </div>
             <Link
               href="/user/edit"
               className="app-btn-bordered flex rounded-3xl absolute bottom-2 right-2 py-2 gap-2 items-center text-sm"
             >
-              <FaPen />
-              <span>Edit Profile</span>
+              <FaHeart />
+              <span>Favourite</span>
             </Link>
           </div>
         </div>
@@ -55,15 +77,15 @@ const Page = () => {
         <div className="p-4">
           <div className="mb-3 flex gap-3">
             <p className="text-sm font-[600] flex items-center opacity-80 gap-2">
-              <FaBook /> <span> {userContext.data?.monthly_readers} Monthly readers</span>
+              <FaBook /> <span> {userData?.monthly_readers} Monthly readers</span>
             </p>
             <p className="text-sm font-[600] flex items-center opacity-80 gap-2">
-              <FaCalendar /> <span> Joined {formatDateString(userContext.data?.createdAt!)}</span>
+              <FaCalendar /> <span> Joined {formatDateString(userData?.createdAt!)}</span>
             </p>
           </div>
           <div className="p-2 rounded-md border app-borders mb-4 light-bg">
             <p className="opacity-80 text-md whitespace-pre-line">
-              {userContext.data?.bio}
+              {userData?.bio}
             </p>
           </div>
           <div className="md:w-10/12">
