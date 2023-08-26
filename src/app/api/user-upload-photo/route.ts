@@ -54,16 +54,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json(["error", "Select a png, jpg or jpeg Photo"]);
 
     const randomName = randomUUID();
-    const path = "./public/img/users/" + randomName + fileExtension;
+    const path = "../../../public/img/users/" + randomName + fileExtension;
     await writeFile(path, buffer);
     await connectDB();
     let userDoc = await UserModel.findById(_id);
     if (userDoc && userDoc.img && userDoc.img.trim() != "") {
-      await unlink("./public" + userDoc.img);
+      await unlink("../../../public" + userDoc.img);
     }
     userDoc = await UserModel.findByIdAndUpdate(
       _id,
-      { img: path.replace("./public", "") },
+      { img: path.replace("../../../public", "") },
       { new: true }
     );
     if (userDoc) {
