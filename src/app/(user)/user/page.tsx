@@ -5,6 +5,7 @@ import PostCard from "@/components/PostCard";
 import UserContext from "@/context/UserContext";
 import { dummyPosts } from "@/data/dummyPosts";
 import { formatDateString } from "@/utils/formateDate";
+import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
@@ -17,17 +18,18 @@ const Page = () => {
       <section className="">
         <div className="h-52 relative w-full">
           <Image
-            src="/img/hero.jpg"
+                src={formatImage(userContext.data?.img)}
             layout="fill"
-            alt=""
-            className="w-full h-full absolute top-0 left-0"
+            alt="Profile Photo"
+            className="w-full h-full absolute top-0 left-0 object-cover"
           />
           <div className="relative bg-gradient-to-t from-light dim:from-dim dark:from-dark to-transparent h-full w-full flex items-center py-5 px-6 md:px-10 gap-2 md:gap-5">
             <div className="w-3/12 aspect-square rounded-full app-shadows shadow-lg relative overflow-hidden">
               <Image
-                src={userContext.data?.img ?? "/img/user.png"}
+              
+                src={formatImage(userContext.data?.img)}
                 layout="fill"
-                alt=""
+                alt="Profile Photo"
                 className="w-full h-full absolute top-0 left-0 object-cover"
               />
             </div>
