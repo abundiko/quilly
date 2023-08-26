@@ -5,11 +5,14 @@ import  {AppFormMessage,} from "@/components/AppInputField";
 import AppLoader from "@/components/AppLoader";
 import UserContext from "@/context/UserContext";
 import { FormMessage } from "@/types/formTypes";
+import Image from "next/image";
 import { useContext, useState } from "react";
+import { FaImage } from "react-icons/fa";
+import { IoTrashBin } from "react-icons/io5";
 
 const EditUserPhotoPage = () => {
   const userContext = useContext(UserContext);
-  const [image, setImage] = useState<string | null>(null);
+  const [remove, setRemove] = useState(false);
   const [createObjectURL, setCreateObjectURL] = useState<string | null>(userContext.data?.img ?? null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +21,6 @@ const EditUserPhotoPage = () => {
   const uploadToClient = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0];
-      setImage(i);
       setCreateObjectURL(URL.createObjectURL(i));
     }
   };
@@ -27,6 +29,7 @@ const EditUserPhotoPage = () => {
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
     try {
+      if(remove) formData.append('remove',"true")
       const res = await fetch("/api/user-upload-photo", {
       body:formData,
       method:"POST"
@@ -34,6 +37,9 @@ const EditUserPhotoPage = () => {
     const formMessage = (await res.json()) as FormMessage;
  
       if (formMessage && formMessage[0] === "success") {
+        if(remove)
+        setMessage(["success","Profile Photo Removed!"]);
+      else
         setMessage(["success","Profile Photo Updated!"]);
         userContext.setData(JSON.parse(formMessage[1]));
       } else {
@@ -51,12 +57,17 @@ const EditUserPhotoPage = () => {
         <div className="p-4">
           <form onSubmit={e => setIsLoading(true)} encType='' action={handleSubmit} className=" p-3 md:w-8/12 mx-auto flex flex-col items-center">
             <AppFormMessage message={message} />
-            <label htmlFor="file" className="block w-8/12 md:w-6/12 aspect-square rounded-full overflow-hidden shadow-md app-shadows border app-borders">
-            <img src={realImg} className="w-full h-full" />
-            </label>
-            <h4 className="font-[600] opacity-80 my-5 text-sm">tap to Select Photo</h4>
-            <input type="file" name="file" id="file" className="hidden"  onChange={uploadToClient}/>
-            <input type="text" name="test" id="test" value="test" className="hidden" />
+            <div className="relative block w-8/12 md:w-6/12 aspect-square rounded-full overflow-hidden shadow-md app-shadows border app-borders">
+            <Image layout="fill" alt="your profile Photo" src={realImg} className="w-full h-full" />
+            </div>
+            <div className="flex gap-4 my-5 justify-center items-cente">
+              <label htmlFor="file">
+                <h4 className="app-btn-bordered border-none flex items-center gap-1"><FaImage /><span>Select</span></h4>
+              </label>
+                <button onClick={()=>{setCreateObjectURL(null);setRemove(true)}} className="app-btn-bordered border-none flex items-center gap-1"><IoTrashBin /><span>Remove</span></button>
+            </div>
+            <input type="file" hidden name="file" id="file" className="hidden"  onChange={uploadToClient}/>
+            <input type="radio" hidden name="delete" id="delete" className="hidden" />
             <button disabled={isLoading} className="app-btn w-full mb-5" name="login-submit" type="submit">
               {isLoading ? <AppLoader /> : "Update"}
             </button>
