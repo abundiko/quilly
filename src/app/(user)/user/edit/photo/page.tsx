@@ -9,6 +9,7 @@ import AppLoader from "@/components/AppLoader";
 import UserContext from "@/context/UserContext";
 import { editProfileSchema } from "@/schemas/userSchema";
 import updateProfileData from "@/server/userActions/editProfile";
+import uploadProfilePhoto from "@/server/userActions/uploadProfilePhoto";
 import { FormMessage } from "@/types/formTypes";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -70,6 +71,7 @@ const EditUserPhotoPage = () => {
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
     try {
+      await uploadProfilePhoto(formData)
       // const validValues = editProfileSchema.parse(formValues);
       // setErrors({});
       // const res = await updateProfileData(validValues);
@@ -93,7 +95,7 @@ const EditUserPhotoPage = () => {
             <img src={createObjectURL??"/img/user.png"} className="w-full h-full" />
             </label>
             <h4 className="font-[600] opacity-80 my-5 text-sm">tap to Select Photo</h4>
-            <input type="file" name="myImage" id="file" className="hidden" onChange={uploadToClient} />
+            <input type="file" name="file" id="file" className="hidden" onChange={uploadToClient} />
             <button disabled={isLoading} className="app-btn w-full mb-5" name="login-submit" type="submit">
               {isLoading ? <AppLoader /> : "Update"}
             </button>
