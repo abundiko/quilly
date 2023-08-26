@@ -41,17 +41,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       img: path.replace("./public", "")
     });
     if (userDoc) {
-      NextResponse.json([
+      return NextResponse.json([
         "success",
         JSON.stringify(
           { ...userDoc.toObject(), _id: userDoc._id.toString() } as UserDocument
         )
       ]);
     }
+    return NextResponse.json(["error", "connection error"]);
   } catch (e) {
     console.log("Error", e);
 
     return NextResponse.json(["error", "an error occurred"]);
   }
-  return NextResponse.json(["error", "connection error"]);
 }
