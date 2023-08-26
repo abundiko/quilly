@@ -47,9 +47,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const fileNameSplitted = file.name.split(".");
-    const fileExtension = fileNameSplitted[
-      fileNameSplitted.length - 1
-    ].toLowerCase();
+    const fileExtension =
+      "." + fileNameSplitted[fileNameSplitted.length - 1].toLowerCase();
 
     if (!["png", "jpg", "jpeg", "jfif"].includes(fileExtension))
       return NextResponse.json(["error", "Select a png, jpg or jpeg Photo"]);
