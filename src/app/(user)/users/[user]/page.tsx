@@ -1,24 +1,31 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
+import AppLoader from "@/components/AppLoader";
 import PostCard from "@/components/PostCard";
 import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
 import UserContext from "@/context/UserContext";
 import { dummyPosts } from "@/data/dummyPosts";
 import { UserDocument } from "@/server/mongoose/schemas/userSchema";
-import { getUserByUsername } from "@/server/userActions/getUser";
+import getUser, { getUserByUsername } from "@/server/userActions/getUser";
+import updateFavourites from "@/server/userActions/updateFavourites";
 import { formatDateString } from "@/utils/formateDate";
 import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState, } from "react";
-import { FaBook, FaCalendar, FaHeart, FaPen } from "react-icons/fa";
+import { FaBook, FaCalendar,  } from "react-icons/fa";
+import { TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti';
+
+
 
 const Page = () => {
   const [userData, setUserData] = useState<UserDocument|null>(null);
+  const [loadingFavourite, setLoadingFavourite] = useState<boolean>(false);
   const modalContext = useContext(ModalContext);
+  const userContext = useContext(UserContext);
   const {user} = useParams();
   const router = useRouter();
 
@@ -35,10 +42,27 @@ const Page = () => {
     }
   })();
   },[router, user])
+
+  function updateFavourite(add:boolean) {
+    setLoadingFavourite(true);
+    (async ()=>{
+      try {
+        const res = await updateFavourites(userData?._id as string, add);
+        if(res){
+          let userDoc = await getUser();
+        if(userDoc) userContext.setData(userDoc);
+          userDoc = await getUserByUsername(user.toString());
+        if(userDoc) setUserData(userDoc)
+        }
+      } catch (e) {
+      }
+      setLoadingFavourite(false)
+    })();
+  }
   
   if(!user) router.back();
   else return (
-    !userData ? <></>
+    !userData || !userContext || !userContext.data ? <></>
     :<AnimatedPageOpacity>
       <section className="">
         <div className="h-52 relative w-full">
@@ -64,13 +88,34 @@ const Page = () => {
               </h1>
               <h2 className="font-[600] text-md opacity-80">@{userData?.username}</h2>
             </div>
-            <Link
-              href="/user/edit"
-              className="app-btn-bordered flex rounded-3xl absolute bottom-2 right-2 py-2 gap-2 items-center text-sm"
-            >
-              <FaHeart />
+            {
+              !userContext.data.favourites.includes(userData._id as string) ?
+              <button
+              onClick={()=>updateFavourite(true)}
+              className="app-btn-bordered app-bg-success disabled:opacity-50 disabled:pointer-events-none flex rounded-3xl absolute bottom-2 right-2 py-2 gap-2 items-center text-sm"
+              disabled={loadingFavourite}
+            >{
+              !loadingFavourite ?
+              <>
+              <TiHeartFullOutline />
               <span>Favourite</span>
-            </Link>
+              </> : <AppLoader />
+            }
+            </button>
+            :
+              <button
+              onClick={()=>updateFavourite(false)}
+              className="app-btn-bordered disabled:opacity-50 app-bg-error disabled:pointer-events-none flex rounded-3xl absolute bottom-2 right-2 py-2 gap-2 items-center text-sm"
+              disabled={loadingFavourite}
+            >{
+              !loadingFavourite ?
+              <>
+              <TiHeartOutline />
+              <span>UnFavourite</span>
+              </> : <AppLoader />
+            }
+            </button>
+            }
           </div>
         </div>
 
