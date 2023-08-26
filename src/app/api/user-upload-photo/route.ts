@@ -50,7 +50,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const fileExtension =
       "." + fileNameSplitted[fileNameSplitted.length - 1].toLowerCase();
 
-    if (!["png", "jpg", "jpeg", "jfif"].includes(fileExtension))
+    if (![".png", ".jpg", ".jpeg", ".jfif"].includes(fileExtension))
       return NextResponse.json(["error", "Select a png, jpg or jpeg Photo"]);
 
     const randomName = randomUUID();
