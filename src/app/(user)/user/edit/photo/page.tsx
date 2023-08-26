@@ -37,11 +37,10 @@ const EditUserPhotoPage = () => {
     const formMessage = (await res.json()) as FormMessage;
  
       if (formMessage && formMessage[0] === "success") {
-        if(remove)
-        setMessage(["success","Profile Photo Removed!"]);
-      else
-        setMessage(["success","Profile Photo Updated!"]);
-        userContext.setData(JSON.parse(formMessage[1]));
+        if(remove) setMessage(["success","Profile Photo Removed!"]);
+      else setMessage(["success","Profile Photo Updated!"]);
+      userContext.setData(JSON.parse(formMessage[1]));
+      
       } else {
         setMessage(formMessage);
       }
