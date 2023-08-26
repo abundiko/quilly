@@ -26,7 +26,7 @@ export const signupSchema = z.object({
 });
 
 export const editProfileSchema = z.object({
-  bio: z.string(),
+  bio: z.string().max(50, "bio must be within 50 characters"),
   full_name: z
     .string()
     .min(3, "full name too short")

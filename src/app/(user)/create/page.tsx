@@ -1,10 +1,14 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import React from "react";
 
 const CreatePage = () => {
-  return <AnimatedPageOpacity>Create</AnimatedPageOpacity>;
+  return (
+    <AnimatedPageOpacity>
+      <h1 className="page-title">Create Post</h1>
+      <div className="editor text-text-dark" />
+    </AnimatedPageOpacity>
+  );
 };
 
 export default CreatePage;

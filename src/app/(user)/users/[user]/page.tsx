@@ -43,6 +43,10 @@ const Page = () => {
   })();
   },[router, user])
 
+  useEffect(()=>{
+    if(user && user == userContext.data?.username) return router.replace('/user');
+  },[userContext.data, router, user])
+
   function updateFavourite(add:boolean) {
     setLoadingFavourite(true);
     (async ()=>{

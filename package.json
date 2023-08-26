@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^39.0.1",
+    "@ckeditor/ckeditor5-react": "^6.1.0",
     "@radix-ui/themes": "^1.0.0",
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
