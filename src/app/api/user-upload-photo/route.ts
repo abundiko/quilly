@@ -77,8 +77,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     return NextResponse.json(["error", "connection error"]);
   } catch (e) {
-    console.log("Error", e);
-
-    return NextResponse.json(["error", "an error occurred"]);
+    return NextResponse.json(["error", `an error occurred ${e}`]);
   }
 }
