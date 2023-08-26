@@ -67,7 +67,7 @@ const EditUserProfilePage = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
+    setFormValues({ ...formValues, [name]: value.trim() });
   };
 
   async function handleSubmit(formData: FormData) {
@@ -75,7 +75,7 @@ const EditUserProfilePage = () => {
     try {
       const validValues = editProfileSchema.parse(formValues);
       setErrors({});
-      const res = await updateProfileData(validValues);
+      const res = await updateProfileData(validValues, validValues.username!==userContext.data?.username);
       if (res && res[0] === "success") {
         setMessage(["success","Profile Info Updated!"]);
         userContext.setData(JSON.parse(res[1]));

@@ -59,7 +59,7 @@ const Page = () => {
             </p>
           </div>
           <div className="p-2 rounded-md border app-borders mb-4 light-bg">
-            <p className="opacity-80 text-md">
+            <p className="opacity-80 text-md whitespace-pre-line">
               {userContext.data?.bio}
             </p>
           </div>

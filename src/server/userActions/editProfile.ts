@@ -8,7 +8,8 @@ import { getUserSessionId } from "../auth/isLoggedIn";
 import usernameIsTaken from "../auth/usernameIsTaken";
 
 export default async function updateProfileData(
-  userData: EditProfileData
+  userData: EditProfileData,
+  newUsername: boolean = false
 ): Promise<FormMessage> {
   await connectDB();
 
@@ -17,11 +18,13 @@ export default async function updateProfileData(
       const _id = await getUserSessionId();
       if (!_id) {
         return ["error", "No Login user"];
-      } else if (await usernameIsTaken(userData.username))
-        return [
-          "error",
-          `"${userData.username}" is taken. try another username`
-        ];
+      }
+      if (newUsername)
+        if (await usernameIsTaken(userData.username))
+          return [
+            "error",
+            `"${userData.username}" is taken. try another username`
+          ];
 
       const userDoc = await UserModel.findByIdAndUpdate(
         _id,

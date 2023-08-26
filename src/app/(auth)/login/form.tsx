@@ -44,10 +44,7 @@ const LoginForm = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormValues({
-      ...formValues,
-      [name]: value
-    });
+    setFormValues({ ...formValues, [name]: value.trim() });
   };
 
   const handleSubmit = async (e: FormData) => {
