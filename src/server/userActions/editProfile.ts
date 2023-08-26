@@ -23,7 +23,11 @@ export default async function updateProfileData(
           `"${userData.username}" is taken. try another username`
         ];
 
-      const userDoc = await UserModel.findByIdAndUpdate(_id, { ...userData });
+      const userDoc = await UserModel.findByIdAndUpdate(
+        _id,
+        { ...userData },
+        { new: true }
+      );
       if (userDoc) {
         return [
           "success",

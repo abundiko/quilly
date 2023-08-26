@@ -28,9 +28,13 @@ export default async function changePassword(
               formData.new_password,
               10
             );
-            userDoc = await UserModel.findByIdAndUpdate(_id, {
-              password: newHashedPassword
-            });
+            userDoc = await UserModel.findByIdAndUpdate(
+              _id,
+              {
+                password: newHashedPassword
+              },
+              { new: true }
+            );
             if (userDoc) {
               return [
                 "success",

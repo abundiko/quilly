@@ -20,9 +20,13 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       if (userDoc && userDoc.img && userDoc.img.trim() != "") {
         await unlink("./public" + userDoc.img);
       }
-      userDoc = await UserModel.findByIdAndUpdate(_id, {
-        img: ""
-      });
+      userDoc = await UserModel.findByIdAndUpdate(
+        _id,
+        {
+          img: ""
+        },
+        { new: true }
+      );
       if (userDoc) {
         return NextResponse.json([
           "success",
@@ -58,9 +62,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (userDoc && userDoc.img && userDoc.img.trim() != "") {
       await unlink("./public" + userDoc.img);
     }
-    userDoc = await UserModel.findByIdAndUpdate(_id, {
-      img: path.replace("./public", "")
-    });
+    userDoc = await UserModel.findByIdAndUpdate(
+      _id,
+      { img: path.replace("./public", "") },
+      { new: true }
+    );
     if (userDoc) {
       return NextResponse.json([
         "success",

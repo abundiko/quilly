@@ -17,7 +17,11 @@ export default async function updateInterests(
         return ["error", "No Login user"];
       }
 
-      const userDoc = await UserModel.findByIdAndUpdate(_id, { interests });
+      const userDoc = await UserModel.findByIdAndUpdate(
+        _id,
+        { interests },
+        { new: true }
+      );
       if (userDoc) {
         return [
           "success",
