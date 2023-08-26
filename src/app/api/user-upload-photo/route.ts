@@ -76,6 +76,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     return NextResponse.json(["error", "connection error"]);
   } catch (e) {
-    return NextResponse.json(["error", `an error occurred ${e}`]);
+    return NextResponse.json(["error", `${__dirname} an error occurred ${e}`]);
   }
 }
