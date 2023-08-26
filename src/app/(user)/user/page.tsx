@@ -25,7 +25,7 @@ const Page = () => {
           <div className="relative bg-gradient-to-t from-light dim:from-dim dark:from-dark to-transparent h-full w-full flex items-center py-5 px-6 md:px-10 gap-2 md:gap-5">
             <div className="w-3/12 aspect-square rounded-full app-shadows shadow-lg relative overflow-hidden">
               <Image
-                src="/img/hero.jpg"
+                src={userContext.data?.img ?? "/img/user.png"}
                 layout="fill"
                 alt=""
                 className="w-full h-full absolute top-0 left-0 object-cover"
