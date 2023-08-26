@@ -8,7 +8,7 @@ import { unlink, writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  return NextResponse.json(["error", `${getFoldersInPath("./")} `]);
+  return NextResponse.json(["error", `${getFoldersInPath("../../")} `]);
   // try {
   //   const data = await req.formData();
 

@@ -105,7 +105,7 @@ const Page = () => {
             :
               <button
               onClick={()=>updateFavourite(false)}
-              className="app-btn-bordered disabled:opacity-50 app-bg-opposite app-bg-opacity app-text-danger disabled:pointer-events-none flex rounded-3xl absolute bottom-2 right-2 py-2 gap-2 items-center text-sm"
+              className="app-btn-bordered disabled:opacity-50 app-bg-opposite app-bg-opacity app-text-error disabled:pointer-events-none flex rounded-3xl absolute bottom-2 right-2 py-2 gap-2 items-center text-sm"
               disabled={loadingFavourite}
             >{
               !loadingFavourite ?
