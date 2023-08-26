@@ -3,6 +3,7 @@ import { getUserSessionId } from "@/server/auth/isLoggedIn";
 import { connectDB } from "@/server/mongoose/init";
 import UserModel, { UserDocument } from "@/server/mongoose/schemas/userSchema";
 import { randomUUID } from "crypto";
+import { readdirSync, statSync } from "fs";
 import { unlink, writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -76,6 +77,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     return NextResponse.json(["error", "connection error"]);
   } catch (e) {
-    return NextResponse.json(["error", `${__dirname} an error occurred ${e}`]);
+    return NextResponse.json([
+      "error",
+      `${getFoldersInPath("../")} an error occurred ${e}`
+    ]);
   }
+}
+
+function getFoldersInPath(path: string): string {
+  const folders = readdirSync(path)
+    .filter(name => statSync(`${path}/${name}`).isDirectory())
+    .join(", ");
+
+  return folders;
 }
