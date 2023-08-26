@@ -5,7 +5,6 @@ import { FormMessage } from "@/types/formTypes";
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
 import { getUserSessionId } from "../auth/isLoggedIn";
-import emailExists from "../auth/emailExists";
 import usernameIsTaken from "../auth/usernameIsTaken";
 
 export default async function updateProfileData(

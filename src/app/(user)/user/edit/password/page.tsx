@@ -8,6 +8,7 @@ import AppInputField, {
 import AppLoader from "@/components/AppLoader";
 import UserContext from "@/context/UserContext";
 import { editPasswordSchema } from "@/schemas/userSchema";
+import changePassword from "@/server/userActions/changePassword";
 import { FormMessage } from "@/types/formTypes";
 import { useContext, useEffect, useState } from "react";
 import { z } from "zod";
@@ -60,18 +61,18 @@ const EditPasswordPage = () => {
 
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
+
     try {
       const validValues = editPasswordSchema.parse(formValues);
-      if (validValues.confirm_password === validValues.new_password)
-        setErrors({});
-      else setMessage(["error", "Passwords do not match"]);
-      // const res = await updateProfileData(validValues);
-      // if (res && res[0] === "success") {
-      //   setMessage(["success","Profile Info Updated!"]);
-      //   userContext.setData(JSON.parse(res[1]));
-      // } else {
-      //   setMessage(res);
-      // }
+      setErrors({});
+
+      const res = await changePassword(validValues);
+      if (res && res[0] === "success") {
+        setMessage(["success", "Password Changed Successfully!"]);
+        userContext.setData(JSON.parse(res[1]));
+      } else {
+        setMessage(res);
+      }
     } catch (error) {
       if (error instanceof z.ZodError) {
         setErrors(error.flatten().fieldErrors);

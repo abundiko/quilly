@@ -39,7 +39,7 @@ export const editProfileSchema = z.object({
 });
 
 export const editPasswordSchema = z.object({
-  current_password: z.string(),
+  password: z.string(),
   new_password: z
     .string()
     .min(8, "Password should have at least 8 characters")

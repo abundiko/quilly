@@ -28,8 +28,6 @@ const SignupInterestsForm = () => {
       const res = await updateInterests(selectedInterests);
       if (res && res[0] === "success") {
         userContext.setData(JSON.parse(res[1]));
-        console.log(res[1]);
-        
         setIsLoading(false);
       }
     } catch (error) {
