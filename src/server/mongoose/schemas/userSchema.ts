@@ -1,4 +1,4 @@
-import mongoose, { Document, ObjectId } from "mongoose";
+import mongoose from "mongoose";
 
 export type UserDocument =  {
   _id?:string;

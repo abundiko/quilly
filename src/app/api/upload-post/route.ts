@@ -1,8 +1,6 @@
 "use server";
 import { supabase } from "@/lib/supabase";
 import { getUserSessionId } from "@/server/auth/isLoggedIn";
-import { connectDB } from "@/server/mongoose/init";
-import UserModel, { UserDocument } from "@/server/mongoose/schemas/userSchema";
 import { BUCKET_NAME } from "@/utils/constants";
 import { randomUUID } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
@@ -41,22 +39,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json(["error", "failed to upload image"]);
     }
     //
-    await connectDB();
-
-    let userDoc = await UserModel.findByIdAndUpdate(
-      _id,
-      { img: fileName },
-      { new: true }
-    );
-    if (userDoc) {
-      return NextResponse.json([
-        "success",
-        JSON.stringify(
-          { ...userDoc.toObject(), _id: userDoc._id.toString() } as UserDocument
-        )
-      ]);
-    }
-    return NextResponse.json(["error", "connection error"]);
+    return NextResponse.json(["success", fileName]);
   } catch (e) {
     return NextResponse.json(["error", `an error occurred ${e}`]);
   }

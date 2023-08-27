@@ -55,8 +55,6 @@ export async function submitSignupInterests(
       const newUser: UserDocument = await userDoc.save();
 
       if (newUser) {
-        // console.log(newUser._id!.toString(), newUser.toString());
-
         setUserCookie(newUser._id!.toString());
         return ["success", "account created"];
       } else return ["error", "unable to create account"];
