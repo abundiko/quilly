@@ -75,7 +75,7 @@ const CreatePageBody = () => {
                 "numberedList",
                 "|",
                 "table",
-                "image",
+                "uploadImage",
                 "mediaEmbed"
               ]
             }

@@ -2,7 +2,7 @@
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
 import AppInputField from "@/components/AppInputField";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import {CreatePostContext} from "./layout";
 import AppLoader from "@/components/AppLoader";
@@ -39,6 +39,33 @@ const CreatePage = () => {
       title: postContext.data.title??"",
       subtitle: postContext.data.subtitle??"",
     });
+
+    
+
+
+  //   useEffect(
+  //   () => {
+  //     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+  //       event.preventDefault();
+  //       // if (data.title || data.subtitle)
+  //       return (event.returnValue =
+  //         "Are you sure you want to leave this page?");
+  //     };
+
+  //     const handleUnload = () => {
+  //       // setData({});
+  //     };
+
+  //     window.addEventListener("beforeunload", handleBeforeUnload);
+  //     window.addEventListener("unload", handleUnload);
+
+  //     return () => {
+  //       window.removeEventListener("beforeunload", handleBeforeUnload);
+  //       window.removeEventListener("unload", handleUnload);
+  //     };
+  //   },
+  //   [postContext.data]
+  // );
 
     const [errors, setErrors] = useState<CreatePostErrors>({});
     const [isLoading, setIsLoading] = useState(false);

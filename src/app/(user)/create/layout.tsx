@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { LayoutProps } from "@/app/(auth)/signup/layout";
 
 export type CreatePostProps = {
@@ -23,6 +23,29 @@ export const CreatePostContext = createContext<CreatePostContextProps>({
 
 const Page = ({ children }: LayoutProps) => {
   const [data, setData] = useState<CreatePostProps>({});
+  useEffect(
+    () => {
+      const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+        event.preventDefault();
+        if (data.title || data.subtitle)
+          return (event.returnValue =
+            "Are you sure you want to leave this page?");
+      };
+
+      const handleUnload = () => {
+        setData({});
+      };
+
+      window.addEventListener("beforeunload", handleBeforeUnload);
+      window.addEventListener("unload", handleUnload);
+
+      return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+        window.removeEventListener("unload", handleUnload);
+      };
+    },
+    [data]
+  );
   return (
     <CreatePostContext.Provider value={{ data, setData }}>
       {children}
