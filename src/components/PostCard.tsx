@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
 import AppLoader from "./AppLoader";
 import { formatImage } from "@/utils/imageHelpers";
+import { formatPostTitleAsUrl } from "@/utils/formatUrl";
 
 const PostCard = ({
   title,
@@ -46,12 +47,16 @@ const PostCard = ({
               width={30}
               height={30}
               alt="user name"
-              className="rounded-full aspect-square"
+              className="rounded-full aspect-square object-cover"
             />
             <h6 className="opacity-90 text-sm font-[600]">
               {user.username}
             </h6>
-          </Link> : <AppLoader />
+          </Link> : 
+          <div className="flex gap-2 items-center">
+            <div className="h-6 w-6 light-bg rounded-full"></div>
+            <span className="light-bg block w-20 h-3 rounded-md" />
+          </div>
           }
           <BiRadioCircle className="scale-50" />
           <span className="opacity-60 text-xs">
@@ -63,15 +68,15 @@ const PostCard = ({
         </button>
       </div>
       <Link
-        href={`/user/${user?.username}/${title}`}
+        href={`/user/${user?.username}/${formatPostTitleAsUrl(title)}`}
         className="flex gap-2 items-center"
       >
-        <div className="relative min-w-[30%] w-[30%] rounded-md overflow-hidden aspect-square">
+        <div className="relative min-w-[30%] w-[30%] rounded-md overflow-hidden aspect-square light-bg">
           <Image
-            src={img}
+            src={formatImage(img)}
             layout="fill"
             alt={title}
-            className="rounded aspect-square group-hover:scale-110"
+            className="rounded aspect-square group-hover:scale-110  object-cover"
           />
         </div>
         <div className="w-[68%] max-w-[68%]">

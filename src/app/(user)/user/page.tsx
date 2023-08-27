@@ -5,7 +5,6 @@ import PostCard from "@/components/PostCard";
 import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
 import UserContext from "@/context/UserContext";
-import { dummyPosts } from "@/data/dummyPosts";
 import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import getUserPosts from "@/server/postActions/getPosts";
 import { formatDateString } from "@/utils/formateDate";
@@ -26,7 +25,6 @@ const Page = () => {
       while(!fetched){
         try {
           const postDoc = await getUserPosts(userContext.data?._id as string);
-          console.log(postDoc);
           
           if(postDoc){
             fetched = true;
@@ -42,12 +40,12 @@ const Page = () => {
   return (
     <AnimatedPageOpacity>
       <section className="">
-        <div className="h-52 relative w-full">
+        <div className="h-52 relative w-full overflow-hidden">
           <Image
                 src={formatImage(userContext.data?.img)}
             layout="fill"
             alt="Profile Photo"
-            className="w-full h-full absolute top-0 left-0 object-cover"
+            className="w-full h-full absolute top-0 left-0 object-cover blur-md"
           />
           <div className="relative bg-gradient-to-t from-light dim:from-dim dark:from-dark to-transparent h-full w-full flex items-center py-5 px-6 md:px-10 gap-2 md:gap-5">
             <div className="w-3/12 aspect-square rounded-full app-shadows shadow-lg relative overflow-hidden">
@@ -92,6 +90,8 @@ const Page = () => {
           <div className="md:w-10/12">
             <h2 className="font-bold text-xl border-b app-borders w-full py-2 mb-2">
               Posts
+              &nbsp;
+              <span className="opacity-80 text-sm">({posts.length})</span>
             </h2>
             {posts.map((item, i) => <PostCard {...item} key={i} />)}
           </div>

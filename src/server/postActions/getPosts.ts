@@ -14,10 +14,8 @@ export default async function getUserPosts(
   try {
     const posts = await PostModel.find({ author: uid });
     if (posts) {
-      console.log(posts.length);
-
       return posts.map(item => {
-        return { ...item, _id: item._id.toString() } as PostDocument;
+        return { ...item.toObject(), _id: item._id.toString() } as PostDocument;
       });
     }
     return null;
