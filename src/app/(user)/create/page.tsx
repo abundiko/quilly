@@ -42,31 +42,6 @@ const CreatePage = () => {
 
     
 
-
-  //   useEffect(
-  //   () => {
-  //     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-  //       event.preventDefault();
-  //       // if (data.title || data.subtitle)
-  //       return (event.returnValue =
-  //         "Are you sure you want to leave this page?");
-  //     };
-
-  //     const handleUnload = () => {
-  //       // setData({});
-  //     };
-
-  //     window.addEventListener("beforeunload", handleBeforeUnload);
-  //     window.addEventListener("unload", handleUnload);
-
-  //     return () => {
-  //       window.removeEventListener("beforeunload", handleBeforeUnload);
-  //       window.removeEventListener("unload", handleUnload);
-  //     };
-  //   },
-  //   [postContext.data]
-  // );
-
     const [errors, setErrors] = useState<CreatePostErrors>({});
     const [isLoading, setIsLoading] = useState(false);
 

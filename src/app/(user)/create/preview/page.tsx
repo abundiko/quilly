@@ -2,18 +2,23 @@
 
 import "../../../editor.css";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import React, { useContext, } from "react";
+import React, { useContext } from "react";
 import { CreatePostContext } from "../layout";
 import { useRouter } from "next/navigation";
 import AppLoader from "@/components/AppLoader";
-import { FaCheckCircle,  } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
+import HTMLText from "@/components/home/HtmlText";
 
 const CreatePagePreview = () => {
   const postContext = useContext(CreatePostContext);
   const router = useRouter();
 
-
-  if (!postContext.data.title || !postContext.data.body || !postContext.data.tags) return router.back();
+  if (
+    !postContext.data.title ||
+    !postContext.data.body ||
+    !postContext.data.tags
+  )
+    return router.back();
 
   return (
     <AnimatedPageOpacity>
@@ -34,17 +39,10 @@ const CreatePagePreview = () => {
         </button>
       </h1>
       <div className="editor p-4">
-        <HTMLText html=
-        {postContext.data.body}
-         />
+        <HTMLText html={postContext.data.body} />
       </div>
     </AnimatedPageOpacity>
   );
 };
 
 export default CreatePagePreview;
-
-
-export function HTMLText({ html }:{html?:string}) {
-  return <div dangerouslySetInnerHTML={{ __html: html??"" }} />;
-}

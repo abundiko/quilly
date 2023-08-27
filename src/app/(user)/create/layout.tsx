@@ -28,8 +28,7 @@ const Page = ({ children }: LayoutProps) => {
       const handleBeforeUnload = (event: BeforeUnloadEvent) => {
         event.preventDefault();
         if (data.title || data.subtitle)
-          return (event.returnValue =
-            "Are you sure you want to leave this page?");
+          return (event.returnValue = "Exit Page and lose your progress?");
       };
 
       const handleUnload = () => {
