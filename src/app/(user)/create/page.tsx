@@ -1,14 +1,16 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import AppInputField from "@/components/AppInputField";
+import AppInputField, { AppFormMessage } from "@/components/AppInputField";
 import { useContext, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import {CreatePostContext} from "./layout";
 import AppLoader from "@/components/AppLoader";
 import { createPostSchema } from "@/schemas/postSchema";
 import { z } from "zod";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FormMessage } from "@/types/formTypes";
 
 const formFields = [
   {
@@ -32,8 +34,11 @@ interface CreatePostErrors {
 }
 
 const CreatePage = () => {
+  
+  const [createObjectURL, setCreateObjectURL] = useState<string | null>(null);
     const postContext = useContext(CreatePostContext);
     const router = useRouter();
+  const [message, setMessage] = useState<FormMessage>(null);
 
     const [formValues, setFormValues] = useState({
       title: postContext.data.title??"",
@@ -51,13 +56,20 @@ const CreatePage = () => {
     };
 
     async function handleSubmit(formData: FormData) {
+      setMessage(null);
       setIsLoading(true);
+      const img = formData.get('file');
+      if(!img || (img as File).name == ""){
+        setMessage(["error","Select an image file"]);
+        setIsLoading(false);
+        return;
+      }
 
       try {
         const validValues = createPostSchema.parse(formValues);
         setErrors({});
 
-        postContext.setData({...postContext.data,...validValues});
+        postContext.setData({...postContext.data,...validValues,formData});
         router.push('/create/body');
       } catch (error) {
         if (error instanceof z.ZodError) {
@@ -67,12 +79,29 @@ const CreatePage = () => {
       }
       setIsLoading(false);
     }
+
+      const uploadToClient = (event: any) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+      setCreateObjectURL(URL.createObjectURL(i));
+    }
+  };
+
     
   return <AnimatedPageOpacity>
       <h1 className="page-title">Create Post</h1>
       <div className="p-4">
         <form action={handleSubmit}
             onSubmit={e => setIsLoading(true)} className=" p-3 md:w-10/12 mx-auto">
+              <AppFormMessage message={message} />
+              <label htmlFor="file">
+                <div className="cursor-pointer relative block w-full aspect-[2.3/1] rounded-lg mb-4 overflow-hidden shadow-md app-shadows border app-borders">
+            <Image layout="fill" alt="Post Picture" 
+            src={createObjectURL ?? "/img/select-image.png"}
+             className={`w-full h-full bg-slate-800 scale-105 ${createObjectURL ? 'object-cover' : 'object-contain'}`} />
+            </div>
+              </label>
+              <input type="file" onChange={uploadToClient} hidden className="hidden" id="file" name="file" />
           {formFields.map(item =>
             <AppInputField
               key={item.name}

@@ -6,6 +6,7 @@ import { LayoutProps } from "@/app/(auth)/signup/layout";
 export type CreatePostProps = {
   title?: string;
   subtitle?: string;
+  formData?: FormData;
   body?: string;
   tags?: string[];
   author?: string;
