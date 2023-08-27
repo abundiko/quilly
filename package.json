@@ -45,6 +45,7 @@
     "@types/formidable": "^3.4.1",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/mongoose": "^5.11.97",
-    "@types/react-helmet": "^6.1.6"
+    "@types/react-helmet": "^6.1.6",
+    "encoding": "^0.1.13"
   }
 }
