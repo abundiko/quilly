@@ -14,7 +14,7 @@ import { IoTrashBin } from "react-icons/io5";
 const EditUserPhotoPage = () => {
   const userContext = useContext(UserContext);
   const [remove, setRemove] = useState(false);
-  const [createObjectURL, setCreateObjectURL] = useState<string | null>(userContext.data?.img ?? null);
+  const [createObjectURL, setCreateObjectURL] = useState<string | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<FormMessage>(null);
@@ -56,7 +56,7 @@ const EditUserPhotoPage = () => {
           <form onSubmit={e => setIsLoading(true)} action={handleSubmit} className=" p-3 md:w-8/12 mx-auto flex flex-col items-center">
             <AppFormMessage message={message} />
             <div className="relative block w-8/12 md:w-6/12 aspect-square rounded-full overflow-hidden shadow-md app-shadows border app-borders">
-            <Image layout="fill" alt="your profile Photo" src={formatImage(createObjectURL)} className="w-full h-full" />
+            <Image layout="fill" alt="your profile Photo" src={createObjectURL ?? formatImage(userContext.data?.img ?? "")} className="w-full h-full" />
             </div>
             <div className="flex gap-4 my-5 justify-center items-cente">
               <label htmlFor="file">

@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { getUserSessionId } from "@/server/auth/isLoggedIn";
 import { connectDB } from "@/server/mongoose/init";
 import UserModel, { UserDocument } from "@/server/mongoose/schemas/userSchema";
+import { BUCKET_NAME } from "@/utils/constants";
 import { randomUUID } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (data.get("remove")) {
       let userDoc = await UserModel.findById(_id);
       if (userDoc && userDoc.img && userDoc.img.trim() != "") {
-        await supabase.storage.from("quilly_images").remove(userDoc.img);
+        await supabase.storage.from(BUCKET_NAME).remove([userDoc.img]);
       }
       userDoc = await UserModel.findByIdAndUpdate(
         _id,
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const fileName = randomName + fileExtension;
     //
     const { data: fileData, error } = await supabase.storage
-      .from("quilly_images")
+      .from(BUCKET_NAME)
       .upload(fileName, file, {
         cacheControl: "3600",
         upsert: false
@@ -69,7 +70,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await connectDB();
     let userDoc = await UserModel.findById(_id);
     if (userDoc && userDoc.img && userDoc.img.trim() != "") {
-      await supabase.storage.from("quilly_images").remove(userDoc.img);
+      await supabase.storage.from(BUCKET_NAME).remove([userDoc.img]);
     }
     userDoc = await UserModel.findByIdAndUpdate(
       _id,
@@ -89,11 +90,3 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json(["error", `an error occurred ${e}`]);
   }
 }
-
-// function getFoldersInPath(path: string): string {
-//   const folders = readdirSync(path)
-//     .filter(name => statSync(`${path}/${name}`).isDirectory())
-//     .join(", ");
-
-//   return folders;
-// }
