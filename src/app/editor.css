@@ -24,3 +24,10 @@
   font-weight: normal;
   font-size: 1em;
 }
+
+.editor a {
+  color: #0000ff;
+}
+.editor a:hover {
+  text-decoration: underline;
+}

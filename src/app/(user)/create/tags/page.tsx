@@ -8,9 +8,7 @@ import {
 } from "@/components/InterestButton";
 import { useRouter } from "next/navigation";
 import { testInterests } from "@/data/testInterests";
-import { FaCheckCircle } from "react-icons/fa";
-import UserContext from "@/context/UserContext";
-import updateInterests from "@/server/userActions/updateInterests";
+import { FaChevronRight } from "react-icons/fa";
 import { CreatePostContext } from "../layout";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
 
@@ -28,11 +26,10 @@ const CreatePostTagsPage = () => {
     "use client";
     
     try {
-      const res = await updateInterests(selectedInterests);
-      // if (res && res[0] === "success") {
-      //   userContext.setData(JSON.parse(res[1]));
-      //   setIsLoading(false);
-      // }
+      if(selectedInterests.length > 1 && selectedInterests.length < 5){
+        postContext.setData({...postContext.data, tags:selectedInterests})
+        router.push('/create/preview')
+      }
     } catch (error) {
     }
     setIsLoading(false);
@@ -52,8 +49,8 @@ const CreatePostTagsPage = () => {
           {isLoading
             ? <AppLoader />
             : <div className="flex items-center gap-2">
-                <FaCheckCircle />
-                <span>Post</span>
+                <span>Next</span>
+                <FaChevronRight />
               </div>}
         </button>
       </h1>

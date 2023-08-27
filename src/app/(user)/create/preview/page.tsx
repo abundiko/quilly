@@ -2,11 +2,11 @@
 
 import "../../../editor.css";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, } from "react";
 import { CreatePostContext } from "../layout";
 import { useRouter } from "next/navigation";
 import AppLoader from "@/components/AppLoader";
-import { FaChevronRight } from "react-icons/fa";
+import { FaCheckCircle,  } from "react-icons/fa";
 
 const CreatePagePreview = () => {
   const postContext = useContext(CreatePostContext);
@@ -28,8 +28,8 @@ const CreatePagePreview = () => {
           {false
             ? <AppLoader />
             : <div className="flex items-center gap-2">
-                <span>next</span>
-                <FaChevronRight />
+                <FaCheckCircle />
+                <span>Post</span>
               </div>}
         </button>
       </h1>

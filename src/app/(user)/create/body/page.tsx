@@ -54,27 +54,31 @@ const CreatePageBody = () => {
           editor={ClassicEditor}
           data={postContext.data.body}
           config={{
-            toolbar: [
-              "undo",
-              "redo",
-              "|",
-              "heading",
-              "|",
-              "bold",
-              "italic",
-              "link",
-              "blockquote",
-              "codeblock",
-              "code",
-              "codeBlock",
-              "|",
-              "bulletedList",
-              "numberedList",
-              "|",
-              "table",
-              "image",
-              "mediaEmbed"
-            ]
+            toolbar: {
+              items: [
+                "undo",
+                "redo",
+                "|",
+                "heading",
+                "|",
+                "fontColor",
+                "fontBackgroundColor",
+                "|",
+                "bold",
+                "italic",
+                "link",
+                "blockquote",
+                "code",
+                "codeBlock",
+                "|",
+                "bulletedList",
+                "numberedList",
+                "|",
+                "table",
+                "image",
+                "mediaEmbed"
+              ]
+            }
           }}
           onError={() => {
             router.back();
