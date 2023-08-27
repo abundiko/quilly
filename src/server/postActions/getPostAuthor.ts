@@ -1,3 +1,5 @@
+"use server";
+
 import { connectDB } from "../mongoose/init";
 import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
 
@@ -16,5 +18,4 @@ export default async function getPostAuthor(
   } catch (e) {
     return null;
   }
-  return null;
 }

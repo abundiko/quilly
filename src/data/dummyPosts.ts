@@ -4,11 +4,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -20,11 +20,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -36,11 +36,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -52,11 +52,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -68,11 +68,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -84,11 +84,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -100,11 +100,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -116,11 +116,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -132,11 +132,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -148,11 +148,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -164,11 +164,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -180,11 +180,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -196,11 +196,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {
@@ -212,11 +212,11 @@ export const dummyPosts: PostDocument[] = [
   {
     _id: "ObjectId()",
     title: "Lorem ipsum dolor sit.",
-    intro: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
+    subtitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quam
             dolorum similique exercitationem.`,
-    createdAt: new Date(),
-    user: { _id: "abundiko", img: "/img/hero.jpg" },
-    content: "content",
+    createdAt: "",
+    author: "64e610976b6ab8ddf8ed171b",
+    body: "content",
     tags: ["tag1", "tag2"],
     img: "/img/hero.jpg",
     impressions: {

@@ -6,16 +6,39 @@ import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
 import UserContext from "@/context/UserContext";
 import { dummyPosts } from "@/data/dummyPosts";
+import { PostDocument } from "@/server/mongoose/schemas/postSchema";
+import getUserPosts from "@/server/postActions/getPosts";
 import { formatDateString } from "@/utils/formateDate";
 import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaBook, FaCalendar, FaPen } from "react-icons/fa";
 
 const Page = () => {
   const userContext = useContext(UserContext);
   const modalContext = useContext(ModalContext);
+  const [posts, setPosts] = useState<PostDocument[]>([]);
+  
+  useEffect(()=>{
+    (async()=>{
+      let fetched = false;
+      while(!fetched){
+        try {
+          const postDoc = await getUserPosts(userContext.data?._id as string);
+          console.log(postDoc);
+          
+          if(postDoc){
+            fetched = true;
+            setPosts(postDoc);
+          } 
+        } catch (e) {
+          continue;
+        }
+      }
+    })();
+  },[userContext.data?._id])
+  
   return (
     <AnimatedPageOpacity>
       <section className="">
@@ -70,7 +93,7 @@ const Page = () => {
             <h2 className="font-bold text-xl border-b app-borders w-full py-2 mb-2">
               Posts
             </h2>
-            {dummyPosts.map((item, i) => <PostCard {...item} key={i} />)}
+            {posts.map((item, i) => <PostCard {...item} key={i} />)}
           </div>
         </div>
       </section>

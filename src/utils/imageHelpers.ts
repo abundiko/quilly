@@ -10,7 +10,5 @@ export function formatImage(url: string | null | undefined): string {
 
 export function supabaseImage(filepath: string): string {
   const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filepath);
-  console.log(data.publicUrl);
-
   return data.publicUrl;
 }

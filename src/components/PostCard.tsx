@@ -7,6 +7,7 @@ import formatDate from "@/utils/formateDate";
 import { useEffect, useState } from "react";
 import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
 import AppLoader from "./AppLoader";
+import { formatImage } from "@/utils/imageHelpers";
 
 const PostCard = ({
   title,
@@ -23,8 +24,10 @@ const PostCard = ({
       while(!fetched){
         try {
           const userDoc = await getPostAuthor(author);
-          if(userDoc) setUser(userDoc);
-          else fetched = true;
+          if(userDoc){
+            fetched = true;
+            setUser(userDoc);
+          } 
         } catch (e) {
           continue;
         }
@@ -39,7 +42,7 @@ const PostCard = ({
           user ?
           <Link href={`/users/${user.username}`} className="flex gap-2 items-center">
             <Image
-              src={user.img}
+              src={formatImage(user.img)}
               width={30}
               height={30}
               alt="user name"
