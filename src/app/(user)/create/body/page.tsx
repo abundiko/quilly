@@ -1,6 +1,6 @@
 "use client";
 
-import "../../editor.css";
+import "../../../editor.css";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
 import React, { Component } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -9,7 +9,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 const CreatePageBody = () => {
   return (
     <AnimatedPageOpacity>
-      <h1 className="page-title">Create</h1>
+      <h1 className="page-title">Write Contents</h1>
       <div className="editor text-text-dark">
         {/* <CKEditor
           editor={ClassicEditor}

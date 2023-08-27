@@ -1,7 +1,6 @@
 "use client";
 
-import "../../editor.css";
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 import { LayoutProps } from "@/app/(auth)/signup/layout";
 
 export type CreatePostProps = {
@@ -17,7 +16,7 @@ export type CreatePostContextProps = {
   setData: any;
 };
 
-const CreatePostContext = createContext<CreatePostContextProps>({
+export const CreatePostContext = createContext<CreatePostContextProps>({
   data: {},
   setData: () => null
 });
@@ -31,4 +30,4 @@ const Page = ({ children }: LayoutProps) => {
   );
 };
 
-export default CreatePostContext;
+export default Page;

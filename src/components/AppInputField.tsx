@@ -40,6 +40,7 @@ const AppInputField = ({
         </div>}
       {textarea
         ? <textarea
+        rows={4}
             value={defaultValue}
             placeholder={placeholder}
             name={name}
