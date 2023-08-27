@@ -2,18 +2,25 @@
 
 import "../../../editor.css";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CreatePostContext } from "../layout";
+import { useRouter } from "next/router";
 
 const CreatePageBody = () => {
+  const postContext = useContext(CreatePostContext);
+  const router = useRouter();
+
+  if (!postContext.data.title) return router.back();
+
   return (
     <AnimatedPageOpacity>
       <h1 className="page-title">Write Contents</h1>
       <div className="editor text-text-dark">
-        {/* <CKEditor
+        <CKEditor
           editor={ClassicEditor}
-          data="<p>Hello from CKEditor&nbsp;5!</p>"
+          data={postContext.data.body}
           config={{
             toolbar: [
               "undo",
@@ -48,7 +55,7 @@ const CreatePageBody = () => {
           onFocus={(event, editor) => {
             console.log("Focus.", editor);
           }}
-        /> */}
+        />
       </div>
     </AnimatedPageOpacity>
   );
