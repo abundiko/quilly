@@ -80,7 +80,7 @@ const CreatePage = () => {
               value={postContext.data[item.name as "title"|"subtitle"]??""}
             />
           )}
-          <button className="app-btn w-full mb-5 flex items-center gap-1 justify-center" name="login-submit" type="submit">
+          <button disabled={isLoading} className="app-btn w-full mb-5 flex items-center gap-1 justify-center" name="login-submit" type="submit">
             {
               isLoading ? <AppLoader /> : <><span>Next</span>
             <FaChevronRight /></>

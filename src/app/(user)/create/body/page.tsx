@@ -2,11 +2,13 @@
 
 import "../../../editor.css";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CreatePostContext } from "../layout";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import AppLoader from "@/components/AppLoader";
+import { FaChevronRight } from "react-icons/fa";
 
 const CreatePageBody = () => {
   const postContext = useContext(CreatePostContext);
@@ -14,9 +16,39 @@ const CreatePageBody = () => {
 
   if (!postContext.data.title) return router.back();
 
+  function submitBody() {
+    if (postContext.data.body && postContext.data.body.length > 10)
+      router.push("/create/tags");
+  }
+
   return (
     <AnimatedPageOpacity>
-      <h1 className="page-title">Write Contents</h1>
+      <h1 className="page-title flex justify-between items-center">
+        <div className="h-fit py-1">
+          <h1 className=" leading-[0] text-lg">Write Contents</h1>
+          <span className="opacity-80 app-text-error text-xs font-[600]">
+            don&rsquo;t include the title or subtitle
+          </span>
+        </div>
+        <button
+          disabled={
+            postContext.data.body && postContext.data.body.length < 10
+              ? true
+              : false
+          }
+          onClick={submitBody}
+          className="app-btn py-1 px-2 rounded-3xl disabled:pointer-events-none disabled:opacity-50 text-sm"
+          name="signup-interests-submit"
+          type="submit"
+        >
+          {false
+            ? <AppLoader />
+            : <div className="flex items-center gap-2">
+                <span>next</span>
+                <FaChevronRight />
+              </div>}
+        </button>
+      </h1>
       <div className="editor text-text-dark">
         <CKEditor
           editor={ClassicEditor}
@@ -32,6 +64,9 @@ const CreatePageBody = () => {
               "italic",
               "link",
               "blockquote",
+              "codeblock",
+              "code",
+              "codeBlock",
               "|",
               "bulletedList",
               "numberedList",
@@ -41,19 +76,14 @@ const CreatePageBody = () => {
               "mediaEmbed"
             ]
           }}
-          onReady={editor => {
-            // You can store the "editor" and use when it is needed.
-            console.log("Editor is ready to use!", editor);
+          onError={() => {
+            router.back();
           }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            console.log({ event, editor, data });
-          }}
-          onBlur={(event, editor) => {
-            console.log("Blur.", editor);
-          }}
-          onFocus={(event, editor) => {
-            console.log("Focus.", editor);
+          onChange={(_, editor) => {
+            const data: string = editor.getData();
+            try {
+              postContext.setData({ ...postContext.data, body: data });
+            } catch (e) {}
           }}
         />
       </div>

@@ -11,34 +11,39 @@ import { testInterests } from "@/data/testInterests";
 import { FaCheckCircle } from "react-icons/fa";
 import UserContext from "@/context/UserContext";
 import updateInterests from "@/server/userActions/updateInterests";
+import { CreatePostContext } from "../layout";
+import { AnimatedPageOpacity } from "@/components/AnimatedPage";
 
-const SignupInterestsForm = () => {
-  const userContext = useContext(UserContext);
+const CreatePostTagsPage = () => {
+  const postContext = useContext(CreatePostContext);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [allInterests, setAllInterests] = useState(testInterests);
-  const [selectedInterests, setSelectedInterests] = useState<string[]>(userContext.data?.interests??[]);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(postContext.data?.tags??[]);
 
-  const handleSubmit = async (e: FormData) => {
+  if (!postContext.data.title || !postContext.data.body) return router.back();
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
     "use client";
     
-    setIsLoading(true);
     try {
       const res = await updateInterests(selectedInterests);
-      if (res && res[0] === "success") {
-        userContext.setData(JSON.parse(res[1]));
-        setIsLoading(false);
-      }
+      // if (res && res[0] === "success") {
+      //   userContext.setData(JSON.parse(res[1]));
+      //   setIsLoading(false);
+      // }
     } catch (error) {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
   return (
-    <form action={handleSubmit} onSubmit={(e)=>setIsLoading(true)} className="border-r app-borders ">
+    <AnimatedPageOpacity >
       <h1 className="page-title flex justify-between">
-        <span>Update Interests</span>
+        <span>Select Tags</span>
         <button
-          disabled={selectedInterests.length < 3 ? true : isLoading}
+        onClick={handleSubmit}
+          disabled={selectedInterests.length < 2 ? true : isLoading}
           className="app-btn py-1 px-2 rounded-3xl disabled:pointer-events-none disabled:opacity-50 text-sm"
           name="signup-interests-submit"
           type="submit"
@@ -48,11 +53,12 @@ const SignupInterestsForm = () => {
             ? <AppLoader />
             : <div className="flex items-center gap-2">
                 <FaCheckCircle />
-                <span>Save</span>
+                <span>Post</span>
               </div>}
         </button>
       </h1>
       <div className="p-4 ">
+        <h5 className="mb-2">Select 2 to 5 tags that suit this Blog Post</h5>
         {
           selectedInterests.length > 0 &&
           <>
@@ -81,14 +87,17 @@ const SignupInterestsForm = () => {
                 key={item}
                 title={item}
                 onClick={() => {
+                  if(selectedInterests.length < 5)
                   setSelectedInterests([...selectedInterests, item]);
+                else
+                setSelectedInterests([...selectedInterests]);
                 }}
               />
             )}
         </div>
       </div>
-    </form>
+    </AnimatedPageOpacity>
   );
 };
 
-export default SignupInterestsForm;
+export default CreatePostTagsPage;
