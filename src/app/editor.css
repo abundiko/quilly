@@ -31,3 +31,10 @@
 .editor a:hover {
   text-decoration: underline;
 }
+
+.editor ul li {
+  list-style: circle;
+}
+.editor ol li {
+  list-style-type: decimal;
+}

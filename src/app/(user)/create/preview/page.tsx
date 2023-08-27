@@ -12,6 +12,7 @@ import HTMLText from "@/components/home/HtmlText";
 import { FormMessage } from "@/types/formTypes";
 import { AppFormMessage } from "@/components/AppInputField";
 import newPost from "@/server/postActions/newPost";
+import PostReader, { PostReaderProps } from "@/components/home/PostReader";
 
 const CreatePagePreview = () => {
   const postContext = useContext(CreatePostContext);
@@ -26,33 +27,30 @@ const CreatePagePreview = () => {
     !postContext.data.tags
   )
     return router.back();
-    const { data } = postContext;
+  const { data } = postContext;
 
   function uploadPost() {
     setIsLoading(true);
-    (async()=>{
+    (async () => {
       try {
         const res = await fetch("/api/upload-post", {
-      body:data.formData,
-      method:"POST"
-    });
-    let formMessage = (await res.json()) as FormMessage;
-    if(formMessage && formMessage[0] === 'success'){
-      const img = formMessage[1];
-      const postResult = await newPost({...data,img});
-      if(postResult && postResult[0] === 'success') router.replace('/user')
-      setMessage(postResult)
-    }else
-    setMessage(formMessage)
-    
+          body: data.formData,
+          method: "POST"
+        });
+        let formMessage = (await res.json()) as FormMessage;
+        if (formMessage && formMessage[0] === "success") {
+          const img = formMessage[1];
+          const postResult = await newPost({ ...data, img });
+          if (postResult && postResult[0] === "success")
+            router.replace("/user");
+          setMessage(postResult);
+        } else setMessage(formMessage);
       } catch (e) {
-        console.error("ERROR",e);
-        
+        console.error("ERROR", e);
       }
       setIsLoading(false);
     })();
   }
-
 
   return (
     <AnimatedPageOpacity>
@@ -63,7 +61,7 @@ const CreatePagePreview = () => {
           name="signup-interests-submit"
           type="submit"
           onClick={uploadPost}
-         disabled={isLoading}
+          disabled={isLoading}
         >
           {isLoading
             ? <AppLoader />
@@ -74,28 +72,7 @@ const CreatePagePreview = () => {
         </button>
       </h1>
       <AppFormMessage message={message} />
-      <section>
-<div className="h-52 relative w-full">
-          <Image
-                src={data?.img!}
-            layout="fill"
-            alt="Profile Photo"
-            className="w-full h-full absolute top-0 left-0 object-cover"
-          />
-          <div className="relative bg-gradient-to-t from-light dim:from-dim dark:from-dark to-transparent h-full w-full flex justify-center items-center py-5 px-6 md:px-10 gap-2 md:gap-5">
-            <div className="w-10/12">
-              <h1 className="font-bold text-2xl md:text-3xl mt-6 mb-2">
-                {data.title}
-              </h1>
-              <h2 className="font-[600] text-sm opacity-80">{data.subtitle}</h2>
-            </div>
-          </div>
-        </div>
-
-      <div className="editor p-4">
-        <HTMLText html={postContext.data.body} />
-      </div>
-      </section>
+      <PostReader {...data as PostReaderProps} />
     </AnimatedPageOpacity>
   );
 };

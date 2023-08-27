@@ -61,21 +61,14 @@ const CreatePageBody = () => {
                 "|",
                 "heading",
                 "|",
-                "fontColor",
-                "fontBackgroundColor",
-                "|",
                 "bold",
                 "italic",
                 "link",
                 "blockquote",
-                "code",
-                "codeBlock",
                 "|",
                 "bulletedList",
                 "numberedList",
                 "|",
-                "table",
-                "uploadImage",
                 "mediaEmbed"
               ]
             }

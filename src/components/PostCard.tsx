@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { FaEllipsisV, FaEye, FaThumbsUp } from "react-icons/fa";
-import { BiCircle, BiComment, BiRadioCircle } from "react-icons/bi";
+import {  BiComment, BiRadioCircle } from "react-icons/bi";
 import Link from "next/link";
 import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import formatDate from "@/utils/formateDate";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
-import AppLoader from "./AppLoader";
 import { formatImage } from "@/utils/imageHelpers";
 import { formatPostTitleAsUrl } from "@/utils/formatUrl";
+import UserContext from "@/context/UserContext";
 
 const PostCard = ({
   title,
@@ -18,6 +18,7 @@ const PostCard = ({
   img,
   impressions
 }: PostDocument) => {
+  const userContext = useContext(UserContext);
   const [user, setUser] = useState<PostAuthor|null>(null);
   useEffect(()=>{
     (async()=>{
@@ -41,7 +42,7 @@ const PostCard = ({
         <div className="w-fit flex items-center gap-1">
           {
           user ?
-          <Link href={`/users/${user.username}`} className="flex gap-2 items-center">
+          <Link href={userContext.data?.username == user.username ? "/user" : `/users/${user.username}`} className="flex gap-2 items-center">
             <Image
               src={formatImage(user.img)}
               width={30}
@@ -68,7 +69,7 @@ const PostCard = ({
         </button>
       </div>
       <Link
-        href={`/user/${user?.username}/${formatPostTitleAsUrl(title)}`}
+        href={`/users/${user?.username}/${formatPostTitleAsUrl(title)}`}
         className="flex gap-2 items-center"
       >
         <div className="relative min-w-[30%] w-[30%] rounded-md overflow-hidden aspect-square light-bg">
