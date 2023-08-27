@@ -2,6 +2,10 @@
 const nextConfig = {
   experimental: {
     serverActions: true
+  },
+
+  images: {
+    domains: ["qkpmyljleclxdbfzafat.supabase.co"]
   }
 };
 

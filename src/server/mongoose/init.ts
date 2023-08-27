@@ -1,7 +1,4 @@
 import Mongoose from "mongoose";
-import dotenv from "dotenv";
-import { unknown } from "zod";
-dotenv.config();
 
 const connectionString = `mongodb+srv://${process.env.MONGO_USER}:${process.env
   .MONGO_PASSWORD}@users.bwkwwrj.mongodb.net/?retryWrites=true&w=majority`;
