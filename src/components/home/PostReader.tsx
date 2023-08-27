@@ -21,12 +21,12 @@ export default function PostReader({
   const imgScale = useTransform(scrollY, [0, 200], [1, 1.5]);
   return (
     <section>
-      <div className="h-52 relative w-full">
+      <div className="h-52 relative w-full overflow-hidden">
         <motion.div
           style={{
             scale: imgScale
           }}
-          className="absolute w-full h-full"
+          className="absolute w-full h-full overflow-hidden"
         >
           <Image
             src={formatImage(img)}
@@ -47,7 +47,7 @@ export default function PostReader({
         </div>
       </div>
 
-      <div className="editor p-4">
+      <div className="editor p-4 pb-40">
         <HTMLText html={body} />
       </div>
     </section>
