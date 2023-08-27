@@ -4,20 +4,40 @@ import { BiCircle, BiComment, BiRadioCircle } from "react-icons/bi";
 import Link from "next/link";
 import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import formatDate from "@/utils/formateDate";
+import { useEffect, useState } from "react";
+import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
+import AppLoader from "./AppLoader";
 
 const PostCard = ({
   title,
-  intro,
+  subtitle,
   createdAt,
-  user,
+  author,
   img,
   impressions
 }: PostDocument) => {
+  const [user, setUser] = useState<PostAuthor|null>(null);
+  useEffect(()=>{
+    (async()=>{
+      let fetched = false;
+      while(!fetched){
+        try {
+          const userDoc = await getPostAuthor(author);
+          if(userDoc) setUser(userDoc);
+          else fetched = true;
+        } catch (e) {
+          continue;
+        }
+      }
+    })();
+  },[author])
   return (
     <div className="my-1  py-2 px-3 group cursor-pointer app-borders border-b">
       <div className="flex justify-between mb-1">
         <div className="w-fit flex items-center gap-1">
-          <Link href={`/users/${user._id}`} className="flex gap-2 items-center">
+          {
+          user ?
+          <Link href={`/users/${user.username}`} className="flex gap-2 items-center">
             <Image
               src={user.img}
               width={30}
@@ -26,12 +46,13 @@ const PostCard = ({
               className="rounded-full aspect-square"
             />
             <h6 className="opacity-90 text-sm font-[600]">
-              {user._id.toString()}
+              {user.username}
             </h6>
-          </Link>
+          </Link> : <AppLoader />
+          }
           <BiRadioCircle className="scale-50" />
           <span className="opacity-60 text-xs">
-            {formatDate(createdAt)}
+            {formatDate(createdAt??"")}
           </span>
         </div>
         <button className="app-icon-button text-sm">
@@ -39,7 +60,7 @@ const PostCard = ({
         </button>
       </div>
       <Link
-        href={`/user/${user._id}/${title}`}
+        href={`/user/${user?.username}/${title}`}
         className="flex gap-2 items-center"
       >
         <div className="relative min-w-[30%] w-[30%] rounded-md overflow-hidden aspect-square">
@@ -55,7 +76,7 @@ const PostCard = ({
             {title}
           </h3>
           <p className="opacity-70 text-sm  ">
-            {intro}
+            {subtitle}
           </p>
           <div className="flex justify-between mt-1 opacity-80">
             <div className="flex gap-1 text-sm items-center">

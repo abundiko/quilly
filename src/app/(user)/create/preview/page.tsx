@@ -41,7 +41,6 @@ const CreatePagePreview = () => {
       const img = formMessage[1];
       const postResult = await newPost({...data,img});
       if(postResult && postResult[0] === 'success') router.replace('/user')
-      
       setMessage(postResult)
     }else
     setMessage(formMessage)
