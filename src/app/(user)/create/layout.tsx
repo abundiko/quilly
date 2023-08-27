@@ -10,6 +10,7 @@ export type CreatePostProps = {
   body?: string;
   tags?: string[];
   author?: string;
+  img?: string;
 };
 
 export type CreatePostContextProps = {

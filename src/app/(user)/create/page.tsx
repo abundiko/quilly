@@ -83,7 +83,9 @@ const CreatePage = () => {
       const uploadToClient = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0];
-      setCreateObjectURL(URL.createObjectURL(i));
+      const img = URL.createObjectURL(i)
+      setCreateObjectURL(img);
+      postContext.setData({...postContext.data,img})
     }
   };
 
