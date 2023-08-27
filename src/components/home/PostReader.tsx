@@ -1,3 +1,4 @@
+import { formatImage } from "@/utils/imageHelpers";
 import HTMLText from "./HtmlText";
 import Image from "next/image";
 
@@ -17,7 +18,7 @@ export default function PostReader({
     <section>
       <div className="h-52 relative w-full">
         <Image
-          src={img}
+          src={formatImage(img)}
           layout="fill"
           alt="Profile Photo"
           className="w-full h-full absolute top-0 left-0 object-cover"

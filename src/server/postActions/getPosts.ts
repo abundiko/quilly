@@ -24,14 +24,15 @@ export default async function getUserPosts(
   }
 }
 
-export async function getPostData(title: string): Promise<PostDocument | null> {
+export async function getPostData(
+  title: string
+): Promise<PostDocument | null | "error"> {
   try {
     const post = await PostModel.findOne({ title });
     if (post) {
       return { ...post.toObject(), _id: post._id.toString() } as PostDocument;
-    }
-    return null;
+    } else return null;
   } catch (e) {
-    return null;
+    return "error";
   }
 }
