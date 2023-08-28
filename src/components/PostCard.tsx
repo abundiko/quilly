@@ -36,14 +36,27 @@ const PostCard = ({
         }
       }
     })();
-  },[author])
+  },[author]);
+
+  const isMyPost = userContext.data?.username == user?.username;
+  function getDropDownItems() {
+    const items = [
+          {title:"Report",
+          value:"report"},
+        ]
+        if(isMyPost) items.push({title:"Delete",
+          value:"delete"})
+        return items;
+  }
+
+  
   return (
     <div className="my-1  py-2 px-3 group cursor-pointer app-borders border-b">
       <div className="flex justify-between mb-1">
         <div className="w-fit flex items-center gap-1">
           {
           user ?
-          <Link href={userContext.data?.username == user.username ? "/user" : `/users/${user.username}`} className="flex gap-2 items-center">
+          <Link href={isMyPost ? "/user" : `/users/${user.username}`} className="flex gap-2 items-center">
             <Image
               src={formatImage(user.img)}
               width={30}
@@ -70,10 +83,7 @@ const PostCard = ({
           <FaEllipsisV />
         </button>
         }
-        items={[
-          {title:"Delete Post",
-          value:"delete"}
-        ]}
+        items={getDropDownItems()}
         onUpdate={(e)=>{}}
         />
       </div>

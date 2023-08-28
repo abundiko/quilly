@@ -45,3 +45,33 @@ export default async function newComment(
     return null;
   }
 }
+
+export async function deleteComment(
+  _id: string,
+  comment: SingleCommentProps
+): Promise<SingleCommentProps[] | null> {
+  try {
+    await connectDB();
+    const user = await getUser();
+    if (!user) return null;
+    const postDoc = await PostModel.findById(_id);
+    if (postDoc) {
+      const postData = postDoc as PostDocument;
+      const filtered = postData.impressions.comments.filter(
+        item => item.body != comment.body && item.author != comment.author
+      );
+      postData.impressions.comments = filtered;
+      const newDoc = await PostModel.findByIdAndUpdate(
+        _id,
+        { impressions: postData.impressions },
+        { new: true }
+      );
+      if (newDoc) {
+        return postData.impressions.comments;
+      } else return null;
+    } else return null;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
