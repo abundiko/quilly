@@ -1,4 +1,6 @@
+import formatDate from "@/utils/formateDate";
 import { motion } from "framer-motion";
+import { BiRadioCircle } from "react-icons/bi";
 import { FaTimes, FaPaperPlane } from "react-icons/fa";
 
 export type CommentsProps = {
@@ -25,7 +27,25 @@ const Comments = ({ close }: CommentsProps) => {
         </button>
       </h2>
       <div className="p-2 overflow-y-auto h-full flex-shrink">
-        1 comment
+        <div className="pb-1 flex gap-1">
+          <div className="h-6 w-6 light-bg rounded-full flex-shrink-0" />
+          <div>
+            <div className="flex mb-1 text-sm gap-2">
+              <span className="font-[600]">John Doe</span>
+              <BiRadioCircle className="scale-50" />
+              <span className="opacity-60 text-xs">
+                {formatDate("")}
+              </span>
+            </div>
+            <div className="light-bg block w-fit rounded-md">
+              <span>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+                cumque dignissimos culpa architecto molestias ullam at quae amet
+                magni sequi.
+              </span>
+            </div>
+          </div>
+        </div>
         <div className="h-screen" />
       </div>
       <div className="border-t app-borders text-base flex-shrink-0 font-[500] gap-1 py-1 ps-3 pe-3 flex items-center justify-between">
