@@ -4,19 +4,24 @@ import { formatImage } from "@/utils/imageHelpers";
 import HTMLText from "./HtmlText";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { InterestButton } from "../InterestButton";
+import { useRouter } from "next/navigation";
 
 export type PostReaderProps = {
   title: string;
   subtitle: string;
   body: string;
   img: string;
+  tags?: string[];
 };
 export default function PostReader({
   title,
   subtitle,
   body,
-  img
+  img,
+  tags
 }: PostReaderProps) {
+  const router = useRouter();
   const { scrollY } = useScroll();
   const imgScale = useTransform(scrollY, [0, 200], [1, 1.5]);
   return (
@@ -46,7 +51,16 @@ export default function PostReader({
           </div>
         </div>
       </div>
-
+      {tags &&
+        <div className="p-4 pb-0 flex gap-2 overflow-x-auto">
+          {tags.map(tag =>
+            <InterestButton
+              key={tag}
+              title={tag}
+              onClick={() => router.push(`/search/tag:${tag}`)}
+            />
+          )}
+        </div>}
       <div className="editor p-4 pb-40">
         <HTMLText html={body} />
       </div>

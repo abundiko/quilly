@@ -24,13 +24,13 @@ const CommentCard = ({
 
   useEffect(()=>{
     (async()=>{
-      let fetched = false;
-      while(!fetched){
+      
+      for(let i = 0; i < 3; i++){
         try {
           const userDoc = await getPostAuthor(author);
           if(userDoc){
-            fetched = true;
             setUser(userDoc);
+            break;
           } 
         } catch (e) {
           continue;

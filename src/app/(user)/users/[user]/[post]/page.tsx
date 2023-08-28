@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
 import Comments from "@/components/home/Comments";
 import PostReader, { PostReaderProps } from "@/components/home/PostReader";
@@ -13,6 +14,9 @@ import { AnimatePresence } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { FaCommentAlt, FaEye,  FaThumbsUp, FaTimes } from "react-icons/fa";
+import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
+import { formatImage } from "@/utils/imageHelpers";
+import Link from "next/link";
 
 const PostPage = () => {
   const [postData, setPostData] = useState<PostDocument | null>(null);
@@ -21,19 +25,19 @@ const PostPage = () => {
   const postTitle = formatUrlAsPostTitle(post as string);
   const router = useRouter();
   const userContext = useContext(UserContext);
+  const [user, setUser] = useState<PostAuthor|null>(null);
 
   useEffect(
     () => {
       (async () => {
-        let fetched = false;
-        while (!fetched) {
+      for(let i = 0; i < 3; i++){
           try {
             const postDoc = await getPostData(postTitle);
 
             if (postDoc) {
               if (postDoc == "error") continue;
-              fetched = true;
               setPostData(postDoc);
+              break;
             } else router.back();
           } catch (e) {
             continue;
@@ -57,6 +61,23 @@ const PostPage = () => {
     [postTitle, router]
   );
 
+    useEffect(()=>{
+      if(postData && postData._id && !user)
+      (async()=>{
+      for(let i = 0; i < 3; i++){
+        try {
+          const userDoc = await getPostAuthor(postData.author);
+          if(userDoc){
+            setUser(userDoc);
+            break;
+          } 
+        } catch (e) {
+          continue;
+        }
+      }
+    })();
+  },[postData])
+
   function _like(like:boolean) {
     (async()=>{
       try {
@@ -71,10 +92,27 @@ const PostPage = () => {
   }
 
   const isLiked = postData?.impressions.likes.includes(userContext.data?._id as string)
+  const isMyPost = userContext.data?.username == user?.username;
 
   return (
     <AnimatedPageOpacity>
-      <div className="flex sm:relative">
+      <div className="flex relative">
+        <Link href={isMyPost ? "/user" : `/users/${user?.username}`} className="px-2 py-1 z-30 app-bg-opacity items-center backdrop-blur-md rounded-md flex gap-2 absolute top-1 right-1 app-theme border app-borders">
+          <div className={`h-10 w-10 relative overflow-hidden light-bg rounded-full flex-shrink-0`} >
+          {
+            user && <Image
+          src={formatImage(user.img)}
+          alt={user.username ?? ""}
+          layout="fill"
+           />
+          }
+        </div>
+        <div>
+        <h6 className="font-[600] text-base leading-3">{user?.full_name}</h6>
+        <p className=" text-sm opacity-80">@{user?.username}</p>
+        </div>
+        </Link>
+
         {postData && <PostReader {...postData as PostReaderProps} />}
 
         <div className="w-full sm:w-fit justify-around sm:justify-center rounded-lg app-theme app-borders border-4 app-shadows px-5 py-3 flex sm:gap-4 md:gap-6 fixed bottom-0 sm:bottom-4 sm:shadow-xl left-0 sm:left-[60%] md:left-1/2 sm:-translate-x-1/2">

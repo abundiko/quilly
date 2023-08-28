@@ -96,7 +96,7 @@ const Page = () => {
             {posts && posts.length > 0 ? posts.map((item, i) => <PostCard {...item} key={i} />) : 
         <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
           <FaInfoCircle className="text-7xl" />
-          <h1 className="text-2xl">No Posts found</h1>
+          <h1 className="text-2xl">No Posts Yet</h1>
           </div>}
           </div>
         </div>

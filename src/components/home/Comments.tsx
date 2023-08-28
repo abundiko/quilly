@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { FaTimes, FaPaperPlane } from "react-icons/fa";
+import { FaTimes, FaPaperPlane, FaCommentSlash } from "react-icons/fa";
 import CommentCard from "./CommentCard";
 import { SingleCommentProps } from "@/server/mongoose/schemas/postSchema";
 import { useRef, useState } from "react";
@@ -50,9 +50,15 @@ const Comments = ({ close, comments,postId,onUpdate }: CommentsProps) => {
         </button>
       </h2>
       <div className="p-2 overflow-y-auto h-full flex-shrink">
-        {/* <AnimatePresence mode="sync"> */}
-          {comments.map((item, i) => <CommentCard key={item._id+i} {...item} postId={postId} onDelete={onUpdate} />)}
-        {/* </AnimatePresence> */}
+        {comments.length > 0 ? 
+
+         comments.map((item, i) => <CommentCard key={item._id+i} {...item} postId={postId} onDelete={onUpdate} />)
+        
+        : 
+        <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
+          <FaCommentSlash className="text-4xl" />
+          <h1 className="text-lg">No Comments</h1>
+          </div>}
         </div>
       <form
       onSubmit={()=>setLoading(true)}
