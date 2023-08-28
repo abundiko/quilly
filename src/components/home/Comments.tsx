@@ -50,8 +50,7 @@ const Comments = ({ close, comments,postId,onUpdate }: CommentsProps) => {
         </button>
       </h2>
       <div className="p-2 overflow-y-auto h-full flex-shrink">
-        {comments.map((item, i) => <CommentCard key={i} {...item} />)}
-        <div className="h-screen" />
+        {comments.reverse().map((item, i) => <CommentCard key={i} {...item} />)}
       </div>
       <form
       onSubmit={()=>setLoading(true)}
