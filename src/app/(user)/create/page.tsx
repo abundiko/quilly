@@ -64,6 +64,13 @@ const CreatePage = () => {
         setIsLoading(false);
         return;
       }
+      let fileNamesSplit = (img as File).name.split(".");
+      const fileExt = fileNamesSplit[fileNamesSplit.length - 1].toLowerCase()
+      if(!["png","jpg","jpeg","jfif"].includes(fileExt)){
+        setMessage(["error","Select a valid image"]);
+        setIsLoading(false);
+        return;
+      }
 
       try {
         const validValues = createPostSchema.parse(formValues);
