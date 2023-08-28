@@ -45,3 +45,10 @@
 .editor ol li {
   list-style-type: decimal;
 }
+
+.editor figure,
+.editor oembed,
+.editor embed {
+  height: 300px;
+  width: 100%;
+}

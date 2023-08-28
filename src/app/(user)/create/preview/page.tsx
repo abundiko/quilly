@@ -72,7 +72,7 @@ const CreatePagePreview = () => {
         </button>
       </h1>
       <AppFormMessage message={message} />
-      <PostReader {...data as PostReaderProps} />
+      <PostReader {...data as PostReaderProps} localImg />
     </AnimatedPageOpacity>
   );
 };
