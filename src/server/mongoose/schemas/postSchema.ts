@@ -9,13 +9,15 @@ export type PostDocument = {
   body: string;
   img: string;
   tags: string[];
-  impressions: {
+  impressions: Impression;
+  
+};
+
+export type Impression = {
     likes: string[];
     comments: string[];
     views: string[];
-  };
-  
-};
+  }
 
 let PostModel = mongoose.Model<PostDocument>;
 

@@ -69,6 +69,9 @@ body {
   .app-bg-opacity {
     @apply bg-opacity-60 dim:bg-opacity-60 dark:bg-opacity-60;
   }
+  .app-bg-opacity2 {
+    @apply bg-opacity-30 dim:bg-opacity-30 dark:bg-opacity-30;
+  }
   .app-primary-text {
     @apply text-primary-dark dark:text-primary-light dim:text-primary-light;
   }
