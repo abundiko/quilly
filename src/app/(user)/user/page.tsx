@@ -12,7 +12,7 @@ import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
-import { FaBook, FaCalendar, FaPen } from "react-icons/fa";
+import { FaBook, FaCalendar, FaInfoCircle, FaPen } from "react-icons/fa";
 
 const Page = () => {
   const userContext = useContext(UserContext);
@@ -93,7 +93,11 @@ const Page = () => {
               &nbsp;
               <span className="opacity-80 text-sm">({posts.length})</span>
             </h2>
-            {posts.map((item, i) => <PostCard {...item} key={i} />)}
+            {posts && posts.length > 0 ? posts.map((item, i) => <PostCard {...item} key={i} />) : 
+        <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
+          <FaInfoCircle className="text-7xl" />
+          <h1 className="text-2xl">No Posts found</h1>
+          </div>}
           </div>
         </div>
       </section>

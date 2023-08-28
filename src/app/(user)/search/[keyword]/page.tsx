@@ -8,6 +8,7 @@ import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import { searchPosts } from "@/server/postActions/getPosts";
 import { useParams, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import { FaInfoCircle } from "react-icons/fa";
 
 const SearchKeywordScreen = () => {
   const userContext = useContext(UserContext);
@@ -57,7 +58,11 @@ const SearchKeywordScreen = () => {
         )}
       </div>
       <div className="md:w-10/12">
-        {posts && posts.map((item, i) => <PostCard {...item} key={i} />)}
+        {posts && posts.length > 0 ? posts.map((item, i) => <PostCard {...item} key={i} />) : 
+        <div className="flex flex-col items-center justify-center py-40 opacity-40 gap-2">
+          <FaInfoCircle className="text-7xl" />
+          <h1 className="text-2xl">No results found</h1>
+          </div>}
       </div>
     </div>
   );
