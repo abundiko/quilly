@@ -88,6 +88,13 @@ const PostPage = () => {
             <span>{formatNumbers(postData?.impressions.comments.length ?? 0)} comment{(postData?.impressions.comments.length ?? 0) == 1 ? "" : "s"}</span>
           </button>
         </div>
+
+        <section className="h-[60vh] w-full md:w-[8/12] max-w-[320px] flex flex-col fixed bottom-0 md:right-[5vw] app-theme overflow-hidden rounded-t-lg border app-borders shadow-lg app-shadows">
+          <h2 className="page-title text-md flex-shrink-0">Comments</h2>
+          <div className="p-2 overflow-y-auto h-full flex-shrink">
+            1 comment
+          </div>
+        </section>
       </div>
     </AnimatedPageOpacity>
   );
