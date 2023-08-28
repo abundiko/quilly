@@ -4,14 +4,33 @@ import {AnimatedPageOpacity} from '@/components/AnimatedPage'
 import { InterestButton } from '@/components/InterestButton'
 import PostCard from '@/components/PostCard'
 import UserContext from '@/context/UserContext'
-import { dummyPosts } from '@/data/dummyPosts'
-import { testInterests } from '@/data/testInterests'
+import { PostDocument } from '@/server/mongoose/schemas/postSchema'
+import {getPosts} from '@/server/postActions/getPosts'
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaPen } from 'react-icons/fa'
 
 const HomePage = () => {
+  const [posts, setPosts] = useState<PostDocument[]|null>(null);
   const userContext = useContext(UserContext);
+
+  useEffect(()=>{
+    (async()=>{
+      let fetched = false;
+      while(!fetched){
+        try {
+          const postDoc = await getPosts();
+          if(postDoc){
+            fetched = true;
+            setPosts(postDoc);
+          } 
+        } catch (e) {
+          continue;
+        }
+      }
+    })();
+  },[])
+  
   return (
     <>
     <AnimatedPageOpacity>
@@ -19,8 +38,8 @@ const HomePage = () => {
 
       <div className="w-full md:w-8/12 relative">
       <h1 className="page-title">Quilly</h1>
-      {
-        dummyPosts.map((item,i)=>
+      {posts &&
+        posts.map((item,i)=>
         <PostCard {...item} key={i} />
         )
       }

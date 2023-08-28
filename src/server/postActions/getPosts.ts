@@ -8,6 +8,22 @@
 
 import PostModel, { PostDocument } from "../mongoose/schemas/postSchema";
 
+export async function getPosts(): Promise<PostDocument[] | null> {
+  try {
+    const posts = await PostModel.find()
+      .sort({ createdAt: -1 }) // Sort in descending order based on the 'createdAt' field
+      .limit(10);
+
+    if (posts) {
+      return posts.map(item => {
+        return { ...item.toObject(), _id: item._id.toString() } as PostDocument;
+      });
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
 export default async function getUserPosts(
   uid: string
 ): Promise<PostDocument[] | null> {
