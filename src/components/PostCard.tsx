@@ -9,6 +9,7 @@ import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
 import { formatImage } from "@/utils/imageHelpers";
 import { formatPostTitleAsUrl } from "@/utils/formatUrl";
 import UserContext from "@/context/UserContext";
+import AppDropdown from "./AppDropdown";
 
 const PostCard = ({
   title,
@@ -64,9 +65,17 @@ const PostCard = ({
             {formatDate(createdAt??"")}
           </span>
         </div>
-        <button className="app-icon-button text-sm">
+        <AppDropdown
+        title={<button className="app-icon-button text-sm">
           <FaEllipsisV />
         </button>
+        }
+        items={[
+          {title:"Delete Post",
+          value:"delete"}
+        ]}
+        onUpdate={(e)=>{}}
+        />
       </div>
       <Link
         href={`/users/${user?.username}/${formatPostTitleAsUrl(title)}`}

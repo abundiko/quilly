@@ -24,10 +24,12 @@ export default async function newComment(
     const postDoc = await PostModel.findById(_id);
     if (postDoc) {
       const postData = postDoc as PostDocument;
-      if (postData.impressions.comments.includes(commentData))
-        return "duplicate";
+      const exists = postData.impressions.comments.filter(
+        item => item.body == commentData.body
+      );
+      if (exists.length >= 1) return "duplicate";
 
-      postData.impressions.comments.push(commentData);
+      postData.impressions.comments.unshift(commentData);
 
       const newDoc = await PostModel.findByIdAndUpdate(
         _id,
