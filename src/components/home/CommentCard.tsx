@@ -13,12 +13,12 @@ import { deleteComment } from "@/server/postActions/newComment";
 
 
 const CommentCard = ({
-  author,body, createdAt,postId
+  author,body, createdAt,postId,onDelete
 }:SingleCommentProps&{
   postId:string;
+  onDelete:(newComments:SingleCommentProps[])=>void;
 }) => {
   const [user, setUser] = useState<PostAuthor|null>(null);
-  const [deleted, setDeleted] = useState(false);
   const userContext = useContext(UserContext);
 
   useEffect(()=>{
@@ -42,13 +42,12 @@ const CommentCard = ({
     try{
       const res = await deleteComment(postId, {author,body,createdAt})
       if(res){
-        setDeleted(true)
+        onDelete(res);
       }
     }catch(e){}
   }
   
   const profileLink = userContext.data?.username == user?.username ? "/user" : `/users/${user?.username}`;
-  if(!deleted)
   return <div className="py-2 flex gap-1">
       <Link href={profileLink}>
         <div className={`h-7 w-7 relative overflow-hidden light-bg rounded-full flex-shrink-0`} >
