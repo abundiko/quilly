@@ -14,6 +14,7 @@ export type PostDocument = {
 };
 
 export type SingleCommentProps = {
+  _id: string;
   body: string;
   createdAt?: string;
   author: string;

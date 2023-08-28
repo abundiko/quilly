@@ -1,5 +1,6 @@
 "use server";
 
+import { randomUUID } from "crypto";
 import { connectDB } from "../mongoose/init";
 import PostModel, {
   PostDocument,
@@ -17,6 +18,7 @@ export default async function newComment(
     if (!user) return null;
     const { _id: uid } = user;
     const commentData: SingleCommentProps = {
+      _id: randomUUID(),
       body: comment,
       createdAt: new Date().toString(),
       author: uid!
@@ -58,7 +60,7 @@ export async function deleteComment(
     if (postDoc) {
       const postData = postDoc as PostDocument;
       const filtered = postData.impressions.comments.filter(
-        item => item.body != comment.body && item.author != comment.author
+        item => item._id != comment._id
       );
       postData.impressions.comments = filtered;
       const newDoc = await PostModel.findByIdAndUpdate(

@@ -31,7 +31,7 @@ export default function PostReader({
           <Image
             src={formatImage(img)}
             layout="fill"
-            alt="Profile Photo"
+            alt="Post Photo"
             className="w-full h-full absolute top-0 left-0 object-cover"
           />
         </motion.div>

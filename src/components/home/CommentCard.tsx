@@ -10,10 +10,11 @@ import { BiRadioCircle } from "react-icons/bi";
 import AppDropdown from "../AppDropdown";
 import { FaEllipsisV } from "react-icons/fa";
 import { deleteComment } from "@/server/postActions/newComment";
+import { motion } from "framer-motion";
 
 
 const CommentCard = ({
-  author,body, createdAt,postId,onDelete
+  author,body, createdAt,postId,onDelete,_id
 }:SingleCommentProps&{
   postId:string;
   onDelete:(newComments:SingleCommentProps[])=>void;
@@ -40,7 +41,7 @@ const CommentCard = ({
 
   async function delComment() {
     try{
-      const res = await deleteComment(postId, {author,body,createdAt})
+      const res = await deleteComment(postId, {author,body,createdAt,_id})
       if(res){
         onDelete(res);
       }
@@ -48,7 +49,7 @@ const CommentCard = ({
   }
   
   const profileLink = userContext.data?.username == user?.username ? "/user" : `/users/${user?.username}`;
-  return <div className="py-2 flex gap-1">
+  return <motion.div {...animations} key={_id} className="py-2 flex gap-1 relative">
       <Link href={profileLink}>
         <div className={`h-7 w-7 relative overflow-hidden light-bg rounded-full flex-shrink-0`} >
           {
@@ -95,7 +96,24 @@ const CommentCard = ({
           </span>
         </div>
       </div>
-    </div>;
+    </motion.div>;
 };
 
 export default CommentCard;
+
+const animations = {
+  initial: {
+    bottom: "-20px",
+    scale: 0.8,
+    opacity:0
+  },
+  animate: {
+    bottom: "0px",
+    opacity:1,
+    scale:1
+  },
+  exit: {
+    scale: 0.8,
+    opacity:0,
+  }
+};

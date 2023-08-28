@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FaTimes, FaPaperPlane } from "react-icons/fa";
 import CommentCard from "./CommentCard";
 import { SingleCommentProps } from "@/server/mongoose/schemas/postSchema";
@@ -50,8 +50,10 @@ const Comments = ({ close, comments,postId,onUpdate }: CommentsProps) => {
         </button>
       </h2>
       <div className="p-2 overflow-y-auto h-full flex-shrink">
-        {comments.map((item, i) => <CommentCard key={i} {...item} postId={postId} onDelete={onUpdate} />)}
-      </div>
+        {/* <AnimatePresence mode="sync"> */}
+          {comments.map((item, i) => <CommentCard key={item._id+i} {...item} postId={postId} onDelete={onUpdate} />)}
+        {/* </AnimatePresence> */}
+        </div>
       <form
       onSubmit={()=>setLoading(true)}
         action={handleSubmit}
