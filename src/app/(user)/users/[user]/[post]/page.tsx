@@ -5,7 +5,7 @@ import PostReader, { PostReaderProps } from "@/components/home/PostReader";
 import UserContext from "@/context/UserContext";
 import { Impression, PostDocument } from "@/server/mongoose/schemas/postSchema";
 import { getPostData } from "@/server/postActions/getPosts";
-import { likePost } from "@/server/postActions/postImpressions";
+import { likePost, viewPost } from "@/server/postActions/postImpressions";
 import formatNumbers from "@/utils/formatNumbers";
 import { formatUrlAsPostTitle } from "@/utils/formatUrl";
 import { useParams, useRouter } from "next/navigation";
@@ -37,9 +37,20 @@ const PostPage = () => {
           }
         }
       })();
-      let timeOut = setTimeout(async () => {}, 1000 * 10);
+      let timeOut = setTimeout(async () => {
+        try {
+          const res = await viewPost(postData?._id as string, userContext.data?._id as string);
+        if(res){
+          const impressions:Impression = {...postData!.impressions,views:res}
+          setPostData({...postData,impressions} as PostDocument);
+          clearTimeout(timeOut);
+        }
+        
+      } catch (e) {}
+      }, 1000 * 12);
       return () => clearTimeout(timeOut);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [postTitle, router]
   );
 
@@ -52,9 +63,7 @@ const PostPage = () => {
           setPostData({...postData,impressions} as PostDocument)
         }
         
-      } catch (e) {
-        
-      }
+      } catch (e) {}
     })();
   }
 

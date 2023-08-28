@@ -32,3 +32,32 @@ export async function likePost(
     return null;
   }
 }
+
+export async function viewPost(
+  _id: string,
+  uid: string
+): Promise<string[] | null> {
+  try {
+    await connectDB();
+    const postDoc = await PostModel.findById(_id);
+    if (postDoc) {
+      const postData = postDoc as PostDocument;
+      if (!postData.impressions.views.includes(uid))
+        postData.impressions.views.push(uid);
+      console.log(postData.impressions);
+
+      const newDoc = await PostModel.findByIdAndUpdate(
+        _id,
+        { impressions: postData.impressions },
+        { new: true }
+      );
+      if (newDoc) {
+        return postData.impressions.views;
+      }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
+  return null;
+}
