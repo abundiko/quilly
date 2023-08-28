@@ -1,3 +1,4 @@
+import useLocalStorage from "@/hooks/use-locatStorage";
 import { FaTrashAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
@@ -8,6 +9,7 @@ type SearchHistorySectionProps = {
 const SearchHistorySection = ({
   onHistorySelect
 }: SearchHistorySectionProps) => {
+  const [history, setHistory] = useLocalStorage<string[]>("HISTOTY", []);
   function onSelectHistory(text: string) {
     onHistorySelect(text);
   }
@@ -16,12 +18,15 @@ const SearchHistorySection = ({
     <div className="mb-4">
       <div className="flex justify-between items-center">
         <h6 className="font-[600] text-sm">Search History</h6>
-        <button className="app-icon-button small">
+        <button
+          onClick={() => setHistory([])}
+          className="app-icon-button small"
+        >
           <FaTrashAlt />
         </button>
       </div>
       <div className="p-2 rounded-md light-bg mt-1">
-        {dummyHistory.map(item =>
+        {history.map(item =>
           <div
             key={item}
             className="flex w-full bg-transparent py-1 justify-between items-center"
@@ -32,7 +37,10 @@ const SearchHistorySection = ({
             >
               {item}
             </button>
-            <button className="app-icon-button small">
+            <button
+              onClick={() => setHistory(history.filter(i => i != item))}
+              className="app-icon-button small"
+            >
               <IoClose />
             </button>
           </div>
@@ -43,10 +51,3 @@ const SearchHistorySection = ({
 };
 
 export default SearchHistorySection;
-
-const dummyHistory = [
-  "Hello world",
-  "Learn Java in 30 seconds",
-  "Become a millionaire with just html",
-  "John Doe"
-];

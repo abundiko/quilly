@@ -13,13 +13,15 @@ export type PostReaderProps = {
   body: string;
   img: string;
   tags?: string[];
+  localImg?: boolean;
 };
 export default function PostReader({
   title,
   subtitle,
   body,
   img,
-  tags
+  tags,
+  localImg = false
 }: PostReaderProps) {
   const router = useRouter();
   const { scrollY } = useScroll();
@@ -34,7 +36,7 @@ export default function PostReader({
           className="absolute w-full h-full overflow-hidden"
         >
           <Image
-            src={formatImage(img)}
+            src={localImg ? img : formatImage(img)}
             layout="fill"
             alt="Post Photo"
             className="w-full h-full absolute top-0 left-0 object-cover"

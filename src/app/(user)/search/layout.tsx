@@ -7,12 +7,14 @@ import { useEffect, useRef, useState } from "react";
 import { LayoutProps } from "@/app/(auth)/signup/layout";
 import { useParams, useRouter } from "next/navigation";
 import TrendingSection from "./TrendingSection";
+import useLocalStorage from "@/hooks/use-locatStorage";
 
 const SearchPage = ({ children }: LayoutProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const { keyword } = useParams();
   const { push } = useRouter();
+  const [history, setHistory] = useLocalStorage<string[]>("HISTORY", []);
 
   useEffect(
     () => {
@@ -31,6 +33,9 @@ const SearchPage = ({ children }: LayoutProps) => {
   function submitSearch(formData: FormData) {
     const keyword = formData.get("search");
     if (keyword && keyword.toString().trim() != "") {
+      if (!history.includes(keyword.toString())) {
+        setHistory([keyword.toString(), ...history]);
+      }
       push(`/search/${encodeURIComponent(keyword.toString())}`);
     }
   }
