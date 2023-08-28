@@ -86,7 +86,7 @@ const PostPage = () => {
             <FaThumbsUp />
             <span>{formatNumbers(postData?.impressions.likes.length ?? 0)} like{(postData?.impressions.likes.length ?? 0) == 1 ? "" : "s"}</span>
           </button>
-          <button onClick={()=>setShowComments(!showComments)} className={`flex w-max px-3 rounded-md hover:light-bg py-2 items-center gap-1 opacity-80 ${showComments && " bg-purple-600"}`}>
+          <button onClick={()=>setShowComments(!showComments)} className={`flex w-max px-3 rounded-md hover:light-bg py-2 items-center gap-1 opacity-80 app-bg-opacity2 ${showComments && " bg-purple-600"}`}>
             <FaCommentAlt />
             <span>{formatNumbers(postData?.impressions.comments.length ?? 0)} comment{(postData?.impressions.comments.length ?? 0) == 1 ? "" : "s"}</span>
           </button>
@@ -95,6 +95,11 @@ const PostPage = () => {
 <AnimatePresence>
         {showComments && 
         <Comments
+        onUpdate={(comments)=>{
+          const impressions:Impression = {...postData!.impressions,comments}
+          setPostData({...postData,impressions} as PostDocument);
+        }}
+        postId={postData?._id as string}
         comments={postData?.impressions.comments ?? []}
         close={()=>setShowComments(!showComments)}
          />}

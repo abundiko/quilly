@@ -3,6 +3,7 @@ import { SingleCommentProps } from "@/server/mongoose/schemas/postSchema";
 import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
 import formatDate from "@/utils/formateDate";
 import { formatImage } from "@/utils/imageHelpers";
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import { BiRadioCircle } from "react-icons/bi";
@@ -32,9 +33,17 @@ const CommentCard = ({
   },[author])
   
   const profileLink = userContext.data?.username == user?.username ? "/user" : `/users/${user?.username}`;
-  return <div className="pb-1 flex gap-1">
+  return <div className="py-2 flex gap-1">
       <Link href={profileLink}>
-        <div style={{ backgroundImage: user?.img ? formatImage(user.img) : "url(/img/user.png)" }} className={`h-7 w-7 relative overflow-hidden light-bg rounded-full flex-shrink-0`} />
+        <div className={`h-7 w-7 relative overflow-hidden light-bg rounded-full flex-shrink-0`} >
+          {
+            user && <Image
+          src={formatImage(user.img)}
+          alt={user.username ?? ""}
+          layout="fill"
+           />
+          }
+        </div>
       </Link>
       <div>
         {

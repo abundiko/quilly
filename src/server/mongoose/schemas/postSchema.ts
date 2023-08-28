@@ -43,7 +43,7 @@ if (mongoose.models.Post) {
     tags: [String],
     impressions: {
       likes: {type:[String],default:[]},
-      comments: {type:[String],default:[]},
+      comments: {type:[Object],default:[]},
       views: {type:[String],default:[]},
     },
   }, { collection: "posts" });

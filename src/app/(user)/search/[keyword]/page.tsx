@@ -3,7 +3,6 @@
 import PostCard from "@/components/PostCard";
 import { SidebarButton } from "@/components/home/Sidebar";
 import UserContext from "@/context/UserContext";
-import { dummyPosts } from "@/data/dummyPosts";
 import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import { searchPosts } from "@/server/postActions/getPosts";
 import { useParams, useSearchParams } from "next/navigation";
