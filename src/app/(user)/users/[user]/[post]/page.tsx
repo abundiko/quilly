@@ -47,7 +47,7 @@ const PostPage = () => {
         }
         
       } catch (e) {}
-      }, 1000 * 12);
+      }, 1000 * 12); // must stay for 12 seconds before view counts
       return () => clearTimeout(timeOut);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
