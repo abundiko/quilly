@@ -13,9 +13,15 @@ export type PostDocument = {
   
 };
 
+export type SingleCommentProps = {
+  body: string;
+  createdAt?: string;
+  author: string;
+}
+
 export type Impression = {
     likes: string[];
-    comments: string[];
+    comments: SingleCommentProps[];
     views: string[];
   }
 

@@ -6,7 +6,6 @@ import PostCard from "@/components/PostCard";
 import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
 import UserContext from "@/context/UserContext";
-import { dummyPosts } from "@/data/dummyPosts";
 import { UserDocument } from "@/server/mongoose/schemas/userSchema";
 import getUser, { getUserByUsername } from "@/server/userActions/getUser";
 import updateFavourites from "@/server/userActions/updateFavourites";
@@ -141,7 +140,7 @@ const Page = () => {
             <h2 className="font-bold text-xl border-b app-borders w-full py-2 mb-2">
               Posts
             </h2>
-            {dummyPosts.map((item, i) => <PostCard {...item} key={i} />)}
+            {/* {dummyPosts.map((item, i) => <PostCard {...item} key={i} />)} */}
           </div>
         </div>
       </section>
