@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
+import Comments from "@/components/home/Comments";
 import PostReader, { PostReaderProps } from "@/components/home/PostReader";
 import UserContext from "@/context/UserContext";
 import { Impression, PostDocument } from "@/server/mongoose/schemas/postSchema";
@@ -8,12 +9,14 @@ import { getPostData } from "@/server/postActions/getPosts";
 import { likePost, viewPost } from "@/server/postActions/postImpressions";
 import formatNumbers from "@/utils/formatNumbers";
 import { formatUrlAsPostTitle } from "@/utils/formatUrl";
+import { AnimatePresence } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import { FaCommentAlt, FaEye, FaThumbsUp } from "react-icons/fa";
+import { FaCommentAlt, FaEye,  FaThumbsUp, FaTimes } from "react-icons/fa";
 
 const PostPage = () => {
   const [postData, setPostData] = useState<PostDocument | null>(null);
+  const [showComments, setShowComments] = useState(false);
   const { post } = useParams();
   const postTitle = formatUrlAsPostTitle(post as string);
   const router = useRouter();
@@ -83,21 +86,22 @@ const PostPage = () => {
             <FaThumbsUp />
             <span>{formatNumbers(postData?.impressions.likes.length ?? 0)} like{(postData?.impressions.likes.length ?? 0) == 1 ? "" : "s"}</span>
           </button>
-          <button className="flex w-max px-3 rounded-md hover:light-bg py-2 items-center gap-1 opacity-80">
+          <button onClick={()=>setShowComments(!showComments)} className="flex w-max px-3 rounded-md hover:light-bg py-2 items-center gap-1 opacity-80">
             <FaCommentAlt />
             <span>{formatNumbers(postData?.impressions.comments.length ?? 0)} comment{(postData?.impressions.comments.length ?? 0) == 1 ? "" : "s"}</span>
           </button>
         </div>
 
-        <section className="h-[60vh] w-full md:w-[8/12] max-w-[320px] flex flex-col fixed bottom-0 md:right-[5vw] app-theme overflow-hidden rounded-t-lg border app-borders shadow-lg app-shadows">
-          <h2 className="page-title text-md flex-shrink-0">Comments</h2>
-          <div className="p-2 overflow-y-auto h-full flex-shrink">
-            1 comment
-          </div>
-        </section>
+<AnimatePresence>
+        {showComments && 
+        <Comments
+        close={()=>setShowComments(!showComments)}
+         />}
+        </AnimatePresence>
       </div>
     </AnimatedPageOpacity>
   );
 };
 
 export default PostPage;
+
