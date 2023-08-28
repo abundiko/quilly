@@ -72,7 +72,11 @@ const SearchPage = ({ children }: LayoutProps) => {
       {isSearching
         ? children
         : <div className="p-4">
-            <SearchHistorySection onHistorySelect={onHistorySelect} />
+            <SearchHistorySection
+              history={history}
+              setHistory={setHistory}
+              onHistorySelect={onHistorySelect}
+            />
             <TrendingSection />
           </div>}
     </AnimatedPageOpacity>
