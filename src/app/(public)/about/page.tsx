@@ -1,14 +1,15 @@
 "use client";
 
 import AnimatedPage from "@/components/AnimatedPage";
+import Counter from "@/components/Counter";
 
 const AboutPage = () => {
   return (
     <AnimatedPage>
       <main className=" pt-20">
-        <section className="py-10 ">
-          <div className="container flex px-8 flex-wrap justify-between mx-auto">
-            <div className="w-fill md:w-6/12">
+        <section className="py-10 relative">
+          <div className="container flex px-8 flex-wrap-reverse justify-between mx-auto relative">
+            <div className="w-full md:w-6/12">
               <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold">
                 About Quilly
               </h1>
@@ -31,7 +32,20 @@ const AboutPage = () => {
                 unde a ad voluptates!
               </p>
             </div>
-            <div className="w-fill md:w-6/12" />
+            <div className="w-full md:w-6/12 flex flex-wrap p-3">
+              {Array.from({
+                length: 4
+              }).map((_, i) =>
+                <div className="w-1/2 p-3" key={i}>
+                  <div className="p-2 border app-borders text-center py-8 rounded-md">
+                    <h1 className="font-extrabold text-6xl">
+                      <Counter end={200} />
+                    </h1>
+                    <p className="opacity-80 text-lg">Users</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </main>
@@ -40,3 +54,23 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
+
+const statsData = [
+  {
+    title:"Users",
+    value:200,
+  },
+  {
+    title:"Users",
+    value:200,
+  },
+  {
+    title:"Users",
+    value:200,
+  },
+  {
+    title:"Users",
+    value:200,
+  },
+]
