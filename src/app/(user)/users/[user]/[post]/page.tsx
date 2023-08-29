@@ -21,6 +21,7 @@ import Link from "next/link";
 const PostPage = () => {
   const [postData, setPostData] = useState<PostDocument | null>(null);
   const [showComments, setShowComments] = useState(false);
+  const [hasViewed, setHasViewed] = useState(false);
   const { post } = useParams();
   const postTitle = formatUrlAsPostTitle(post as string);
   const router = useRouter();
@@ -44,18 +45,7 @@ const PostPage = () => {
           }
         }
       })();
-      let timeOut = setTimeout(async () => {
-        try {
-          const res = await viewPost(postData?._id as string, userContext.data?._id as string);
-        if(res){
-          const impressions:Impression = {...postData!.impressions,views:res}
-          setPostData({...postData,impressions} as PostDocument);
-          clearTimeout(timeOut);
-        }
-        
-      } catch (e) {}
-      }, 1000 * 1); // must stay for 1 second before view counts
-      return () => clearTimeout(timeOut);
+      
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [postTitle, router]
@@ -76,7 +66,26 @@ const PostPage = () => {
         }
       }
     })();
+    
+     if(postData && postData._id && !hasViewed){
+  let timeOut = setTimeout(async () => {
+        try {
+          const res = await viewPost(postData._id!, userContext.data?._id as string);
+          
+        if(res){
+          const impressions:Impression = {...postData!.impressions,views:res}
+          setPostData({...postData,impressions} as PostDocument);
+          clearTimeout(timeOut);
+        }
+        
+          setHasViewed(true);
+      } catch (e) {}
+      }, 1000 * 1); // must stay for 1 second before view counts
+      return () => clearTimeout(timeOut);
+    }
   },[postData])
+  
+ 
 
   function _like(like:boolean) {
     (async()=>{

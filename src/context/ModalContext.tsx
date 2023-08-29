@@ -15,9 +15,7 @@ export default function ModalContextProvider({children}:LayoutProps) {
   
   return <>
   <ModalContext.Provider value={{setModal}}>
-    <AnimatePresence>
     {modal!=null && modal}
-  </AnimatePresence>
     {children}
   </ModalContext.Provider>
   </>
