@@ -2,11 +2,22 @@
 import { ThemeContext, themes } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppDropdown, { AppDropdownProps } from "./AppDropdown";
+import isLoggedIn from "@/server/auth/isLoggedIn";
 
 const Header = () => {
   const themeContext = React.useContext(ThemeContext);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoggedIn(await isLoggedIn());
+      } catch (e) {}
+    })();
+  }, []);
+
   return (
     <header className="h-16 bg-inherit flex items-center justify-between px-8 md:px-10 lg:px-20 fixed w-full app-shadows shadow-lg app-theme z-30">
       <div className="w-fit h-fit flex items-center">
@@ -45,9 +56,13 @@ const Header = () => {
         </nav>
       </div>
       <div>
-        <Link href="/login" className="app-btn rounded-3xl">
-          Login
-        </Link>
+        {loggedIn
+          ? <Link href="/home" className="app-btn rounded-3xl">
+              Home
+            </Link>
+          : <Link href="/login" className="app-btn rounded-3xl">
+              Login
+            </Link>}
         <AppDropdown
           title={
             <button className="app-btn py-1 inline-block ms-3 rounded-3xl">
