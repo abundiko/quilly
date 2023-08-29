@@ -87,7 +87,7 @@ const Header = () => {
             <motion.aside className="w-full h-screen fixed top-0 left-0 z-[35]">
       <div  onClick={()=>setShowMobileNav(false)} className="absolute h-full w-full top-0 left-0 bg-[#00000022] backdrop-blur-sm" />
       <motion.div {...animations} className="absolute bottom-0 w-full h-[50vh] min-h-max rounded-t-lg app-theme shadow-md app-shadows border app-borders">
-        <h6 className="page-title py-1 text-md font-[600] opacity-80 flex items-center justify-between">
+        <h6 className="page-title py-1 ps-2 pe-2 text-md font-[600] opacity-80 flex items-center justify-between">
           <span>Menu</span>
           <button  onClick={()=>setShowMobileNav(false)} className="app-icon-button">
           <FaTimes className="scale-75" />
