@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatedPageOpacity } from "@/components/AnimatedPage";
+import AppLoader from "@/components/AppLoader";
 import PostCard from "@/components/PostCard";
 import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
@@ -17,7 +18,7 @@ import { FaBook, FaCalendar, FaInfoCircle, FaPen } from "react-icons/fa";
 const Page = () => {
   const userContext = useContext(UserContext);
   const modalContext = useContext(ModalContext);
-  const [posts, setPosts] = useState<PostDocument[]>([]);
+  const [posts, setPosts] = useState<PostDocument[]|null>(null);
   
   useEffect(()=>{
     (async()=>{
@@ -91,12 +92,14 @@ const Page = () => {
             <h2 className="font-bold text-xl border-b app-borders w-full py-2 mb-2">
               Posts
               &nbsp;
-              <span className="opacity-80 text-sm">({posts.length})</span>
+              <span className="opacity-80 text-sm">({posts && posts.length})</span>
             </h2>
-            {posts && posts.length > 0 ? posts.map((item, i) => <PostCard {...item} key={i} />) : 
+            {posts ? posts.length > 0 ? posts.map((item, i) => <PostCard {...item} key={i} />) : 
         <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
           <FaInfoCircle className="text-7xl" />
           <h1 className="text-2xl">No Posts Yet</h1>
+          </div> : <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
+          <AppLoader dotsClass="app-theme-opposite" className="w-fit scale-150"/>
           </div>}
           </div>
         </div>

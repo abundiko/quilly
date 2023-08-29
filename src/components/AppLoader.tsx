@@ -1,6 +1,12 @@
 import React from "react";
 
-const AppLoader = ({ className }: { className?: string }) => {
+const AppLoader = ({
+  className,
+  dotsClass
+}: {
+  className?: string;
+  dotsClass?: string;
+}) => {
   return (
     <div
       className={`flex w-full gap-2 py-1 justify-center app-loader ${className}`}
@@ -13,7 +19,7 @@ const AppLoader = ({ className }: { className?: string }) => {
               "--delay": item
             } as React.CSSProperties
           }
-          className="dot h-3 w-3 app-theme app-bg-opacity rounded-full"
+          className={`dot h-3 w-3 app-theme app-bg-opacity rounded-full ${dotsClass}`}
         />
       )}
     </div>

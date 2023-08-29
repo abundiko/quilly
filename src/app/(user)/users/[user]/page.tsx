@@ -6,7 +6,9 @@ import PostCard from "@/components/PostCard";
 import ProfilePhotoModal from "@/components/modals/ProfilePhotoModal";
 import { ModalContext } from "@/context/ModalContext";
 import UserContext from "@/context/UserContext";
+import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import { UserDocument } from "@/server/mongoose/schemas/userSchema";
+import getUserPosts from "@/server/postActions/getPosts";
 import getUser, { getUserByUsername } from "@/server/userActions/getUser";
 import updateFavourites from "@/server/userActions/updateFavourites";
 import { formatDateString } from "@/utils/formateDate";
@@ -15,7 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState, } from "react";
-import { FaBook, FaCalendar,  } from "react-icons/fa";
+import { FaBook, FaCalendar, FaInfoCircle,  } from "react-icons/fa";
 import { TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti';
 
 
@@ -42,9 +44,28 @@ const Page = () => {
   })();
   },[router, user])
 
+    const [posts, setPosts] = useState<PostDocument[]|null>(null);
+  
   useEffect(()=>{
-    if(user && user == userContext.data?.username) return router.replace('/user');
-  },[userContext.data, router, user])
+    if(userData && userData._id)
+    (async()=>{
+      let fetched = false;
+      while(!fetched){
+        try {
+          const postDoc = await getUserPosts(userData._id as string);
+          
+          if(postDoc){
+            fetched = true;
+            setPosts(postDoc);
+          } 
+        } catch (e) {
+          continue;
+        }
+      }
+    })();
+  },[userData])
+
+  if(user && user == userContext.data?.username) return router.replace('/user');
 
   function updateFavourite(add:boolean) {
     setLoadingFavourite(true);
@@ -140,7 +161,13 @@ const Page = () => {
             <h2 className="font-bold text-xl border-b app-borders w-full py-2 mb-2">
               Posts
             </h2>
-            {/* {dummyPosts.map((item, i) => <PostCard {...item} key={i} />)} */}
+            {posts ? posts.length > 0 ? posts.map((item, i) => <PostCard {...item} key={i} />) : 
+        <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
+          <FaInfoCircle className="text-7xl" />
+          <h1 className="text-2xl">No Posts Yet</h1>
+          </div> : <div className="flex flex-col items-center justify-center py-20 opacity-40 gap-2">
+          <AppLoader dotsClass="app-theme-opposite" className="w-fit scale-150"/>
+          </div>}
           </div>
         </div>
       </section>

@@ -66,8 +66,8 @@ const PostPage = () => {
         }
       }
     })();
-    
-     if(postData && postData._id && !hasViewed){
+
+     if(postData && postData._id && !hasViewed && !postData.impressions.views.includes(userContext.data?._id!)){
   let timeOut = setTimeout(async () => {
         try {
           const res = await viewPost(postData._id!, userContext.data?._id as string);
@@ -80,7 +80,7 @@ const PostPage = () => {
         
           setHasViewed(true);
       } catch (e) {}
-      }, 1000 * 1); // must stay for 1 second before view counts
+      }, 1000 * 12); // must stay for 12 second before view counts
       return () => clearTimeout(timeOut);
     }
   },[postData])

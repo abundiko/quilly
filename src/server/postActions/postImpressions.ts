@@ -44,7 +44,6 @@ export async function viewPost(
       const postData = postDoc as PostDocument;
       if (!postData.impressions.views.includes(uid))
         postData.impressions.views.push(uid);
-      console.log(postData.impressions.views);
 
       const newDoc = await PostModel.findByIdAndUpdate(
         _id,
