@@ -5,31 +5,38 @@ import { InterestButton } from '@/components/InterestButton'
 import PostCard from '@/components/PostCard'
 import UserContext from '@/context/UserContext'
 import { PostDocument } from '@/server/mongoose/schemas/postSchema'
-import {getPosts} from '@/server/postActions/getPosts'
+import {searchPosts} from '@/server/postActions/getPosts'
 import Link from 'next/link'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { FaPen } from 'react-icons/fa'
 
 const HomePage = () => {
   const [posts, setPosts] = useState<PostDocument[]|null>(null);
   const userContext = useContext(UserContext);
+  const fetchCount = 4;
 
   useEffect(()=>{
-    (async()=>{
+    fetchPosts();
+  },[userContext.data?.interests])
+  
+  const fetchPosts = async()=>{
       let fetched = false;
       while(!fetched){
         try {
-          const postDoc = await getPosts();
+          const postDoc = await searchPosts("",{
+            filter:userContext.data?.interests,
+            limit:fetchCount,
+            skip:posts?.length
+          });
           if(postDoc){
             fetched = true;
-            setPosts(postDoc);
+            setPosts([...posts??[],...postDoc]);
           } 
         } catch (e) {
           continue;
         }
       }
-    })();
-  },[])
+    }
   
   return (
     <>
@@ -40,9 +47,16 @@ const HomePage = () => {
       <h1 className="page-title">Quilly</h1>
       {posts &&
         posts.map((item,i)=>
-        <PostCard {...item} key={i} />
+        <PostCard {...item} key={i}
+          onViewportEnter={()=>{
+            if((i%fetchCount) == 0){
+    fetchPosts();
+            }
+          }}
+         />
         )
       }
+      <div className="py-20"></div>
       </div>
       <div className="hidden md:block w-4/12 app-borders border-l p-3">
         <div className="flex justify-between items-center ">

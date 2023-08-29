@@ -17,6 +17,7 @@ import { FaCommentAlt, FaEye,  FaThumbsUp, FaTimes } from "react-icons/fa";
 import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
 import { formatImage } from "@/utils/imageHelpers";
 import Link from "next/link";
+import { countUsersWithFavourite } from "@/server/userActions/getFavourites"
 
 const PostPage = () => {
   const [postData, setPostData] = useState<PostDocument | null>(null);

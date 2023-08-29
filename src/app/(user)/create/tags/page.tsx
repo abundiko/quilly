@@ -31,8 +31,8 @@ const CreatePostTagsPage = () => {
         router.push('/create/preview')
       }
     } catch (error) {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
   return (
     <AnimatedPageOpacity >

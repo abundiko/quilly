@@ -14,7 +14,6 @@ import updateFavourites from "@/server/userActions/updateFavourites";
 import { formatDateString } from "@/utils/formateDate";
 import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
-import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState, } from "react";
 import { FaBook, FaCalendar, FaInfoCircle,  } from "react-icons/fa";

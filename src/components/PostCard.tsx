@@ -4,12 +4,13 @@ import {  BiComment, BiRadioCircle } from "react-icons/bi";
 import Link from "next/link";
 import { PostDocument } from "@/server/mongoose/schemas/postSchema";
 import formatDate from "@/utils/formateDate";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import getPostAuthor, { PostAuthor } from "@/server/postActions/getPostAuthor";
 import { formatImage } from "@/utils/imageHelpers";
 import { formatPostTitleAsUrl } from "@/utils/formatUrl";
 import UserContext from "@/context/UserContext";
 import AppDropdown from "./AppDropdown";
+import { motion } from "framer-motion";
 
 const PostCard = ({
   title,
@@ -17,10 +18,15 @@ const PostCard = ({
   createdAt,
   author,
   img,
-  impressions
-}: PostDocument) => {
+  impressions,
+  onViewportEnter
+}: PostDocument&{
+  onViewportEnter?:()=>void
+}) => {
   const userContext = useContext(UserContext);
   const [user, setUser] = useState<PostAuthor|null>(null);
+  const hasEntered = useRef(false);
+
   useEffect(()=>{
     (async()=>{
       
@@ -51,7 +57,14 @@ const PostCard = ({
 
   
   return (
-    <div className="my-1  py-2 px-3 group cursor-pointer app-borders border-b">
+    <motion.div
+    onViewportEnter={()=>{
+      if(!hasEntered.current && onViewportEnter) {
+        onViewportEnter();
+      hasEntered.current = true;
+      }
+    }}
+     className="my-1  py-2 px-3 group cursor-pointer app-borders border-b">
       <div className="flex justify-between mb-1">
         <div className="w-fit flex items-center gap-1">
           {
@@ -128,7 +141,7 @@ const PostCard = ({
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

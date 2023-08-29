@@ -12,13 +12,16 @@ import { formatDateString } from "@/utils/formateDate";
 import { formatImage } from "@/utils/imageHelpers";
 import Image from "next/image";
 import Link from "next/link";
+import { countUsersWithFavourite } from "@/server/userActions/getFavourites"
 import React, { useContext, useEffect, useState } from "react";
-import { FaBook, FaCalendar, FaInfoCircle, FaPen } from "react-icons/fa";
+import { FaBook, FaCalendar, FaHeart, FaInfoCircle, FaPen } from "react-icons/fa";
+import formatNumbers from "@/utils/formatNumbers";
 
 const Page = () => {
   const userContext = useContext(UserContext);
   const modalContext = useContext(ModalContext);
   const [posts, setPosts] = useState<PostDocument[]|null>(null);
+  const [favourites, setFavourites] = useState<number|null>(null);
   
   useEffect(()=>{
     (async()=>{
@@ -26,9 +29,10 @@ const Page = () => {
       while(!fetched){
         try {
           const postDoc = await getUserPosts(userContext.data?._id as string);
-          
+          const res = await countUsersWithFavourite(userContext.data?._id as string);
           if(postDoc){
             fetched = true;
+            setFavourites(res);
             setPosts(postDoc);
           } 
         } catch (e) {
@@ -75,14 +79,18 @@ const Page = () => {
         </div>
 
         <div className="p-4">
-          <div className="mb-3 flex gap-3">
+          <div className="mb-1 flex gap-3">
             <p className="text-sm font-[600] flex items-center opacity-80 gap-2">
-              <FaBook /> <span> {userContext.data?.monthly_readers} Monthly readers</span>
+              <FaBook /> <span> {formatNumbers(userContext.data?.monthly_readers)} readers</span>
             </p>
             <p className="text-sm font-[600] flex items-center opacity-80 gap-2">
+              <FaHeart /> <span> {formatNumbers(favourites)} Favourites</span>
+            </p>
+            <br />
+          </div>
+            <p className="text-sm mb-3 font-[600] flex items-center opacity-80 gap-2">
               <FaCalendar /> <span> Joined {formatDateString(userContext.data?.createdAt!)}</span>
             </p>
-          </div>
           <div className="p-2 rounded-md border app-borders mb-4 light-bg">
             <p className="opacity-80 text-md whitespace-pre-line">
               {userContext.data?.bio}
