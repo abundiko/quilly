@@ -2,9 +2,7 @@
 
 import UserModel from "../mongoose/schemas/userSchema";
 
-export async function countUsersWithFavourite(
-  _id: string
-): Promise<number | null> {
+export async function countUsersWithFavourite(_id: string) {
   try {
     const query = { favourites: { $in: [_id] } };
 

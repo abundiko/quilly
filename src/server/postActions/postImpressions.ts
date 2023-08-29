@@ -2,6 +2,7 @@
 
 import { connectDB } from "../mongoose/init";
 import PostModel, { PostDocument } from "../mongoose/schemas/postSchema";
+import UserModel, { UserDocument } from "../mongoose/schemas/userSchema";
 
 export async function likePost(
   _id: string,
@@ -44,7 +45,23 @@ export async function viewPost(
       const postData = postDoc as PostDocument;
       if (!postData.impressions.views.includes(uid))
         postData.impressions.views.push(uid);
+      //
+      const postAuthor = UserModel.findById(postData.author);
+      if (postAuthor) {
+        const oldReaders = ((postAuthor as unknown) as UserDocument)
+          .monthly_readers;
+        const monthly_readers = (oldReaders ?? 0) + 1;
+        const res = UserModel.findByIdAndUpdate(
+          postData.author,
+          {
+            monthly_readers
+          },
+          { new: true }
+        );
+        console.log(res);
+      }
 
+      //
       const newDoc = await PostModel.findByIdAndUpdate(
         _id,
         { impressions: postData.impressions },
