@@ -125,7 +125,7 @@ const PostPage = () => {
 
         {postData && <PostReader {...postData as PostReaderProps} />}
 
-        <div className="w-full sm:w-fit justify-around sm:justify-center rounded-lg app-theme app-borders border-4 app-shadows px-5 py-3 flex sm:gap-4 md:gap-6 fixed bottom-0 sm:bottom-4 sm:shadow-xl left-0 sm:left-[60%] md:left-1/2 sm:-translate-x-1/2">
+        <div className="w-full sm:w-fit justify-around sm:justify-center rounded-lg app-theme app-borders border app-bg-opacity backdrop-blur-md app-shadows px-5 py-3 flex sm:gap-4 md:gap-6 fixed bottom-0 sm:bottom-4 sm:shadow-xl left-0 sm:left-[60%] md:left-1/2 sm:-translate-x-1/2">
           <div className="flex w-max px-3 rounded-md hover:light-bg py-2 items-center gap-1 opacity-80">
             <FaEye />
             <span>{formatNumbers(postData?.impressions.views.length ?? 0)} view{(postData?.impressions.views.length ?? 0) == 1 ? "" : "s"}</span>
