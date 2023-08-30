@@ -28,7 +28,7 @@ export async function GET(req, res) {
             width: 300,
             borderRadius: 50
           }}
-          src={"/img/hero-snapshot.png"}
+          src={"https://quilly-blog.vercel.app/img/hero-snapshot.png"}
         />
         Quilly
       </div>
