@@ -9,7 +9,7 @@ const TrendingSection = () => {
       <h6 className="font-[600] text-sm">Trending Tags</h6>
 
       <div className="p-2 rounded-md light-bg mt-1">
-        {testInterests.map(item =>
+        {["Gaming", "Technology", "Sports", "Politics", "Health"].map(item =>
           <div
             key={item}
             className="flex w-full bg-transparent py-1 justify-between items-center"
