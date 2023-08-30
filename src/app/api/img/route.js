@@ -2,7 +2,9 @@ import { ImageResponse } from "next/server";
 
 export const runtime = "edge";
 
-export async function GET() {
+export default async function handler(req, res) {
+  const { queryParam } = req.query; // Access query parameter
+
   return new ImageResponse(
     (
       <div
@@ -17,6 +19,7 @@ export async function GET() {
           justifyContent: "center"
         }}
       >
+        {/* <img src={} /> */}
         Hello world!
       </div>
     ),
