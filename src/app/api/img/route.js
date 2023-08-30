@@ -2,7 +2,7 @@ import { getUserByUsername } from "@/server/userActions/getUser";
 import { formatImage } from "@/utils/imageHelpers";
 import { ImageResponse } from "next/server";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function GET(req, res) {
   const { u } = req.query; // Access query parameter
