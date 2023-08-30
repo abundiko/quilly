@@ -21,7 +21,7 @@ const AppModal = ({ title, children }: AppModalProps) => {
         className="backdrop w-full h-full backdrop-blur-md app-bg-opacity app-theme"
         onClick={() => modalContext.setModal(null)}
       />
-      <div className="absolute min-w-[310px] app-theme rounded-lg border app-borders shadow-lg app-shadows py-3 top-3/4 lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute min-w-[310px] app-theme rounded-lg border app-borders shadow-lg app-shadows py-3 bottom-20 lg:top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2">
         <h2 className="text-xl app-borders border-b mb-2 pb-2 font-bold opacity-80 px-4  md:px-6 lg:px-8">
           {title}
         </h2>
