@@ -1,13 +1,20 @@
 import { getUserByUsername } from "@/server/userActions/getUser";
 import { formatImage } from "@/utils/imageHelpers";
+import { URL } from "next/dist/compiled/@edge-runtime/primitives/url";
 import { ImageResponse } from "next/server";
 
 // export const runtime = "edge";
 
 export async function GET(req, res) {
-  // const { u } = req.query; // Access query parameter
-  // const user = await getUserByUsername(u);
-  // const image = formatImage(user.img);
+  const url = new URL(req.url);
+  const u = url.searchParams.get("u") ?? null;
+  let image = ""
+  if(u){
+    const user = await getUserByUsername(u);
+    image = formatImage(user.img);
+  }else {
+    image= "https://quilly-blog.vercel.app/img/user.png"
+  }
   return new ImageResponse(
     (
       <div
@@ -17,6 +24,7 @@ export async function GET(req, res) {
           width: "100%",
           height: "100%",
           display: "flex",
+          flexDirection: "column",
           textAlign: "center",
           alignItems: "center",
           justifyContent: "center"
@@ -28,7 +36,7 @@ export async function GET(req, res) {
             width: 300,
             borderRadius: 50
           }}
-          src={"https://quilly-blog.vercel.app/img/hero-snapshot.png"}
+          src={image}
         />
         Quilly
       </div>
