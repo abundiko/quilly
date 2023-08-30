@@ -11,6 +11,8 @@ import { formatPostTitleAsUrl } from "@/utils/formatUrl";
 import UserContext from "@/context/UserContext";
 import AppDropdown from "./AppDropdown";
 import { motion } from "framer-motion";
+import { ModalContext } from "@/context/ModalContext";
+import DeletePostModal from "./modals/DeletePostModal";
 
 const PostCard = ({
   title,
@@ -24,7 +26,9 @@ const PostCard = ({
   onViewportEnter?:()=>void
 }) => {
   const userContext = useContext(UserContext);
+  const modalContext = useContext(ModalContext);
   const [user, setUser] = useState<PostAuthor|null>(null);
+  const [deleted, setDeleted] = useState(false);
   const hasEntered = useRef(false);
 
   useEffect(()=>{
@@ -55,7 +59,7 @@ const PostCard = ({
         return items;
   }
 
-  
+  if(!deleted)
   return (
     <motion.div
     onViewportEnter={()=>{
@@ -97,7 +101,25 @@ const PostCard = ({
         </button>
         }
         items={getDropDownItems()}
-        onUpdate={(e)=>{}}
+        onUpdate={(e)=>{
+          if(e==="delete"){
+            modalContext.setModal(
+              <DeletePostModal 
+              onDelete={()=>setDeleted(true)}
+               postProps={{
+                 title,
+                 subtitle,
+                 createdAt,
+                 author,
+                 img,
+                 impressions,
+                 body:"",
+                 tags:[]
+               }}
+               />
+            )
+          }
+        }}
         />
       </div>
       <Link
