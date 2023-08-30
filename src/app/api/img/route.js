@@ -2,7 +2,7 @@ import { ImageResponse } from "next/server";
 
 export const runtime = "edge";
 
-export default async function handler(req, res) {
+export async function GET(req, res) {
   const { queryParam } = req.query; // Access query parameter
 
   return new ImageResponse(
