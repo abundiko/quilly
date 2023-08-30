@@ -4,6 +4,7 @@ export const testInterests = [
   "Travel",
   "Health",
   "Music",
+  "Gaming",
   "Food",
   "Fashion",
   "Sports",

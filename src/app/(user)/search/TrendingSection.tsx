@@ -1,7 +1,4 @@
-import { testInterests } from "@/data/testInterests";
 import Link from "next/link";
-import { FaTrashAlt } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 
 const TrendingSection = () => {
   return (
