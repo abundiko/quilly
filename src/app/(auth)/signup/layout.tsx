@@ -3,6 +3,7 @@
 import AnimatedPage from "@/components/AnimatedPage";
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import { SignupData } from "./page";
+import AppHead from "@/components/AppHead";
 
 export type LayoutProps = {
   children: React.ReactNode;
@@ -22,6 +23,10 @@ const SignupLayout = ({ children }: LayoutProps) => {
   const [data, setData] = useState<SignupData | null>(null);
   return (
     <AnimatedPage>
+      <AppHead
+        title="Quilly | Create Account"
+        description="Join Thousands of users to inspire and get inspired"
+      />
       <SignupContext.Provider value={{ data, setData }}>
         <main className="h-screen relative w-full">
           <div className="w-full h-full flex items-center flex-row-reverse">

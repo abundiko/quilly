@@ -2,15 +2,16 @@
 import AnimatedPage from "@/components/AnimatedPage";
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import LoginForm from "./form";
+import AppHead from "@/components/AppHead";
 
 const LoginPage = () => {
   return (
     <AnimatedPage>
-      <Helmet>
-        <title>Quilly | Sign in</title>
-      </Helmet>
+      <AppHead
+        title="Quilly | Login"
+        description="Login to the best blog site"
+      />
       <main className="h-screen relative w-full">
         <div className="w-full h-full flex items-center">
           <div className="w-0 md:w-6/12 overflow-hidden h-full bg-[url(/img/test.jpg)] bg-cover bg-left-bottom opacity-50" />
