@@ -3,6 +3,12 @@ import { formatImage } from "@/utils/imageHelpers";
 import { URL } from "next/dist/compiled/@edge-runtime/primitives/url";
 import { ImageResponse } from "next/server";
 
+export const config = {
+  unstable_includeFiles: [
+    'node_modules/next/dist/compiled/@edge-runtime/primitives/**/*.+(js|json)',
+  ],
+}
+
 // export const runtime = "edge";
 
 export async function GET(req, res) {
