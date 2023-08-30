@@ -1,6 +1,16 @@
 # Quilly
 ## Blog site built with Next.js 13
 
-[view Live](https://quilly-blog.vercel.app)
+### Features
+- Create Blog Posts
+- View Blog Posts
+- Comment and Like Posts
+- Create Accounts
+- Delete Blog Posts `you posted`
+- Search Posts `with search history`
+
 <br>
-[Screenshot](./public/img/snapshot.jpg)
+
+click to view live 👇🏽
+[![view live](./public/img/snapshot.jpg)](https://quilly-blog.vercel.app)
+<br>
