@@ -15,6 +15,10 @@ export default function PublicLayout({children}:LayoutProps){
 
 export const metadata: Metadata = {
   title: "Quilly | Home",
+  icons:[
+    "/img/icon.png"
+  ],
+  keywords:["quilly","blogs","social blog","blogging","writing","quill","best blog site"],
   description: "Home of professionally crafted contents",
   openGraph: {
     title: "Quilly | Home",
