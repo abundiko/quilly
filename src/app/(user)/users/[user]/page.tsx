@@ -98,7 +98,7 @@ const Page = () => {
           <div className="relative bg-gradient-to-t from-light dim:from-dim dark:from-dark to-transparent h-full w-full flex items-center py-5 px-6 md:px-10 gap-2 md:gap-5">
             <div className="w-3/12 aspect-square rounded-full app-shadows shadow-lg relative overflow-hidden">
               <Image
-                onClick={()=>modalContext.setModal(<ProfilePhotoModal full_name="Me" img={userData?.img} />)}
+                onClick={()=>modalContext.setModal(<ProfilePhotoModal full_name={user as string} img={userData?.img} />)}
                 src={formatImage(userData?.img)}
                 layout="fill"
                 alt="Profile Photo"

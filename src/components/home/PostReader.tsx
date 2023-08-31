@@ -59,7 +59,7 @@ export default function PostReader({
             <InterestButton
               key={tag}
               title={tag}
-              onClick={() => router.push(`/search/tag:${tag}`)}
+              onClick={() => router.push(`/search/${tag}`)}
             />
           )}
         </div>}
