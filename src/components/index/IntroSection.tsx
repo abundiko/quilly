@@ -35,6 +35,7 @@ const IntroSection = () => {
           }}
            className="relative h-full w-full">
             <Image
+          loading="lazy"
               src={"/img/"+item.img}
               layout="fill"
               alt="Hand writing"

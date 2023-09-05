@@ -27,13 +27,15 @@ const Header = () => {
       <div className="w-fit h-fit flex items-center">
         <Link href="/" className="inline-flex items-center">
           <Image
+          loading="lazy"
             src="/img/logo-dark.png"
             height={40}
             width={40}
             alt="Quilly Logo"
             className="dark:hidden dim:hidden"
           />
-          <Image
+          <Image       
+             loading="lazy"
             src="/img/logo-light.png"
             height={32}
             width={32}

@@ -34,6 +34,7 @@ const HeroSection = () => {
         </div>
         <div className="w-0 md:w-4/12 lg:w-6/12 h-full relative">
           <Image
+            loading="lazy"
             src="/img/hero.avif"
             alt="a writer's hand"
             className="w-full h-full object-cover object-left-bottom"

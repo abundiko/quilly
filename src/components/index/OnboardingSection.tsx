@@ -1,3 +1,5 @@
+"use client";
+
 import OnboardingSectionCard from "../OnboardongSectionCard";
 
 const OnboardingSection = () => {

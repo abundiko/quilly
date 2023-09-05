@@ -15,6 +15,7 @@ const Footer = () => {
         <div className="w-full md:w-40 me-5 mb-10 md:m-0">
           <Link href="/" className="w-full relative flex flex-col items-center">
             <Image
+          loading="lazy"
               src="/img/logo-light.png"
               height={100}
               width={100}

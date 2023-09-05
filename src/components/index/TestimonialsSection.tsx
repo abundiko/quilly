@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AnimatePresence,
   motion,
@@ -82,6 +84,7 @@ const TestimonialsSection = () => {
                   className="w-11/12 md:w-8/12 lg:w-[24em] app-theme-opposite p-6 md:p-8 border app-borders shadow-lg app-shadows rounded-3xl flex flex-col items-center justify-center"
                 >
                   <Image
+                    loading="lazy"
                     src={`/img/${testimonialsData[currentIndex].img}`}
                     height={100}
                     width={100}
@@ -154,6 +157,7 @@ const TestimonialsCircleImage = ({
 }) => {
   return (
     <Image
+      loading="lazy"
       onClick={action}
       src={`/img/${src}`}
       height={big ? 100 : 60}
