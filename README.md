@@ -12,5 +12,5 @@
 <br>
 
 click to view live 👇🏽
-[![view live](./public/img/snapshot.jpg)](https://quilly-blog.vercel.app)
+[![view live](./public/img/snapshot.avif)](https://quilly-blog.vercel.app)
 <br>

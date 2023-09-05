@@ -59,7 +59,7 @@ const Header = () => {
           )}
         </nav>
       </div>
-      <button  onClick={()=>setShowMobileNav(true)} className="app-icon-button md:hidden">
+      <button aria-label="toggle mobile nav"  onClick={()=>setShowMobileNav(true)} className="app-icon-button md:hidden">
           <FaBars />
         </button>
       <div className="hidden md:block">

@@ -26,9 +26,9 @@ const onboardingData = [
   <span key={1}>
     Create a Free account.{" "}
     <a href="/signup" className="app-navlink text-inherit">
-      Click Here
+      Get Started Now
     </a>
-    to get started
+    to join thousands of creators
   </span>,
   "Start writing posts and reading content from the most talented creators",
   "It's that easy. You are now part of the skilled bloggers community 🎉"

@@ -50,9 +50,9 @@ const WhyChooseUsCard = ({
         fourThemeClass}`}
     >
       {icon}
-      <h4 className="text-xl font-bold">
+      <p className="text-xl font-bold">
         {title}
-      </h4>
+      </p>
       <p className="opacity-70">
         {subtitle}
       </p>

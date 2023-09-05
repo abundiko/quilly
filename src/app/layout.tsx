@@ -25,6 +25,7 @@ export default function RootLayout({
         <main className=' app-theme'>  
           {children}
         </main>
+        <script src='/service-worker.js' defer></script>
       </Theme>
       </UserContextProvider>
       </ThemeContextProvider>

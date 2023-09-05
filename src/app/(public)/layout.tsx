@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   icons:[
     "/img/icon.png"
   ],
-  keywords:["quilly","blogs","social blog","blogging","writing","quill","best blog site"],
+  themeColor:"#fefdfe",
+  manifest:"https://quilly-blog.vercel.app/manifest.json",
+  keywords:["quilly","quilly blog","blogs","social blog","socio-blog","blogging","writing","quill","best blog site"],
   description: "Home of professionally crafted contents",
   openGraph: {
     title: "Quilly | Home",

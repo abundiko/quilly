@@ -8,7 +8,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-    <footer className="pt-20 pb-10 relative bg-[url(/img/hero.jpg)] bg-cover text-light overflow-hidden">
+    <footer className="pt-20 pb-10 relative bg-[url(/img/hero.avif)] bg-cover text-light overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-dark opacity-90 backdrop-blur-md" />
       <div className="h-40 w-40 app-theme absolute -right-20 -top-20 rounded-full" />
       <div className="app-container relative">
@@ -21,7 +21,7 @@ const Footer = () => {
               alt="Quilly Logo"
               className="block"
             />
-            <h6 className="font-bold text-3xl text-primary-light">Quilly</h6>
+            <h1 className="font-bold text-3xl text-primary-light">Quilly</h1>
           </Link>
         </div>
         <div className="w-full md:w-fit flex text-center md:text-start">

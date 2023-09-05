@@ -88,9 +88,9 @@ const TestimonialsSection = () => {
                     alt={testimonialsData[currentIndex].title}
                     className="shadow-md aspect-square app-shadows object-cover rounded-full"
                   />
-                  <h4 className="my-5 font-[600] text-xl">
+                  <p className="my-5 font-[600] text-xl">
                     {testimonialsData[currentIndex].title}
-                  </h4>
+                  </p>
                   <p className="relative opacity-80 text-md">
                     <FaQuoteLeft
                       size={20}
@@ -166,31 +166,31 @@ const TestimonialsCircleImage = ({
 
 const testimonialsData = [
   {
-    img: "test.jpg",
+    img: "test.avif",
     title: "Maria Santos",
     subTitle: `Quilly has been an incredible platform for me to connect with like-minded individuals from around the world. The diverse range of perspectives and engaging discussions have broadened my horizons. Highly recommended!`,
     index: 0
   },
   {
-    img: "hero.jpg",
+    img: "hero.avif",
     title: "Hiroshi Tanaka",
     subTitle: `As a passionate blogger, Quilly has provided me with an ideal space to share my thoughts and ideas. The supportive community and user-friendly interface make it easy to express myself and connect with fellow bloggers. Thumbs up!`,
     index: 1
   },
   {
-    img: "latest.jpg",
+    img: "latest.avif",
     title: "Sophie Dupont",
     subTitle: `Quilly is my go-to platform for staying up-to-date with the latest trends and insights across various topics. The informative articles and engaging content keep me inspired and motivated. A must-visit for any curious mind!`,
     index: 2
   },
   {
-    img: "creative.jpg",
+    img: "creative.avif",
     title: "Luca Rossi",
     subTitle: `Being a creative enthusiast, Quilly has been a treasure trove of inspiration. The vibrant community and diverse range of artistic expressions have fueled my imagination and pushed the boundaries of my creativity. Truly exceptional!`,
     index: 3
   },
   {
-    img: "community.jpg",
+    img: "community.avif",
     title: "Sakura Yamamoto",
     subTitle: `Quilly has brought people together from all walks of life, fostering a sense of unity and understanding. The supportive community and thought-provoking discussions have made me feel right at home. Joining Quilly was one of the best decisions I've made!`,
     index: 4

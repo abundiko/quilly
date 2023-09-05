@@ -10,7 +10,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -26,7 +26,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -42,7 +42,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -58,7 +58,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -74,7 +74,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -90,7 +90,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -106,7 +106,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -122,7 +122,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -138,7 +138,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -154,7 +154,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -170,7 +170,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -186,7 +186,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -202,7 +202,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],
@@ -218,7 +218,7 @@
 //     author: "64e610976b6ab8ddf8ed171b",
 //     body: "content",
 //     tags: ["tag1", "tag2"],
-//     img: "/img/hero.jpg",
+//     img: "/img/hero.avif",
 //     impressions: {
 //       likes: ["like1", "like2"],
 //       comments: ["comment1", "comment2"],

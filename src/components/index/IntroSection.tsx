@@ -66,17 +66,17 @@ export default IntroSection;
 const introData = [
   {
     title: ["Unleash Your Creativity!",],
-    img: "creative.jpg",
+    img: "creative.avif",
     subTitle: `Welcome to our blog site, where creativity knows no bounds. Explore a treasure trove of thought-provoking articles, insightful tutorials, and inspiring stories that will ignite your imagination`
   },
   {
     title: ["Join A Flawless Community",],
-    img: "community.jpg",
+    img: "community.avif",
     subTitle:`We believe in the power of community. Join a vibrant network of like-minded individuals who share their thoughts, experiences, and ideas through engaging discussions and interactive features.`
   },
   {
     title: ["Expertise at Your Fingertips"],
-    img: "latest.jpg",
+    img: "latest.avif",
     subTitle: `In a sea of blogs, ours stands out for its unparalleled expertise. We pride ourselves on curating content crafted by industry experts, seasoned professionals, and passionate enthusiasts.`
   },
 ];
