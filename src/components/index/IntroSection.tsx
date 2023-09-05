@@ -37,8 +37,8 @@ const IntroSection = () => {
             <Image
           loading="lazy"
               src={"/img/"+item.img}
-              layout="fill"
-              alt="Hand writing"
+              layout="responsive"
+              alt="Quilly, socio-blogging. best blog site"
               className="rounded-md app-shadow shadow-lg object-cover"
             />
           </motion.div>

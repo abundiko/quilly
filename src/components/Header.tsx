@@ -32,6 +32,7 @@ const Header = () => {
             height={40}
             width={40}
             alt="Quilly Logo"
+            layout="fixed"
             className="dark:hidden dim:hidden"
           />
           <Image       
@@ -40,6 +41,7 @@ const Header = () => {
             height={32}
             width={32}
             alt="Quilly Logo"
+            layout="fixed"
             className="hidden dark:inline-block dim:inline-block"
           />
           <span className="font-[500] text-2xl text-primary-dark dark:text-primary-light dim:text-primary-light underline underline-offset-4 ">

@@ -36,9 +36,9 @@ const HeroSection = () => {
           <Image
             loading="lazy"
             src="/img/hero.avif"
-            alt="a writer's hand"
+            alt="Quilly Blog. a writer's hand"
             className="w-full h-full object-cover object-left-bottom"
-            layout="fill"
+            layout="responsive"
           />
         </div>
       </div>
