@@ -1,4 +1,4 @@
-# Quilly
+# Quilly Blog
 ## Blog site built with Next.js 13
 
 ### Features
